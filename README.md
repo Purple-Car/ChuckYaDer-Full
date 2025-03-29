@@ -1,7 +1,7 @@
 # ChuckYaDer-Full
 Trabalho de Portifólio Católicasc
 
-##Documentação do Projeto
+## Documentação do Projeto
 
 Documentação está sendo realizada em Notion. 
 
@@ -9,14 +9,14 @@ https://www.notion.so/1c561f84087e803495b2ee0b9321e773?v=1c561f84087e809abff9000
 
 Estou trabalhando em organizar e mover as coisas para as plataformas recomendadas.
 
-##Controle de Código e Versionamento
+## Controle de Código e Versionamento
 
 ...
 
-##Ciclos de Teste e Playtesting
+## Ciclos de Teste e Playtesting
 
 ...
 
-##Assinaturas e considerações
+## Assinaturas e considerações
 
 ...
