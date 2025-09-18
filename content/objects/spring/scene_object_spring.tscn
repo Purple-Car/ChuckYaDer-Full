@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4ms80geg0juq"]
+
+[ext_resource type="Script" uid="uid://dab6c7wc66a5r" path="res://objects/spring/script_object_spring.gd" id="1_p3srn"]
+[ext_resource type="Texture2D" uid="uid://bsibknvbdui0h" path="res://objects/spring/sprites/spring.png" id="2_ijkob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuad3"]
+atlas = ExtResource("2_ijkob")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6tgc"]
+atlas = ExtResource("2_ijkob")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khiyr"]
+atlas = ExtResource("2_ijkob")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db8xt"]
+atlas = ExtResource("2_ijkob")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoo2o"]
+atlas = ExtResource("2_ijkob")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlf7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuad3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6tgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khiyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db8xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoo2o")
+}],
+"loop": true,
+"name": &"boing",
+"speed": 20.0
+}]
+
+[node name="SceneObjectSpring" type="Node2D"]
+script = ExtResource("1_p3srn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xlf7o")
+animation = &"boing"
+frame_progress = 0.197397

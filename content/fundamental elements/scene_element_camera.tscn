@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dvufyrat5i2kt"]
+
+[node name="cam_camera_root" type="Camera2D"]
+anchor_mode = 0
+
+[node name="pol_camera_background" type="Polygon2D" parent="."]
+color = Color(0.666667, 0.85098, 1, 1)
+polygon = PackedVector2Array(0, 0, 320, 0, 320, 180, 0, 180)

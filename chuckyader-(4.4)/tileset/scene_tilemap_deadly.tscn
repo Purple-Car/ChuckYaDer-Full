@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d21xpjid51rfn"]
+
+[ext_resource type="Texture2D" uid="uid://cdvry6hnjyk2m" path="res://tileset/tmp_deadly_tilemap.png" id="1_3dc00"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1ua1"]
+texture = ExtResource("1_3dc00")
+texture_region_size = Vector2i(8, 8)
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -4)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -4, 2, -4, 2, 8, -2, 8)
+2:0/size_in_atlas = Vector2i(2, 1)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(4, 0)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2, 4, -2, 4, 2, -8, 2)
+2:1/size_in_atlas = Vector2i(2, 1)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(-4, 0)
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -2, 8, -2, 8, 2, -4, 2)
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 4)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -8, 2, -8, 2, 4, -2, 4)
+
+[sub_resource type="TileSet" id="TileSet_auwds"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 128
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_s1ua1")
+
+[node name="node_tilemap_deadly" type="TileMapLayer"]
+tile_set = SubResource("TileSet_auwds")
