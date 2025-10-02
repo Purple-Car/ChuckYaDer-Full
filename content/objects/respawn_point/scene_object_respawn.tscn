@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://x2jr324a5jb5"]
+
+[ext_resource type="Script" uid="uid://fpvcvefuk5mr" path="res://objects/respawn_point/sprite_object_respawn.gd" id="1_jkolm"]
+[ext_resource type="Texture2D" uid="uid://dm7avu5mhr7r8" path="res://objects/respawn_point/sprites/player_spawn.png" id="2_8yd1n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyn0r"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0c07"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65wqo"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vcb2"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80ch2"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7bmj"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1et25"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gnrc"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6euo"]
+atlas = ExtResource("2_8yd1n")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kc767"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyn0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0c07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65wqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vcb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80ch2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7bmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1et25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gnrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6euo")
+}],
+"loop": false,
+"name": &"respawn",
+"speed": 20.0
+}]
+
+[node name="node_respawn_point" type="Node2D"]
+script = ExtResource("1_jkolm")
+
+[node name="polygon_object_view" type="Polygon2D" parent="."]
+color = Color(0.937255, 0.396078, 0.85098, 1)
+polygon = PackedVector2Array(-5, -10, 5, -10, 5, 12, -5, 12)
+
+[node name="anisprite_respawn_point" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kc767")
+animation = &"respawn"
+autoplay = "respawn"
+
+[connection signal="animation_finished" from="anisprite_respawn_point" to="." method="_onAnimationFinished"]

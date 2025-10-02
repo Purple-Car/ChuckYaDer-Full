@@ -1,8 +1,119 @@
-[gd_scene format=3 uid="uid://dvufyrat5i2kt"]
+[gd_scene load_steps=11 format=3 uid="uid://dvufyrat5i2kt"]
+
+[ext_resource type="Script" uid="uid://c205w2xfpxb2n" path="res://fundamental elements/script_element_camera.gd" id="1_iwfsl"]
+[ext_resource type="Texture2D" uid="uid://dx58twq7alv2q" path="res://resources/ScreenResolutionReference.png" id="2_oytsc"]
+[ext_resource type="Texture2D" uid="uid://cq7ouwoi7rcnn" path="res://menus/title/sprites/cursor.png" id="3_1g4ki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6o8f"]
+atlas = ExtResource("3_1g4ki")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vft16"]
+atlas = ExtResource("3_1g4ki")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kiui7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6o8f")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vft16")
+}],
+"loop": false,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_1g4ki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pol_fade:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_oytsc"]
+resource_name = "fade_in"
+length = 0.50000167
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pol_fade:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x6o8f"]
+resource_name = "fade_out"
+length = 0.50000167
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pol_fade:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6o8f"]
+_data = {
+&"RESET": SubResource("Animation_1g4ki"),
+&"fade_in": SubResource("Animation_oytsc"),
+&"fade_out": SubResource("Animation_x6o8f")
+}
 
 [node name="cam_camera_root" type="Camera2D"]
+process_mode = 3
 anchor_mode = 0
+script = ExtResource("1_iwfsl")
+background_color = 1
 
-[node name="pol_camera_background" type="Polygon2D" parent="."]
+[node name="pol_background" type="Polygon2D" parent="."]
 color = Color(0.666667, 0.85098, 1, 1)
-polygon = PackedVector2Array(0, 0, 320, 0, 320, 180, 0, 180)
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
+
+[node name="spr2D_reference" type="Sprite2D" parent="."]
+texture = ExtResource("2_oytsc")
+centered = false
+
+[node name="pol_fade" type="Polygon2D" parent="."]
+visible = false
+z_index = 100
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
+
+[node name="anisprite_cursor" type="AnimatedSprite2D" parent="."]
+z_index = 101
+sprite_frames = SubResource("SpriteFrames_kiui7")
+animation = &"normal"
+autoplay = "normal"
+offset = Vector2(5, 5)
+
+[node name="anipl_fade" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x6o8f")
+}

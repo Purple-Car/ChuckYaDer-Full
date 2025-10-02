@@ -11,25 +11,33 @@ config_version=5
 [application]
 
 config/name="chuckyader"
-run/main_scene="uid://cnq5p35ln2eor"
+run/main_scene="uid://dho5uboywkire"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Utils="*res://fundamental elements/global scripts/utils.gd"
+Gamestate="*res://fundamental elements/global scripts/gamestate.gd"
+
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=180
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://ba4f6ts3xmra4"
 
 [file_customization]
 
 folder_colors={
 "res://effects/": "purple",
 "res://fundamental elements/": "teal",
+"res://menus/": "gray",
 "res://objects/": "pink",
 "res://objects/player/": "pink",
+"res://resources/": "orange",
 "res://stages/": "blue",
 "res://tileset/": "yellow"
 }
@@ -90,11 +98,18 @@ p2_grab={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"location":2,"echo":false,"script":null)
 ]
 }
+menu={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
 2d_physics/layer_1="Collision"
 2d_physics/layer_2="Grab"
+2d_physics/layer_3="Spring"
+2d_physics/layer_4="Door"
 2d_physics/layer_8="Spikes"
 
 [physics]

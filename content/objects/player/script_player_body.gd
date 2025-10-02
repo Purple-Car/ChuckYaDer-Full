@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED: float = 84.0
 const JUMP_VELOCITY: float = -60.0
 const MAX_FALL_SPEED: float = 192.0
-
+const DECELERATION: float = 4
 enum States { idle, walk, crouch, jump, fall, grabbed }
 enum Sub_States { grab, carry, throw }
 
@@ -14,7 +14,11 @@ var direction_x: float
 var player_num: int = 1
 var grabbed_object: Object
 
+var walk_velocity: float = 0
+var grav_velocity: float = 0
+
 @onready var states_machine: PlayerStateMachine = $node_state_machine
+@onready var sub_states_machine: PlayerSubstateMachine = $node_substate_machine
 @onready var sprites_node: Node2D = $node2D_sprites
 @onready var hands_player: AnimationPlayer = $anipl_hands
 @onready var body_player: AnimatedSprite2D = $node2D_sprites/anisprite_body
@@ -32,22 +36,31 @@ func _physics_process(delta: float) -> void:
 
 #region privates
 func _changeFacingDirection() -> void:
-	
-	if velocity.x > 0 and is_flipped == false:
+	if velocity.x > 0:
 		is_flipped = true
-	elif velocity.x < 0 and is_flipped == true:
+	elif velocity.x < 0:
 		is_flipped = false
 	else:
 		return
-	sprites_node.scale = Vector2(1 + (-2.0 * int(is_flipped)), 1.0)
+	_updateScaleDirection()
+
+func _updateScaleDirection() -> void:
+	scale.y = 1.0
+	rotation = 0
+	sprites_node.scale = Vector2(Utils.boolToSign(is_flipped), 1.0)
 
 func _directionalMovement() -> void:
 	# Checks if player is holding left or right
 	direction_x = Input.get_axis("p%s_left" % getPlayerNumber(), "p%s_right" % getPlayerNumber())
 	if direction_x and states_machine.getCanMove():
-		velocity.x = direction_x * SPEED
+		# velocity.x = direction_x * SPEED
+		# velocity.x = move_toward(velocity.x, direction_x * SPEED, SPEED)
+		walk_velocity = direction_x * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		# velocity.x = move_toward(velocity.x, 0, SPEED)
+		walk_velocity = 0
+	grav_velocity = move_toward(grav_velocity, 0, DECELERATION)
+	velocity.x = walk_velocity + grav_velocity
 #endregion
 
 #region publics
@@ -76,12 +89,10 @@ func doDeath() -> void:
 	var death_effect = _death_effect.instantiate()
 	get_parent().add_child(death_effect)
 	death_effect.position = position
+	death_effect.scale = Vector2( Utils.boolToSign(is_flipped), 1)
 	
 	if grabbed_object:
-		var reparent_node: Node = get_tree().root.get_node("node_stage/node_grabbables")
-		print("object:", grabbed_object)
-		grabbed_object.call_deferred("reparent", reparent_node)
-		grabbed_object.setUngrabbed()
+		ungrabObject()
 	
 	queue_free()
 
@@ -93,21 +104,46 @@ func getHandsAnimation() -> String:
 
 func getPlayerNumber() -> int:
 	return player_num
-	
+
 func setGrabbedObject(to_object: Object) -> void:
 	grabbed_object = to_object
-	
+
+func ungrabObject() ->void:
+	var reparent_node: Node = get_tree().root.get_node("node_stage/node_grabbables")
+	grabbed_object.call_deferred("reparent", reparent_node)
+	grabbed_object.setUngrabbed()
+	setGrabbedObject(null)
+
+func throwObject() -> void:
+	if body_player.animation == "crouch":
+		grabbed_object.grav_velocity = -64 * sign(Utils.boolToSign(is_flipped))
+	else:
+		grabbed_object.velocity.y += -96
+		grabbed_object.grav_velocity = -192 * sign(Utils.boolToSign(is_flipped))
+	ungrabObject()
+
 func setGrabbed() -> void:
 	var to_state: State = $"node_state_machine/grabbed"
+	var to_substate: State = $"node_substate_machine/none"
 	states_machine.current_state.next_state = to_state
+	sub_states_machine.current_state.next_state = to_substate
+	velocity = Vector2.ZERO
 	
 func setUngrabbed() -> void:
 	var to_state: State = $"node_state_machine/air"
 	states_machine.current_state.next_state = to_state
+	_updateScaleDirection()
 
 func applyGravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+func giveImpulse(strength: int, is_horizontal: bool) -> void:
+	if states_machine.current_state == $"node_state_machine/grabbed": return
+	if is_horizontal:
+		grav_velocity += strength
+	else:
+		velocity.y = -strength
 #endregion
 
 func _onOverlapBodyEntered(body: Node2D) -> void:

@@ -9,7 +9,7 @@ func _handleAnimation() -> void:
 	player.playHandsAnimation(player.getBodyAnimation())
 
 func subStateInput(event: InputEvent) -> void:
-	if event is InputEventMouseMotion: return
+	if event is InputEventMouseMotion or player.getBodyAnimation() == "struggle": return
 	
 	if event.is_action_pressed("p%s_grab" % player.getPlayerNumber()):
 		next_state = grab_state

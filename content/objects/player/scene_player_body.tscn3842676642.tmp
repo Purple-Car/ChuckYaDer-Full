@@ -915,7 +915,6 @@ _data = {
 }
 
 [node name="charbody_player_root" type="CharacterBody2D" groups=["grabbable"]]
-z_index = 1
 collision_layer = 2
 script = ExtResource("1_r1is3")
 
@@ -924,7 +923,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_10khb")
 
 [node name="area2D_overlap" type="Area2D" parent="."]
-collision_layer = 12
+collision_layer = 0
 collision_mask = 128
 
 [node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
@@ -998,9 +997,8 @@ carry_state = NodePath("../carry")
 script = ExtResource("15_gj4j5")
 throw_state = NodePath("../throw")
 
-[node name="throw" type="Node" parent="node_substate_machine" node_paths=PackedStringArray("none_state")]
+[node name="throw" type="Node" parent="node_substate_machine"]
 script = ExtResource("16_fx4oj")
-none_state = NodePath("../none")
 
 [node name="none" type="Node" parent="node_substate_machine" node_paths=PackedStringArray("grab_state")]
 script = ExtResource("17_v3tig")

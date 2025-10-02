@@ -15,6 +15,10 @@ func onGrabDetectSomething(body: Node2D) -> void:
 	if body.is_in_group("grabbable") and body.name != body_name:
 		var reparent_node: Node = self.get_parent().get_parent().get_node("node2D_sprites/area2D_grab")
 		
+		if reparent_node.is_ancestor_of(body):
+			player.ungrabObject()
+			return
+		
 		player.playHandsAnimation("carry")
 		
 		player.setGrabbedObject(body)
