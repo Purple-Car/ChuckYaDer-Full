@@ -22,23 +22,22 @@ var _background_colors: Dictionary = {
 
 func _ready() -> void:
 	background.color = Color(_background_colors[background_color])
-	debug_screen.visible = false
+	debug_screen.hide()
 	
 	var zoom_amout: float = 1920 / default_size.x
 	if layout_width:
 		zoom_amout = 1920 / layout_width
 	zoom = Vector2( zoom_amout, zoom_amout )
 	
-	fade_screen.visible = true
-	fade_player.play("fade_in")
+	fade_screen.show()
+	Gamestate.call_fade.connect(doFade)
+	Gamestate.changeState(Gamestate.States.fadein)
 
 func _process(delta: float) -> void:
 	pass
 
-func _onButtonQuitPressed() -> void:
-	pass
-
 func _input(event: InputEvent) -> void:
+	mouse_cursor.show()
 	if event is InputEventMouseMotion:
 		mouse_cursor.global_position = event.global_position / zoom
 	elif event is InputEventMouseButton:
@@ -47,4 +46,11 @@ func _input(event: InputEvent) -> void:
 				mouse_cursor.play("click")
 			else:
 				mouse_cursor.play("normal")
-		
+	else:
+		mouse_cursor.hide()
+
+func _onAnimationFinished(anim_name: StringName) -> void:
+	Gamestate.fadeFinished(anim_name)
+
+func doFade(fade: String) -> void:
+	fade_player.play(fade)

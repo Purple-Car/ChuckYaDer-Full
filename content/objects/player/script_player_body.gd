@@ -116,10 +116,12 @@ func ungrabObject() ->void:
 
 func throwObject() -> void:
 	if body_player.animation == "crouch":
-		grabbed_object.grav_velocity = -64 * sign(Utils.boolToSign(is_flipped))
+		grabbed_object.grav_velocity = -72 * sign(Utils.boolToSign(is_flipped))
+		playHandsAnimation("drop")
 	else:
 		grabbed_object.velocity.y += -96
 		grabbed_object.grav_velocity = -192 * sign(Utils.boolToSign(is_flipped))
+		playHandsAnimation("throw")
 	ungrabObject()
 
 func setGrabbed() -> void:

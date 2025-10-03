@@ -16,4 +16,6 @@ func _onButtonQuitPressed() -> void:
 
 
 func _onButtonNewgamePressed() -> void:
-	get_tree().change_scene_to_file("res://stages/scene_stage_test.tscn")
+	Gamestate.setNextScene("res://stages/scene_stage_test.tscn")
+	Gamestate.changeState(Gamestate.States.fadeout)
+	

@@ -107,6 +107,7 @@ z_index = 100
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
 
 [node name="anisprite_cursor" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 101
 sprite_frames = SubResource("SpriteFrames_kiui7")
 animation = &"normal"
@@ -117,3 +118,5 @@ offset = Vector2(5, 5)
 libraries = {
 &"": SubResource("AnimationLibrary_x6o8f")
 }
+
+[connection signal="animation_finished" from="anipl_fade" to="." method="_onAnimationFinished"]

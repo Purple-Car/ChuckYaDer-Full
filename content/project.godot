@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*res://fundamental elements/global scripts/utils.gd"
 Gamestate="*res://fundamental elements/global scripts/gamestate.gd"
+MasterTracker="*res://fundamental elements/global scripts/master_tracker.gd"
 
 [display]
 

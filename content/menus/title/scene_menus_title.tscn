@@ -28,6 +28,7 @@ position = Vector2(160, 50)
 texture = ExtResource("2_4w0t1")
 
 [node name="node_control" type="Control" parent="."]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
@@ -52,8 +53,9 @@ theme_override_constants/v_separation = 4
 [node name="button_newgame" type="Button" parent="node_control/container_menu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.4, 0.4, 0.4, 1)
-theme_override_colors/font_hover_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_colors/font_hover_color = Color(0.23031491, 0.23031494, 0.23031488, 1)
 theme_override_fonts/font = ExtResource("4_2dmyk")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fq1rk")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
@@ -72,8 +74,9 @@ horizontal_alignment = 1
 [node name="button_quit" type="Button" parent="node_control/container_menu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.4, 0.4, 0.4, 1)
-theme_override_colors/font_hover_color = Color(0.12, 0.12, 0.12, 1)
+theme_override_colors/font_hover_color = Color(0.23031491, 0.23031494, 0.23031488, 1)
 theme_override_fonts/font = ExtResource("4_2dmyk")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1ewiw")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
