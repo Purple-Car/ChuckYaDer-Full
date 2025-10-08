@@ -106,7 +106,11 @@ visible = false
 z_index = 100
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
 
-[node name="anisprite_cursor" type="AnimatedSprite2D" parent="."]
+[node name="canlay_nozoom" type="CanvasLayer" parent="."]
+scale = Vector2(6, 6)
+transform = Transform2D(6, 0, 0, 6, 0, 0)
+
+[node name="anisprite_cursor" type="AnimatedSprite2D" parent="canlay_nozoom"]
 visible = false
 z_index = 101
 sprite_frames = SubResource("SpriteFrames_kiui7")

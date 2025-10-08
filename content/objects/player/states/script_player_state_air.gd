@@ -5,7 +5,6 @@ extends State
 func stateProcess(delta):
 	if player.is_on_floor():
 		next_state = ground_state
-		player.grav_velocity = 0
 	
 	player.applyGravity(delta)
 	_handleAirAnimation()

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxia5svj1twhx"]
+
+[ext_resource type="Script" uid="uid://d4gwd11pehltd" path="res://objects/container/script_object_container.gd" id="1_6uexc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uexc"]
+size = Vector2(8, 8)
+
+[node name="rigibod2D_container" type="RigidBody2D" groups=["grabbable"]]
+collision_layer = 7
+lock_rotation = true
+script = ExtResource("1_6uexc")
+
+[node name="colshape_collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6uexc")
+
+[node name="spr2D_sprite" type="Sprite2D" parent="."]
+
+[node name="node_grabbable" type="Node" parent="."]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://dho5uboywkire"]
+
+[ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_a28g2"]
+[ext_resource type="Script" uid="uid://bthfp0lfp0tg8" path="res://menus/title/script_menus_title.gd" id="1_enske"]
+[ext_resource type="Texture2D" uid="uid://i5c72au3ifgf" path="res://menus/title/sprites/Title.png" id="2_4w0t1"]
+[ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="4_2dmyk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fq1rk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enske"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dmyk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8moa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_he05j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ewiw"]
+
+[node name="node_menu_title" type="Node2D"]
+script = ExtResource("1_enske")
+
+[node name="node_camera" parent="." instance=ExtResource("1_a28g2")]
+background_color = 0
+scale_multiplier = 1.0
+
+[node name="sprite_title" type="Sprite2D" parent="."]
+position = Vector2(160, 50)
+texture = ExtResource("2_4w0t1")
+
+[node name="node_control" type="Control" parent="."]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="container_menu" type="GridContainer" parent="node_control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 11.0
+offset_right = 56.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+
+[node name="button_newgame" type="Button" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.4, 0.4, 0.4, 1)
+theme_override_colors/font_hover_color = Color(0.23031491, 0.23031494, 0.23031488, 1)
+theme_override_fonts/font = ExtResource("4_2dmyk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fq1rk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dmyk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t8moa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_he05j")
+text = "NEW GAME"
+
+[node name="label_options" type="Label" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.77, 0.77, 0.77, 1)
+theme_override_fonts/font = ExtResource("4_2dmyk")
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="button_quit" type="Button" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.4, 0.4, 0.4, 1)
+theme_override_colors/font_hover_color = Color(0.23031491, 0.23031494, 0.23031488, 1)
+theme_override_fonts/font = ExtResource("4_2dmyk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1ewiw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dmyk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t8moa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_he05j")
+text = "QUIT"
+
+[connection signal="pressed" from="node_control/container_menu/button_newgame" to="." method="_onButtonNewgamePressed"]
+[connection signal="pressed" from="node_control/container_menu/button_quit" to="." method="_onButtonQuitPressed"]

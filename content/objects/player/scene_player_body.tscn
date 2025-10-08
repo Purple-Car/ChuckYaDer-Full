@@ -465,6 +465,47 @@ tracks/2/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_87voi"]
+resource_name = "drop"
+length = 0.20000334
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node2D_sprites/sprite_hand_l:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Vector2(0, -11), Vector2(-8, -11), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("node2D_sprites/sprite_hand_r:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Vector2(0, -11), Vector2(-2, -11), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Vector2(0, 14), Vector2(0, 14), Vector2(1, -4)]
+}
+
 [sub_resource type="Animation" id="Animation_8v5pd"]
 resource_name = "fall"
 length = 0.20001
@@ -894,47 +935,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_87voi"]
-resource_name = "drop"
-length = 0.20000334
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("node2D_sprites/sprite_hand_l:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 2,
-"values": [Vector2(0, -11), Vector2(-8, -11), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("node2D_sprites/sprite_hand_r:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 2,
-"values": [Vector2(0, -11), Vector2(-2, -11), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("node2D_sprites/area2D_grab:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 2,
-"values": [Vector2(0, 14), Vector2(0, 14), Vector2(1, -4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vrxr7"]

@@ -20,7 +20,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if current_state.next_state != null:
 		switchState(current_state.next_state)
-		
+	
 	current_state.stateProcess(delta)
 
 func _process(delta: float) -> void:

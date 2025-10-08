@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _onAreaEntered(area: Area2D) -> void:
-	area.get_parent().giveImpulse(strength, is_horizontal)
+	#var impulse_vector: Vector2 = Vector2.RIGHT.rotated(rotation) * strength
+	area.get_parent().setImpulse(Vector2.UP.rotated(rotation) * strength)
 	sprite.frame = 0
 	sprite.play("boing")
