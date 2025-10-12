@@ -464,6 +464,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_87voi"]
 resource_name = "drop"
@@ -547,6 +559,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_31id2"]
 resource_name = "grab"
@@ -618,6 +642,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_rx18j"]
 resource_name = "jump"
@@ -658,6 +694,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
 }
 
 [sub_resource type="Animation" id="Animation_fx4oj"]
@@ -700,6 +748,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_lq8rx"]
 resource_name = "peak"
@@ -741,6 +801,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_2klmn"]
 resource_name = "run"
@@ -770,6 +842,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
 }
 
 [sub_resource type="Animation" id="Animation_esewg"]
@@ -812,6 +896,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
 }
 
 [sub_resource type="Animation" id="Animation_8uloy"]
@@ -895,6 +991,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_v3tig"]
 resource_name = "unlook"
@@ -936,6 +1044,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node2D_sprites/area2D_grab:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vrxr7"]
 _data = {
@@ -958,7 +1078,8 @@ _data = {
 
 [node name="charbody_player_root" type="CharacterBody2D" groups=["grabbable"]]
 z_index = 1
-collision_layer = 2
+collision_layer = 34
+collision_mask = 17
 script = ExtResource("1_r1is3")
 
 [node name="colshape_collision" type="CollisionShape2D" parent="."]

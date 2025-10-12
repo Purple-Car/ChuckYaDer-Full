@@ -1,14 +1,33 @@
 extends Node2D
 
+@export var to_scene: PackedScene
+@export var locked: bool
 
-# Called when the node enters the scene tree for the first time.
+@onready var sprite: AnimatedSprite2D = $sprite_door
+
 func _ready() -> void:
-	pass # Replace with function body.
+	if to_scene:
+		Gamestate.setNextScene(to_scene.resource_path)
+	else:
+		assert(true, "No scene set to door")
+	if locked:
+		sprite.play("closed")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _onAreaEntered(area: Area2D) -> void:
+	print(area)
+	
+	if locked:
+		var area_root := area.get_parent()
+		if area_root.is_in_group("key") and !area_root.getIsGrabbed():
+			area_root.beConsumed()
+			unlockDoor()
+		return
+	
 	Gamestate.changeState(Gamestate.States.fadeout)
+
+func unlockDoor() -> void:
+	locked = false
+	sprite.play("unlocking")

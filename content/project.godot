@@ -46,6 +46,7 @@ folder_colors={
 [global_group]
 
 grabbable=""
+key=""
 
 [input]
 
@@ -121,6 +122,8 @@ mscroll_down={
 2d_physics/layer_2="Grab"
 2d_physics/layer_3="Spring"
 2d_physics/layer_4="Door"
+2d_physics/layer_5="Containers"
+2d_physics/layer_6="Player"
 2d_physics/layer_8="Spikes"
 
 [physics]

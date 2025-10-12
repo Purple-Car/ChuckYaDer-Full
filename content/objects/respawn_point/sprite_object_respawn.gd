@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var player_num: int
+@export var facing_right: bool
 
 @onready var debug_polygon: Polygon2D = $polygon_object_view
 @onready var animated_sprite: AnimatedSprite2D = $anisprite_respawn_point
@@ -13,6 +14,9 @@ func _ready() -> void:
 	if player_num == 0:
 		push_warning("player not set in a player spawner")
 		
+	if facing_right:
+		animated_sprite.scale.x = -1
+	
 	player_node_name = "charbody_player_" + str(player_num)
 	debug_polygon.visible = false
 
@@ -26,6 +30,10 @@ func _onAnimationFinished() -> void:
 	player.position = position
 	player.player_num = player_num
 	player.name = player_node_name
+	
+	if facing_right:
+		player.is_flipped = true
+		player._updateScaleDirection()
 	
 	assigned_player = player
 	player.onPlayerDestroyed.connect(_onPlayerDestroyed)

@@ -2,6 +2,7 @@ extends Camera2D
 
 @export var background_color: Colors
 @export var scale_multiplier: float
+@export var background_element: Node2D
 
 enum Colors { white, day, sunset, night }
 
@@ -19,6 +20,9 @@ var _background_colors: Dictionary = {
 @onready var mouse_cursor: AnimatedSprite2D = $"canlay_nozoom/anisprite_cursor"
 
 func _ready() -> void:
+	if !background_element:
+		assert(false, "Someone forgot to insert a background element")
+	
 	background.color = Color(_background_colors[background_color])
 	debug_screen.hide()
 	mouse_cursor.hide()
@@ -33,8 +37,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	
-	
 	debugRescaleCamera(event)
 
 	if event is InputEventMouseMotion:

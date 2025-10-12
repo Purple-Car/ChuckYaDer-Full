@@ -20,8 +20,11 @@
 [node name="node_menu_title" type="Node2D"]
 script = ExtResource("1_enske")
 
-[node name="node_camera" parent="." instance=ExtResource("1_a28g2")]
+[node name="node_camera" parent="." node_paths=PackedStringArray("background_element") instance=ExtResource("1_a28g2")]
 background_color = 0
+background_element = NodePath("node_background_blank")
+
+[node name="node_background_blank" type="Node2D" parent="node_camera"]
 
 [node name="sprite_title" type="Sprite2D" parent="."]
 position = Vector2(160, 50)

@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfgv3ed8ylkfg"]
+
+[ext_resource type="Texture2D" uid="uid://dqxraeuvmsp5a" path="res://resources/cluds.png" id="1_uxq7i"]
+[ext_resource type="Texture2D" uid="uid://dn5omarohl0oi" path="res://resources/sea.png" id="2_sc3bj"]
+
+[sub_resource type="Animation" id="Animation_pr2b2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr2D_sea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spr2D_sea:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sc3bj"]
+resource_name = "sea"
+length = 16.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr2D_sea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spr2D_sea:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8, 16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ufa8"]
+_data = {
+&"RESET": SubResource("Animation_pr2b2"),
+&"sea": SubResource("Animation_sc3bj")
+}
+
+[node name="background_clouds_root" type="Node2D"]
+
+[node name="prlx_clouds" type="Parallax2D" parent="."]
+repeat_size = Vector2(578, 0)
+autoscroll = Vector2(-12, 0)
+repeat_times = 6
+ignore_camera_scroll = true
+
+[node name="spr2D_clouds" type="Sprite2D" parent="prlx_clouds"]
+position = Vector2(0, 125)
+texture = ExtResource("1_uxq7i")
+
+[node name="prlx_sea" type="Parallax2D" parent="."]
+repeat_size = Vector2(128, 0)
+repeat_times = 30
+
+[node name="spr2D_sea" type="Sprite2D" parent="prlx_sea"]
+position = Vector2(0, 341)
+texture = ExtResource("2_sc3bj")
+hframes = 5
+region_rect = Rect2(0, 0, 128, 161)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="prlx_sea"]
+libraries = {
+&"": SubResource("AnimationLibrary_4ufa8")
+}
+autoplay = "sea"

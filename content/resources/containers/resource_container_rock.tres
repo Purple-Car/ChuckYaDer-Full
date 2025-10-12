@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_02esa")
 texture = ExtResource("2_qydgc")
-weight = 2
+weight = 4.0
 hitbox_size = Vector2(8, 6)
 metadata/_custom_type_script = "uid://6awigbjyciao"

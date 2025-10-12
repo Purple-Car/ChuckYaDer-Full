@@ -13,6 +13,7 @@ var direction_y: float
 var direction_x: float
 var player_num: int = 1
 var grabbed_object: Object
+var weight = 1.3
 
 @onready var states_machine: PlayerStateMachine = $node_state_machine
 @onready var sub_states_machine: PlayerSubstateMachine = $node_substate_machine
@@ -20,6 +21,7 @@ var grabbed_object: Object
 @onready var hands_player: AnimationPlayer = $anipl_hands
 @onready var body_player: AnimatedSprite2D = $node2D_sprites/anisprite_body
 @onready var overlap_col: Area2D = $area2D_overlap
+@onready var grab_area: Area2D = $node2D_sprites/area2D_grab
 
 signal onPlayerDestroyed
 
@@ -49,15 +51,18 @@ func _updateScaleDirection() -> void:
 func _directionalMovement() -> void:
 	var toward_speed: float
 	var air_state: State = $"node_state_machine/air"
+	var weighted_speed: float = SPEED
+	if grabbed_object:
+		weighted_speed = SPEED / grabbed_object.weight
 	
-	if abs(velocity.x) > SPEED:
+	if abs(velocity.x) > weighted_speed:
 		toward_speed = DECELERATION
 	else:
-		toward_speed = SPEED
+		toward_speed = weighted_speed
 	
 	direction_x = Input.get_axis("p%s_left" % getPlayerNumber(), "p%s_right" % getPlayerNumber())
 	if direction_x and states_machine.getCanMove():
-		velocity.x = move_toward(velocity.x, direction_x * SPEED, toward_speed)
+		velocity.x = move_toward(velocity.x, direction_x * weighted_speed, toward_speed)
 	else:
 		if states_machine.current_state == air_state:
 			velocity.x = move_toward(velocity.x, 0, DECELERATION)
@@ -94,6 +99,7 @@ func doDeath() -> void:
 	death_effect.scale = Vector2( Utils.boolToSign(is_flipped), 1)
 	
 	if grabbed_object:
+		grabbed_object.setUngrabbed()
 		ungrabObject()
 	
 	queue_free()
@@ -113,23 +119,21 @@ func setGrabbedObject(to_object: Object) -> void:
 func ungrabObject() ->void:
 	var reparent_node: Node = get_tree().root.get_node("node_stage/node_grabbables")
 	grabbed_object.call_deferred("reparent", reparent_node)
-	#grabbed_object.setUngrabbed()
 	setGrabbedObject(null)
 
 func throwObject() -> void:
 	grabbed_object.setUngrabbed()
-	if body_player.animation == "crouch":
-		var impulse_x: float = -72 * sign(Utils.boolToSign(is_flipped))
-		grabbed_object.setImpulse( Vector2( impulse_x, 0 ), true )
-		playHandsAnimation("drop")
-	else:
-		var impulse_x: float = -192 * sign(Utils.boolToSign(is_flipped))
-		var impulse_y: float = -96.0
-		grabbed_object.setImpulse( Vector2( impulse_x, impulse_y ), true )
-		playHandsAnimation("throw")
+	var impulse_x: float = -192 * sign(Utils.boolToSign(is_flipped))
+	var impulse_y: float = -96.0
+	grabbed_object.setImpulse( Vector2( impulse_x, impulse_y ), true )
+	playHandsAnimation("throw")
 	ungrabObject()
 
 func setGrabbed() -> void:
+	if grabbed_object:
+		grabbed_object.setUngrabbed()
+		ungrabObject()
+
 	var to_state: State = $"node_state_machine/grabbed"
 	var to_substate: State = $"node_substate_machine/none"
 	states_machine.current_state.next_state = to_state
@@ -148,6 +152,10 @@ func applyGravity(delta: float) -> void:
 func setImpulse(impulse: Vector2, override: bool = false) -> void:
 	if states_machine.current_state == $"node_state_machine/grabbed" and override == false: return
 	velocity = impulse
+	
+func getIsGrabbed() -> bool:
+	if states_machine.current_state == $"node_state_machine/grabbed": return true
+	return false
 #endregion
 
 func _onOverlapBodyEntered(body: Node2D) -> void:

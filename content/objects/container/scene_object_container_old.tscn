@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dse3i6rp8hvcm"]
+[gd_scene load_steps=4 format=3 uid="uid://bxia5svj1twhx"]
 
-[ext_resource type="Script" uid="uid://wjxg6ir0mrm2" path="res://objects/container/script_object_container.gd" id="1_6uexc"]
+[ext_resource type="Script" uid="uid://d4gwd11pehltd" path="res://objects/container/script_object_container_old.gd" id="1_6uexc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hct26"]
 size = Vector2(8, 8)
@@ -8,16 +8,14 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uexc"]
 size = Vector2(8, 8)
 
-[node name="charbody_container_root" type="CharacterBody2D" groups=["grabbable"]]
-collision_layer = 18
-collision_mask = 17
+[node name="rigibod2D_container" type="RigidBody2D" groups=["grabbable"]]
+collision_layer = 19
+lock_rotation = true
 script = ExtResource("1_6uexc")
 
-[node name="spr2D_sprite" type="Sprite2D" parent="."]
-
 [node name="area2D_overlap" type="Area2D" parent="."]
-collision_layer = 12
-collision_mask = 32
+collision_layer = 4
+collision_mask = 0
 
 [node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
 shape = SubResource("RectangleShape2D_hct26")
@@ -26,4 +24,6 @@ debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
 [node name="colshape_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6uexc")
 
-[connection signal="body_entered" from="area2D_overlap" to="." method="_onBodyEntered"]
+[node name="spr2D_sprite" type="Sprite2D" parent="."]
+
+[node name="node_grabbable" type="Node" parent="."]
