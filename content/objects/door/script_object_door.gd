@@ -17,8 +17,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _onAreaEntered(area: Area2D) -> void:
-	print(area)
-	
 	if locked:
 		var area_root := area.get_parent()
 		if area_root.is_in_group("key") and !area_root.getIsGrabbed():

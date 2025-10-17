@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dggda4f4gjydn"
+path="res://.godot/imported/color_bubble_mask.png-f09dc6bdfd76d7703af39448fbe49d48.res"
+
+[deps]
+
+source_file="res://menus/color_select/sprites/color_bubble_mask.png"
+dest_files=["res://.godot/imported/color_bubble_mask.png-f09dc6bdfd76d7703af39448fbe49d48.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

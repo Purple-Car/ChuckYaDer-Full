@@ -25,6 +25,7 @@ func _checkIfCanMove() -> bool:
 func _handleRunAnimation() -> void:
 	if player.velocity.x != 0:
 		player.playBodyAnimation("run")
+		player.updateSpriteSpeedScale()
 	else:
 		player.playBodyAnimation("idle")
 #endregion

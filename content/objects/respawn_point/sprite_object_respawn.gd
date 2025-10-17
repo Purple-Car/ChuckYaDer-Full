@@ -16,6 +16,9 @@ func _ready() -> void:
 		
 	if facing_right:
 		animated_sprite.scale.x = -1
+
+	animated_sprite.material = animated_sprite.material.duplicate()
+	animated_sprite.material.set("shader_parameter/new_color", MasterTracker.player_colors[player_num - 1])
 	
 	player_node_name = "charbody_player_" + str(player_num)
 	debug_polygon.visible = false
@@ -30,6 +33,7 @@ func _onAnimationFinished() -> void:
 	player.position = position
 	player.player_num = player_num
 	player.name = player_node_name
+	player.updateColor()
 	
 	if facing_right:
 		player.is_flipped = true

@@ -14,8 +14,10 @@ func _process(delta: float) -> void:
 func _onButtonQuitPressed() -> void:
 	get_tree().quit()
 
-
 func _onButtonNewgamePressed() -> void:
-	Gamestate.setNextScene("res://stages/stage_1/scene_stage_1_area_1.tscn")
+	Gamestate.setNextScene("E:/Godot/ChuckYaDer-Full/content/menus/color_select/scene_menus_colorsel.tscn")
 	Gamestate.changeState(Gamestate.States.fadeout)
-	
+
+func _onButtonOptionsPressed() -> void:
+	Gamestate.setNextScene("res://menus/options/scene_menus_options.tscn")
+	Gamestate.changeState(Gamestate.States.fadeout)

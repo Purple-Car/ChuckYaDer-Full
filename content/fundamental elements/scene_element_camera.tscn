@@ -36,7 +36,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("pol_fade:modulate:a")
+tracks/0/path = NodePath("canlay_nozoom/pol_fade:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -53,7 +53,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("pol_fade:modulate:a")
+tracks/0/path = NodePath("canlay_nozoom/pol_fade:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +70,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("pol_fade:modulate:a")
+tracks/0/path = NodePath("canlay_nozoom/pol_fade:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,12 +101,8 @@ polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
 texture = ExtResource("2_oytsc")
 centered = false
 
-[node name="pol_fade" type="Polygon2D" parent="."]
-visible = false
-z_index = 100
-polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
-
 [node name="canlay_nozoom" type="CanvasLayer" parent="."]
+layer = 2
 scale = Vector2(6, 6)
 transform = Transform2D(6, 0, 0, 6, 0, 0)
 
@@ -117,6 +113,12 @@ sprite_frames = SubResource("SpriteFrames_kiui7")
 animation = &"normal"
 autoplay = "normal"
 offset = Vector2(5, 5)
+
+[node name="pol_fade" type="Polygon2D" parent="canlay_nozoom"]
+visible = false
+z_index = 100
+z_as_relative = false
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
 
 [node name="anipl_fade" type="AnimationPlayer" parent="."]
 libraries = {

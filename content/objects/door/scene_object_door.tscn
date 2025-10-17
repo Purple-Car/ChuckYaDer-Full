@@ -212,7 +212,7 @@ script = ExtResource("1_g23j1")
 [node name="sprite_door" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_g23j1")
-animation = &"unlocking"
+animation = &"open"
 autoplay = "open"
 
 [node name="area2D_overlap" type="Area2D" parent="."]

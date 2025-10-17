@@ -15,7 +15,7 @@ var _background_colors: Dictionary = {
 
 @onready var background: Polygon2D = $"pol_background"
 @onready var debug_screen: Sprite2D = $"spr2D_reference"
-@onready var fade_screen: Polygon2D = $"pol_fade"
+@onready var fade_screen: Polygon2D = $canlay_nozoom/pol_fade
 @onready var fade_player: AnimationPlayer = $"anipl_fade"
 @onready var mouse_cursor: AnimatedSprite2D = $"canlay_nozoom/anisprite_cursor"
 

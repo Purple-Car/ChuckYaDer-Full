@@ -1,0 +1,496 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjdyuwdby2r3f"]
+
+[ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_0tngv"]
+[ext_resource type="Script" uid="uid://bc36vjjaay83x" path="res://menus/options/script_menus_options.gd" id="1_xqqpe"]
+[ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="2_7mvvl"]
+[ext_resource type="Texture2D" uid="uid://xbcrjbihfbsr" path="res://resources/MenuBack.png" id="2_saw2w"]
+[ext_resource type="Texture2D" uid="uid://c0uu0x740aihv" path="res://resources/9pbg.png" id="3_saw2w"]
+[ext_resource type="StyleBox" uid="uid://nu3fa6rwdwsc" path="res://resources/button_select_box.tres" id="5_7cg84"]
+[ext_resource type="FontFile" uid="uid://ccbf3s442slah" path="res://resources/fonts/chuckcounter_font.png" id="5_s1l38"]
+[ext_resource type="Script" uid="uid://dd0iscnswxkup" path="res://menus/options/script_button_key.gd" id="6_tvtcu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tvtcu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1l38"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xqqpe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu3nv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1er6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fv6uv"]
+
+[node name="node_menu_options" type="Node2D"]
+script = ExtResource("1_xqqpe")
+
+[node name="node_camera" parent="." node_paths=PackedStringArray("background_element") instance=ExtResource("1_0tngv")]
+background_color = 0
+scale_multiplier = 1.0
+background_element = NodePath("node_background_blank")
+
+[node name="node_background_blank" type="Node2D" parent="node_camera"]
+
+[node name="prlx_background" type="Parallax2D" parent="."]
+process_mode = 3
+repeat_size = Vector2(16, 16)
+autoscroll = Vector2(20, -10)
+repeat_times = 60
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="TextureRect" type="TextureRect" parent="prlx_background"]
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("2_saw2w")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="node_control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 216.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="9pr_menu" type="NinePatchRect" parent="node_control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -92.0
+offset_right = 160.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_saw2w")
+region_rect = Rect2(0, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="label_options" type="Label" parent="node_control/9pr_menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_right = 49.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7mvvl")
+text = "CONTROLS"
+vertical_alignment = 2
+
+[node name="container_options" type="GridContainer" parent="node_control/9pr_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -60.0
+offset_right = 136.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="label_controls_p1" type="Label" parent="node_control/9pr_menu/container_options"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7mvvl")
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="label_controls_p2" type="Label" parent="node_control/9pr_menu/container_options"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7mvvl")
+text = "Player 2"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="container_options_p1" type="GridContainer" parent="node_control/9pr_menu/container_options"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="label_key_grab" type="Label" parent="node_control/9pr_menu/container_options/container_options_p1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Grab"
+
+[node name="button_key_grab" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "grab"
+player = 1
+
+[node name="label_key_up" type="Label" parent="node_control/9pr_menu/container_options/container_options_p1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Up"
+
+[node name="button_key_up" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "up"
+player = 1
+
+[node name="label_key_down" type="Label" parent="node_control/9pr_menu/container_options/container_options_p1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Down"
+
+[node name="button_key_down" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "down"
+player = 1
+
+[node name="label_key_left" type="Label" parent="node_control/9pr_menu/container_options/container_options_p1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Left"
+
+[node name="button_key_left" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "left"
+player = 1
+
+[node name="label_key_right" type="Label" parent="node_control/9pr_menu/container_options/container_options_p1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Right"
+
+[node name="button_key_right" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "right"
+player = 1
+
+[node name="container_options_p2" type="GridContainer" parent="node_control/9pr_menu/container_options"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="label_key_grab" type="Label" parent="node_control/9pr_menu/container_options/container_options_p2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Grab"
+
+[node name="button_key_grab" type="Button" parent="node_control/9pr_menu/container_options/container_options_p2"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "grab"
+player = 2
+
+[node name="label_key_up" type="Label" parent="node_control/9pr_menu/container_options/container_options_p2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Up"
+
+[node name="button_key_up" type="Button" parent="node_control/9pr_menu/container_options/container_options_p2"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "up"
+player = 2
+
+[node name="label_key_down" type="Label" parent="node_control/9pr_menu/container_options/container_options_p2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Down"
+
+[node name="button_key_down" type="Button" parent="node_control/9pr_menu/container_options/container_options_p2"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "down"
+player = 2
+
+[node name="label_key_left" type="Label" parent="node_control/9pr_menu/container_options/container_options_p2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Left"
+
+[node name="button_key_left" type="Button" parent="node_control/9pr_menu/container_options/container_options_p2"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "left"
+player = 2
+
+[node name="label_key_right" type="Label" parent="node_control/9pr_menu/container_options/container_options_p2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+text = "Right"
+
+[node name="button_key_right" type="Button" parent="node_control/9pr_menu/container_options/container_options_p2"]
+custom_minimum_size = Vector2(96, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
+theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("5_7cg84")
+theme_override_styles/pressed = ExtResource("5_7cg84")
+theme_override_styles/hover = ExtResource("5_7cg84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tvtcu")
+theme_override_styles/focus = ExtResource("5_7cg84")
+toggle_mode = true
+text_overrun_behavior = 1
+script = ExtResource("6_tvtcu")
+action = "right"
+player = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="node_control/9pr_menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -32.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="button_reset" type="Button" parent="node_control/9pr_menu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_colors/font_disabled_color = Color(0.64705884, 0.65882355, 0.72156864, 0.5019608)
+theme_override_fonts/font = ExtResource("2_7mvvl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s1l38")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xqqpe")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tu3nv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1er6u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fv6uv")
+disabled = true
+text = "Reset"
+
+[node name="button_back" type="Button" parent="node_control/9pr_menu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_fonts/font = ExtResource("2_7mvvl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s1l38")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xqqpe")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tu3nv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1er6u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fv6uv")
+text = "Back"
+
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_grab" to="node_control/9pr_menu/container_options/container_options_p1/button_key_grab" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_up" to="node_control/9pr_menu/container_options/container_options_p1/button_key_up" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_down" to="node_control/9pr_menu/container_options/container_options_p1/button_key_down" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_left" to="node_control/9pr_menu/container_options/container_options_p1/button_key_left" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_right" to="node_control/9pr_menu/container_options/container_options_p1/button_key_right" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_grab" to="node_control/9pr_menu/container_options/container_options_p2/button_key_grab" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_up" to="node_control/9pr_menu/container_options/container_options_p2/button_key_up" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_down" to="node_control/9pr_menu/container_options/container_options_p2/button_key_down" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_left" to="node_control/9pr_menu/container_options/container_options_p2/button_key_left" method="_onToggled"]
+[connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_right" to="node_control/9pr_menu/container_options/container_options_p2/button_key_right" method="_onToggled"]
+[connection signal="pressed" from="node_control/9pr_menu/HBoxContainer/button_reset" to="." method="_onButtonResetPressed"]
+[connection signal="pressed" from="node_control/9pr_menu/HBoxContainer/button_back" to="." method="_onButtonBackPressed"]

@@ -1,0 +1,607 @@
+[gd_scene load_steps=23 format=3 uid="uid://b24movy8m12mx"]
+
+[ext_resource type="Script" uid="uid://cggkujbwk84a5" path="res://fundamental elements/script_element_hud.gd" id="1_a6k8a"]
+[ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="1_dhan3"]
+[ext_resource type="Texture2D" uid="uid://xbcrjbihfbsr" path="res://resources/MenuBack.png" id="1_w7t3a"]
+[ext_resource type="Texture2D" uid="uid://c0uu0x740aihv" path="res://resources/9pbg.png" id="2_le8y3"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="5_2pgdi"]
+[ext_resource type="Texture2D" uid="uid://bj16x0te84pdm" path="res://resources/pause_icon.png" id="5_7twxi"]
+[ext_resource type="Script" uid="uid://bibsdi0um55f4" path="res://fundamental elements/script_container_death.gd" id="5_j4176"]
+[ext_resource type="Texture2D" uid="uid://l2rmhm1d3flo" path="res://resources/death_counter_icon.png" id="5_maajk"]
+[ext_resource type="FontFile" uid="uid://ccbf3s442slah" path="res://resources/fonts/chuckcounter_font.png" id="6_2pgdi"]
+[ext_resource type="Texture2D" uid="uid://q2sbb2x73nsm" path="res://resources/pause_icon_down.png" id="6_bxuk8"]
+[ext_resource type="Texture2D" uid="uid://cchfd1gjfvk73" path="res://resources/pause_icon_dark.png" id="7_y46k0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_maajk"]
+shader = ExtResource("5_2pgdi")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7t3a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_le8y3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a6k8a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7twxi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkjeq"]
+
+[sub_resource type="Animation" id="Animation_a6k8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canlay_menu/ctrl_pause_menu/prlx_menu_background/TextureRect:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("canlay_menu/ctrl_pause_menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu/container_menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 42)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fkjeq"]
+resource_name = "idle"
+length = 0.001
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canlay_menu/ctrl_pause_menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("canlay_menu/ctrl_pause_menu/prlx_menu_background/TextureRect:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu/container_menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 42)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_le8y3"]
+resource_name = "in"
+length = 0.16666834
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canlay_menu/ctrl_pause_menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(192, 10), Vector2(192, 96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("canlay_menu/ctrl_pause_menu/prlx_menu_background/TextureRect:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu/container_menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, 85), Vector2(64, 42)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_7twxi"]
+resource_name = "out"
+length = 0.16666834
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canlay_menu/ctrl_pause_menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(192, 96), Vector2(192, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("canlay_menu/ctrl_pause_menu/prlx_menu_background/TextureRect:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu/container_menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, 42), Vector2(64, 85)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("canlay_menu/ctrl_pause_menu/9pr_menu:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7twxi"]
+_data = {
+&"RESET": SubResource("Animation_a6k8a"),
+&"idle": SubResource("Animation_fkjeq"),
+&"in": SubResource("Animation_le8y3"),
+&"out": SubResource("Animation_7twxi")
+}
+
+[node name="ctrl_hud_root" type="Control"]
+z_index = 99
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a6k8a")
+
+[node name="canlay_menu" type="CanvasLayer" parent="."]
+scale = Vector2(6, 6)
+transform = Transform2D(6, 0, 0, 6, 0, 0)
+
+[node name="ctrl_hud" type="Control" parent="canlay_menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="txbutt_pause" type="TextureButton" parent="canlay_menu/ctrl_hud"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.999878
+offset_top = 1.0000019
+offset_right = -0.9998779
+offset_bottom = 18.000002
+grow_horizontal = 0
+texture_normal = ExtResource("5_7twxi")
+texture_pressed = ExtResource("6_bxuk8")
+texture_hover = ExtResource("7_y46k0")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="container_death" type="VBoxContainer" parent="canlay_menu/ctrl_hud"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 22.0
+theme_override_constants/separation = 1
+
+[node name="container_death_p1" type="HBoxContainer" parent="canlay_menu/ctrl_hud/container_death"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("5_j4176")
+player_num = 1
+
+[node name="icon_death" type="TextureRect" parent="canlay_menu/ctrl_hud/container_death/container_death_p1"]
+material = SubResource("ShaderMaterial_maajk")
+layout_mode = 2
+texture = ExtResource("5_maajk")
+
+[node name="label_death" type="Label" parent="canlay_menu/ctrl_hud/container_death/container_death_p1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_fonts/font = ExtResource("6_2pgdi")
+theme_override_font_sizes/font_size = 8
+text = "0"
+vertical_alignment = 1
+
+[node name="container_death_p2" type="HBoxContainer" parent="canlay_menu/ctrl_hud/container_death"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("5_j4176")
+player_num = 2
+
+[node name="icon_death" type="TextureRect" parent="canlay_menu/ctrl_hud/container_death/container_death_p2"]
+material = SubResource("ShaderMaterial_maajk")
+layout_mode = 2
+texture = ExtResource("5_maajk")
+
+[node name="label_death" type="Label" parent="canlay_menu/ctrl_hud/container_death/container_death_p2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_fonts/font = ExtResource("6_2pgdi")
+theme_override_font_sizes/font_size = 8
+text = "0"
+vertical_alignment = 1
+
+[node name="ctrl_pause_menu" type="Control" parent="canlay_menu"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="prlx_menu_background" type="Parallax2D" parent="canlay_menu/ctrl_pause_menu"]
+process_mode = 3
+scroll_offset = Vector2(324.6667, 58.833336)
+repeat_size = Vector2(16, 16)
+autoscroll = Vector2(20, -10)
+repeat_times = 40
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="TextureRect" type="TextureRect" parent="canlay_menu/ctrl_pause_menu/prlx_menu_background"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_w7t3a")
+stretch_mode = 1
+
+[node name="9pr_menu" type="NinePatchRect" parent="canlay_menu/ctrl_pause_menu"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -48.0
+offset_right = 96.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_le8y3")
+region_rect = Rect2(0, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="container_menu" type="GridContainer" parent="canlay_menu/ctrl_pause_menu/9pr_menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -38.0
+offset_right = 84.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="button_resume" type="Button" parent="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_fonts/font = ExtResource("1_dhan3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w7t3a")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_le8y3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a6k8a")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7twxi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fkjeq")
+text = "Resume Game"
+
+[node name="button_reset" type="Button" parent="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_fonts/font = ExtResource("1_dhan3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w7t3a")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_le8y3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a6k8a")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7twxi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fkjeq")
+text = "Retry Level"
+
+[node name="button_back" type="Button" parent="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_colors/font_disabled_color = Color(0.64725864, 0.6595394, 0.72018886, 0.5019608)
+theme_override_fonts/font = ExtResource("1_dhan3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w7t3a")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_le8y3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a6k8a")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7twxi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fkjeq")
+disabled = true
+text = "Back To Map"
+
+[node name="button_quit" type="Button" parent="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_fonts/font = ExtResource("1_dhan3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w7t3a")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_le8y3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a6k8a")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7twxi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fkjeq")
+text = "Quit Game"
+
+[node name="anipl_menu" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7twxi")
+}
+autoplay = "idle"
+
+[connection signal="pressed" from="canlay_menu/ctrl_hud/txbutt_pause" to="." method="_onPauseIconPressed"]
+[connection signal="pressed" from="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu/button_resume" to="." method="_onResumePressed"]
+[connection signal="pressed" from="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu/button_reset" to="." method="_onResetPressed"]
+[connection signal="pressed" from="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu/button_back" to="." method="_onBackPressed"]
+[connection signal="pressed" from="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu/button_quit" to="." method="_onQuitPressed"]

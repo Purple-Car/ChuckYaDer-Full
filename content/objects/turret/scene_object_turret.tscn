@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://jl83860he7s1"]
+
+[ext_resource type="Texture2D" uid="uid://gbebyotk7auo" path="res://objects/turret/turret.png" id="1_chnf3"]
+[ext_resource type="Script" uid="uid://dxogilb37aeve" path="res://objects/turret/script_object_turret.gd" id="1_fbtcc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chnf3"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t0w6"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rswf7"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rq4b"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q8rh"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7tuy"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdj7q"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21gcd"]
+atlas = ExtResource("1_chnf3")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wlma8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chnf3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t0w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rswf7")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_2rq4b")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_4q8rh")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_u7tuy")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_fdj7q")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_21gcd")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 24.0
+}]
+
+[node name="node_turret_root" type="Node2D"]
+z_index = 1
+script = ExtResource("1_fbtcc")
+
+[node name="node2D_back" type="Node2D" parent="."]
+position = Vector2(0, 11)
+
+[node name="node2D_shoot" type="Node2D" parent="."]
+position = Vector2(2, 11)
+
+[node name="sprite_turret" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wlma8")
+animation = &"idle"
+autoplay = "idle"
+centered = false
+
+[node name="timer_turret" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="sprite_turret" to="." method="_onAnimationFinished"]
+[connection signal="frame_changed" from="sprite_turret" to="." method="_onFrameChanged"]
+[connection signal="timeout" from="timer_turret" to="." method="_onTimeout"]

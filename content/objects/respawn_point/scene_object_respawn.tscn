@@ -1,7 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://x2jr324a5jb5"]
+[gd_scene load_steps=15 format=3 uid="uid://x2jr324a5jb5"]
 
 [ext_resource type="Script" uid="uid://fpvcvefuk5mr" path="res://objects/respawn_point/sprite_object_respawn.gd" id="1_jkolm"]
 [ext_resource type="Texture2D" uid="uid://dm7avu5mhr7r8" path="res://objects/respawn_point/sprites/player_spawn.png" id="2_8yd1n"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="2_ujaht"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gjvf"]
+shader = ExtResource("2_ujaht")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oyn0r"]
 atlas = ExtResource("2_8yd1n")
@@ -85,6 +91,7 @@ color = Color(0.937255, 0.396078, 0.85098, 1)
 polygon = PackedVector2Array(-5, -10, 5, -10, 5, 12, -5, 12)
 
 [node name="anisprite_respawn_point" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_6gjvf")
 sprite_frames = SubResource("SpriteFrames_kc767")
 animation = &"respawn"
 autoplay = "respawn"

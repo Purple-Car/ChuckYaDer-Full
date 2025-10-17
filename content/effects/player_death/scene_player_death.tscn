@@ -1,17 +1,32 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkkf04s5s5f3d"]
+[gd_scene load_steps=12 format=3 uid="uid://bkkf04s5s5f3d"]
 
 [ext_resource type="Texture2D" uid="uid://bb76w6cf7mngg" path="res://effects/player_death/sprites/player_death.png" id="1_6eclt"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="1_n0467"]
 
 [sub_resource type="GDScript" id="GDScript_n0467"]
 resource_name = "script_player_death_effect"
 script/source = "extends Node2D
 
+var player_num: int
+
+@onready var animated_sprite: AnimatedSprite2D = $anisprite_player_death
+
 func _ready() -> void:
-	pass # Logic for player color
+	pass
 
 func _onAnimationFinished() -> void:
 	queue_free()
+
+func setupColor(to_player_num: int) -> void:
+	player_num = to_player_num
+	animated_sprite.material = animated_sprite.material.duplicate()
+	animated_sprite.material.set(\"shader_parameter/new_color\", MasterTracker.player_colors[player_num - 1])
 "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjkew"]
+shader = ExtResource("1_n0467")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hjkew"]
 atlas = ExtResource("1_6eclt")
@@ -67,6 +82,7 @@ animations = [{
 script = SubResource("GDScript_n0467")
 
 [node name="anisprite_player_death" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_hjkew")
 sprite_frames = SubResource("SpriteFrames_eb0yh")
 autoplay = "default"
 frame = 5

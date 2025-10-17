@@ -22,6 +22,7 @@ var weight = 1.3
 @onready var body_player: AnimatedSprite2D = $node2D_sprites/anisprite_body
 @onready var overlap_col: Area2D = $area2D_overlap
 @onready var grab_area: Area2D = $node2D_sprites/area2D_grab
+@onready var scarf_player: AnimatedSprite2D = $node2D_sprites/anisprite_scarf
 
 signal onPlayerDestroyed
 
@@ -31,6 +32,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_directionalMovement()
 	_changeFacingDirection()
+	_handleScarfAnimation()
 	move_and_slide()
 
 #region privates
@@ -47,6 +49,19 @@ func _updateScaleDirection() -> void:
 	scale.y = 1.0
 	rotation = 0
 	sprites_node.scale = Vector2(Utils.boolToSign(is_flipped), 1.0)
+
+func _handleScarfAnimation() -> void:
+	var to_play: String
+	if velocity.y > 0:
+		to_play = "down"
+	elif velocity.y < 0:
+		to_play = "up"
+	elif velocity.x != 0:
+		to_play = "side"
+	else:
+		to_play = "stop"
+	if to_play and to_play != scarf_player.animation:
+		scarf_player.play(to_play)
 
 func _directionalMovement() -> void:
 	var toward_speed: float
@@ -80,6 +95,7 @@ func playBodyAnimation(next_animation: String = "") -> void:
 	# Play animation if it's a different animation
 	if getBodyAnimation() != next_animation:
 		body_player.play(next_animation)
+	updateSpriteSpeedScale()
 
 func playHandsAnimation(next_animation: String = "") -> void:
 	# If function called with no parameters it resumes the animation
@@ -96,12 +112,14 @@ func doDeath() -> void:
 	var death_effect = _death_effect.instantiate()
 	get_parent().add_child(death_effect)
 	death_effect.position = position
+	death_effect.setupColor(player_num)
 	death_effect.scale = Vector2( Utils.boolToSign(is_flipped), 1)
 	
 	if grabbed_object:
 		grabbed_object.setUngrabbed()
 		ungrabObject()
 	
+	MasterTracker.incrementDeath(player_num)
 	queue_free()
 
 func getBodyAnimation() -> String:
@@ -156,8 +174,23 @@ func setImpulse(impulse: Vector2, override: bool = false) -> void:
 func getIsGrabbed() -> bool:
 	if states_machine.current_state == $"node_state_machine/grabbed": return true
 	return false
+	
+func updateSpriteSpeedScale() -> void:
+	if grabbed_object:
+		#body_player.speed_scale = max(1 - ( grabbed_object.weight - 1 ), 0.1)
+		body_player.speed_scale = 1 / grabbed_object.weight
+	else:
+		body_player.speed_scale = 1
+
+func updateColor() -> void:
+	material = material.duplicate()
+	material.set("shader_parameter/new_color", MasterTracker.player_colors[player_num - 1])
 #endregion
 
 func _onOverlapBodyEntered(body: Node2D) -> void:
+	if states_machine.current_state != $"node_state_machine/grabbed":
+		doDeath()
+
+func _onAreaEntered(area: Area2D) -> void:
 	if states_machine.current_state != $"node_state_machine/grabbed":
 		doDeath()

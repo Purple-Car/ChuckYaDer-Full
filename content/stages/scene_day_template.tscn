@@ -21,9 +21,6 @@ process_mode = 1
 
 [node name="node_tilemap_solid" parent="node_tilemaps" instance=ExtResource("4_lm7eg")]
 
-[node name="node_grabbables" type="Node" parent="."]
-process_mode = 1
-
 [node name="node_statics" type="Node" parent="."]
 process_mode = 1
 
@@ -37,3 +34,6 @@ player_num = 2
 
 [node name="node_door" parent="node_statics" instance=ExtResource("8_g72ij")]
 position = Vector2(48, 112)
+
+[node name="node_grabbables" type="Node" parent="."]
+process_mode = 1
