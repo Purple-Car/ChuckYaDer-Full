@@ -15,6 +15,9 @@ var player_num: int = 1
 var grabbed_object: Object
 var weight = 1.3
 
+var walk_velocity: Vector2
+var grav_velocity: Vector2
+
 @onready var states_machine: PlayerStateMachine = $node_state_machine
 @onready var sub_states_machine: PlayerSubstateMachine = $node_substate_machine
 @onready var sprites_node: Node2D = $node2D_sprites
@@ -23,17 +26,21 @@ var weight = 1.3
 @onready var overlap_col: Area2D = $area2D_overlap
 @onready var grab_area: Area2D = $node2D_sprites/area2D_grab
 @onready var scarf_player: AnimatedSprite2D = $node2D_sprites/anisprite_scarf
+@onready var collision: CollisionShape2D = $colshape_collision
 
 signal onPlayerDestroyed
 
 func _ready() -> void:
-	pass
+	if get_parent().get_child(0).name == "node_tangle":
+		scarf_player.hide()
 
 func _physics_process(delta: float) -> void:
 	_directionalMovement()
 	_changeFacingDirection()
-	_handleScarfAnimation()
+	_mergeVelocities()
 	move_and_slide()
+	_hitHeadOrFoot()
+	_handleScarfAnimation()
 
 #region privates
 func _changeFacingDirection() -> void:
@@ -64,25 +71,31 @@ func _handleScarfAnimation() -> void:
 		scarf_player.play(to_play)
 
 func _directionalMovement() -> void:
-	var toward_speed: float
-	var air_state: State = $"node_state_machine/air"
 	var weighted_speed: float = SPEED
 	if grabbed_object:
 		weighted_speed = SPEED / grabbed_object.weight
 	
-	if abs(velocity.x) > weighted_speed:
-		toward_speed = DECELERATION
-	else:
-		toward_speed = weighted_speed
-	
 	direction_x = Input.get_axis("p%s_left" % getPlayerNumber(), "p%s_right" % getPlayerNumber())
-	if direction_x and states_machine.getCanMove():
-		velocity.x = move_toward(velocity.x, direction_x * weighted_speed, toward_speed)
+	if direction_x and states_machine.getCanMove() and abs(velocity.x) <= weighted_speed+1:
+		walk_velocity = Vector2(direction_x * weighted_speed, 0)
 	else:
-		if states_machine.current_state == air_state:
-			velocity.x = move_toward(velocity.x, 0, DECELERATION)
-		else:
-			velocity.x = move_toward(velocity.x, 0, toward_speed)
+		walk_velocity = Vector2.ZERO
+
+func _mergeVelocities() -> void:
+	grav_velocity = Vector2(move_toward(grav_velocity.x, 0, DECELERATION), grav_velocity.y)
+	
+	if getIsGrabbed(): 
+		velocity = Vector2.ZERO
+	else:
+		velocity = walk_velocity + grav_velocity
+
+func _hitHeadOrFoot() -> void:
+	if is_on_ceiling() and grav_velocity.y < 0:
+		grav_velocity.y = 0
+	if is_on_floor() and grav_velocity.y > 0:
+		grav_velocity.y = 0
+	if is_on_wall() and abs(grav_velocity.x) > 0:
+		grav_velocity.x = 0
 #endregion
 
 #region publics
@@ -154,30 +167,38 @@ func setGrabbed() -> void:
 
 	var to_state: State = $"node_state_machine/grabbed"
 	var to_substate: State = $"node_substate_machine/none"
+	#collision.disabled = true
+	collision.call_deferred("set_disabled", true)
 	states_machine.current_state.next_state = to_state
 	sub_states_machine.current_state.next_state = to_substate
 	velocity = Vector2.ZERO
 	
 func setUngrabbed() -> void:
 	var to_state: State = $"node_state_machine/air"
+	#collision.disabled = false
+	collision.call_deferred("set_disabled", false)
 	states_machine.current_state.next_state = to_state
 	_updateScaleDirection()
 
 func applyGravity(delta: float) -> void:
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		grav_velocity += get_gravity() * delta
+		grav_velocity.y = min(grav_velocity.y, MAX_FALL_SPEED)
 
 func setImpulse(impulse: Vector2, override: bool = false) -> void:
 	if states_machine.current_state == $"node_state_machine/grabbed" and override == false: return
-	velocity = impulse
-	
+	grav_velocity = impulse
+
+func addImpulse(impulse: Vector2, override: bool = false) -> void:
+	if states_machine.current_state == $"node_state_machine/grabbed" and override == false: return
+	grav_velocity += impulse
+
 func getIsGrabbed() -> bool:
 	if states_machine.current_state == $"node_state_machine/grabbed": return true
 	return false
-	
+
 func updateSpriteSpeedScale() -> void:
 	if grabbed_object:
-		#body_player.speed_scale = max(1 - ( grabbed_object.weight - 1 ), 0.1)
 		body_player.speed_scale = 1 / grabbed_object.weight
 	else:
 		body_player.speed_scale = 1

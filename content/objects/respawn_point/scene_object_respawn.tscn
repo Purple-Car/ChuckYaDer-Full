@@ -48,7 +48,7 @@ region = Rect2(48, 48, 24, 24)
 [sub_resource type="SpriteFrames" id="SpriteFrames_kc767"]
 animations = [{
 "frames": [{
-"duration": 15.0,
+"duration": 1.0,
 "texture": null
 }, {
 "duration": 1.0,
@@ -96,4 +96,10 @@ sprite_frames = SubResource("SpriteFrames_kc767")
 animation = &"respawn"
 autoplay = "respawn"
 
+[node name="timer_respawn" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+ignore_time_scale = true
+
 [connection signal="animation_finished" from="anisprite_respawn_point" to="." method="_onAnimationFinished"]
+[connection signal="timeout" from="timer_respawn" to="." method="_onTimerTimeout"]

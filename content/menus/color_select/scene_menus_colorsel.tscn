@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bsgbq05st4ih4"]
+[gd_scene load_steps=41 format=3 uid="uid://bsgbq05st4ih4"]
 
 [ext_resource type="Script" uid="uid://tuivfhurvmab" path="res://menus/color_select/script_menus_colorsel.gd" id="1_enqo5"]
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_nujbn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmec0nev2a5kc" path="res://menus/color_select/sprites/color_select_1.png" id="3_wsevb"]
 [ext_resource type="Texture2D" uid="uid://xbcrjbihfbsr" path="res://resources/MenuBack.png" id="3_xytmc"]
 [ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="4_5d7pe"]
+[ext_resource type="Texture2D" uid="uid://c0uu0x740aihv" path="res://resources/9pbg.png" id="4_458h4"]
 [ext_resource type="Script" uid="uid://b2wd101tmghew" path="res://menus/color_select/script_texbutt_color.gd" id="5_wsevb"]
 [ext_resource type="Texture2D" uid="uid://sdabinsoxd6y" path="res://menus/color_select/sprites/color_select_2.png" id="9_3y5jr"]
 [ext_resource type="StyleBox" uid="uid://cnn34r1su1s17" path="res://resources/button_ready_normal.tres" id="11_3ffg8"]
@@ -194,6 +195,27 @@ texture = ExtResource("3_xytmc")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="9pr_menu" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 312.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_458h4")
+region_rect = Rect2(0, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [node name="control_interactable" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -210,9 +232,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -133.0
-offset_top = -76.0
+offset_top = -72.0
 offset_right = 133.0
-offset_bottom = -60.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.030883884, 0.030869307, 0.05957737, 1)
@@ -229,9 +251,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -50.0
+offset_top = -53.0
 offset_right = 64.0
-offset_bottom = 49.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -452,9 +474,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -50.0
+offset_top = -53.0
 offset_right = 64.0
-offset_bottom = 49.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -497,16 +519,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -48.0
-offset_top = -34.0
+offset_top = -40.0
 offset_right = 48.0
-offset_bottom = -12.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(6.016344e-07, 0.25513235, 0.13233805, 1)
-theme_override_colors/font_focus_color = Color(0, 0.34117648, 0.18431373, 1)
-theme_override_colors/font_pressed_color = Color(9.26517e-07, 0.22980753, 0.11704045, 1)
-theme_override_colors/font_hover_color = Color(0, 0.34117648, 0.18431373, 1)
-theme_override_colors/font_disabled_color = Color(0.98039216, 0.83137256, 0.84313726, 0.5019608)
+theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.28627452, 1)
+theme_override_colors/font_focus_color = Color(0.19607843, 0.19607843, 0.28627452, 1)
+theme_override_colors/font_pressed_color = Color(0.19607843, 0.19607843, 0.28627452, 1)
+theme_override_colors/font_hover_color = Color(0.19607843, 0.19607843, 0.28627452, 1)
+theme_override_colors/font_disabled_color = Color(0.19607843, 0.19607843, 0.28627452, 0.32156864)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("4_5d7pe")
 theme_override_font_sizes/font_size = 16
@@ -524,6 +546,7 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 16.0
 offset_top = -50.0
 offset_right = 96.0
 offset_bottom = 54.0
@@ -536,7 +559,7 @@ size_flags_vertical = 3
 [node name="anisprite_player" type="AnimatedSprite2D" parent="control_interactable/container_p1"]
 process_mode = 3
 material = SubResource("ShaderMaterial_be6lc")
-position = Vector2(48, 43)
+position = Vector2(40, 47)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5vqfb")
 autoplay = "default"
@@ -545,7 +568,7 @@ flip_h = true
 
 [node name="anisprite_ready" type="AnimatedSprite2D" parent="control_interactable/container_p1"]
 process_mode = 3
-position = Vector2(72, 8)
+position = Vector2(65, 8)
 sprite_frames = SubResource("SpriteFrames_vlt2j")
 animation = &"false"
 autoplay = "false"
@@ -569,6 +592,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -96.0
 offset_top = -52.0
+offset_right = -16.0
 offset_bottom = 52.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -580,7 +604,7 @@ size_flags_vertical = 3
 [node name="anisprite_player" type="AnimatedSprite2D" parent="control_interactable/container_p2"]
 process_mode = 3
 material = SubResource("ShaderMaterial_be6lc")
-position = Vector2(48, 43)
+position = Vector2(41, 47)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5vqfb")
 autoplay = "default"
@@ -588,7 +612,7 @@ frame_progress = 0.88905406
 
 [node name="anisprite_ready" type="AnimatedSprite2D" parent="control_interactable/container_p2"]
 process_mode = 3
-position = Vector2(9, 10)
+position = Vector2(0, 10)
 sprite_frames = SubResource("SpriteFrames_vlt2j")
 animation = &"false"
 autoplay = "false"

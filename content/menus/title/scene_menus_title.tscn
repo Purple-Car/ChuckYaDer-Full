@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dho5uboywkire"]
+[gd_scene load_steps=17 format=3 uid="uid://dho5uboywkire"]
 
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_a28g2"]
 [ext_resource type="Script" uid="uid://bthfp0lfp0tg8" path="res://menus/title/script_menus_title.gd" id="1_enske"]
 [ext_resource type="Texture2D" uid="uid://i5c72au3ifgf" path="res://menus/title/sprites/Title.png" id="2_4w0t1"]
+[ext_resource type="PackedScene" uid="uid://dfgv3ed8ylkfg" path="res://resources/backgrounds/scene_background_clouds.tscn" id="3_2dmyk"]
 [ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="4_2dmyk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fq1rk"]
@@ -31,10 +32,10 @@
 script = ExtResource("1_enske")
 
 [node name="node_camera" parent="." node_paths=PackedStringArray("background_element") instance=ExtResource("1_a28g2")]
-background_color = 0
-background_element = NodePath("node_background_blank")
+background_element = NodePath("node_background_clouds")
 
-[node name="node_background_blank" type="Node2D" parent="node_camera"]
+[node name="node_background_clouds" parent="node_camera" instance=ExtResource("3_2dmyk")]
+position = Vector2(0, -157)
 
 [node name="sprite_title" type="Sprite2D" parent="."]
 position = Vector2(160, 50)
@@ -122,5 +123,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_he05j")
 text = "QUIT"
 
 [connection signal="pressed" from="node_control/container_menu/button_newgame" to="." method="_onButtonNewgamePressed"]
+[connection signal="pressed" from="node_control/container_menu/button_continue" to="." method="_onButtonContinuePressed"]
 [connection signal="pressed" from="node_control/container_menu/button_options" to="." method="_onButtonOptionsPressed"]
 [connection signal="pressed" from="node_control/container_menu/button_quit" to="." method="_onButtonQuitPressed"]

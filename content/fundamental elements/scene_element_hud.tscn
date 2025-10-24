@@ -577,8 +577,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_le8y3")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_a6k8a")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_7twxi")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fkjeq")
-disabled = true
-text = "Back To Map"
+text = "Title Screen"
 
 [node name="button_quit" type="Button" parent="canlay_menu/ctrl_pause_menu/9pr_menu/container_menu"]
 layout_mode = 2

@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="GrabbableContainer" load_steps=3 format=3 uid="uid://me6tquanb3xf"]
+[gd_resource type="Resource" script_class="GrabbableContainer" load_steps=3 format=3 uid="uid://ctkg4jjad717k"]
 
-[ext_resource type="Script" uid="uid://6awigbjyciao" path="res://resources/containers/container_class.gd" id="1_02esa"]
-[ext_resource type="Texture2D" uid="uid://creqo3x3fq60b" path="res://objects/container/rock.png" id="2_qydgc"]
+[ext_resource type="Script" uid="uid://6awigbjyciao" path="res://resources/containers/container_class.gd" id="1_qvef7"]
+[ext_resource type="Texture2D" uid="uid://creqo3x3fq60b" path="res://objects/container/rock.png" id="2_66cku"]
 
 [resource]
-script = ExtResource("1_02esa")
-texture = ExtResource("2_qydgc")
+script = ExtResource("1_qvef7")
+texture = ExtResource("2_66cku")
 weight = 4.0
 hitbox_size = Vector2(8, 6)
 metadata/_custom_type_script = "uid://6awigbjyciao"

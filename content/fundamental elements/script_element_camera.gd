@@ -37,8 +37,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	debugRescaleCamera(event)
-
 	if event is InputEventMouseMotion:
 		mouse_cursor.show()
 		mouse_cursor.global_position = event.global_position / 6
@@ -61,11 +59,3 @@ func doFade(fade: String) -> void:
 func rescaleCamera() -> void:
 	var zoom_amount: float = 6 - scale_multiplier
 	zoom = Vector2( zoom_amount, zoom_amount )
-
-func debugRescaleCamera(event: InputEvent) -> void:
-	if event.is_action_pressed("mscroll_up"):
-			scale_multiplier = min(scale_multiplier + 1, 5)
-			rescaleCamera()
-	elif event.is_action_pressed("mscroll_down"):
-			scale_multiplier = max(scale_multiplier - 1, 0)
-			rescaleCamera()

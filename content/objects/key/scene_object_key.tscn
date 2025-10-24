@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://carpsgawwj4k7"]
+[gd_scene load_steps=6 format=3 uid="uid://carpsgawwj4k7"]
 
 [ext_resource type="Script" uid="uid://bf7t7ha08ejaj" path="res://objects/key/script_object_key.gd" id="1_a1ux4"]
 [ext_resource type="Texture2D" uid="uid://bap8ovqeqedc6" path="res://objects/key/key.png" id="2_a1ux4"]
@@ -9,7 +9,10 @@ size = Vector2(12, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1ux4"]
 size = Vector2(12, 14)
 
-[node name="charbody_key_root" type="CharacterBody2D" groups=["grabbable", "key"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asvfx"]
+size = Vector2(12, 14)
+
+[node name="charbody_key_root" type="CharacterBody2D" groups=["grabbable", "key", "wrappable"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_a1ux4")
@@ -30,5 +33,11 @@ debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
 [node name="colshape_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_a1ux4")
+
+[node name="colshape_wrapbounds" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_asvfx")
+disabled = true
+debug_color = Color(0.8150098, 0.40812427, 5.7756904e-07, 0.41960785)
 
 [connection signal="body_entered" from="area2D_overlap" to="." method="_onBodyEntered"]

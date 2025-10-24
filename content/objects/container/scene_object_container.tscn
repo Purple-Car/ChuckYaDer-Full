@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dse3i6rp8hvcm"]
+[gd_scene load_steps=5 format=3 uid="uid://dse3i6rp8hvcm"]
 
 [ext_resource type="Script" uid="uid://wjxg6ir0mrm2" path="res://objects/container/script_object_container.gd" id="1_6uexc"]
 
@@ -8,7 +8,10 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uexc"]
 size = Vector2(8, 8)
 
-[node name="charbody_container_root" type="CharacterBody2D" groups=["grabbable"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpy36"]
+size = Vector2(8, 8)
+
+[node name="charbody_container_root" type="CharacterBody2D" groups=["grabbable", "wrappable"]]
 collision_layer = 18
 collision_mask = 17
 script = ExtResource("1_6uexc")
@@ -25,5 +28,10 @@ debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
 
 [node name="colshape_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6uexc")
+
+[node name="colshape_wrapbounds" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xpy36")
+disabled = true
+debug_color = Color(0.8150098, 0.40812427, 5.7756904e-07, 0.41960785)
 
 [connection signal="body_entered" from="area2D_overlap" to="." method="_onBodyEntered"]

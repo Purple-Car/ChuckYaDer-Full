@@ -14,21 +14,21 @@ const COLORS := {
 	"magenta":	Color(1.0, 0.137, 0.431, 1.0)
 }
 
-const DEFAULT_KEY_MAP_P1 := {
+const DEFAULT_KEY_MAP: Dictionary = {
 	"p1_grab": [KEY_SHIFT],
 	"p1_up": [KEY_W],
-	"p1_down": [KEY_A],
-	"p1_left": [KEY_S],
-	"p1_right": [KEY_D]
-}
-
-const DEFAULT_KEY_MAP_P2 := {
+	"p1_down": [KEY_S],
+	"p1_left": [KEY_A],
+	"p1_right": [KEY_D],
 	"p2_grab": [KEY_CTRL],
 	"p2_up": [KEY_UP],
 	"p2_down": [KEY_DOWN],
 	"p2_left": [KEY_LEFT],
 	"p2_right": [KEY_RIGHT]
 }
+
+const KEYMAP_PATH: String = "user://keymap.json"
+const SAVE_PATH: String = "user://save.json"
 #endregion
 
 #region variables
@@ -41,9 +41,18 @@ var player_deaths: Array[int] = [
 	0,
 	0
 ]
+
+var current_stage: int = 0
 #endregion
 
 signal updateDeathTracker
+signal updateKeyMapButton
+
+#region autoload
+func _ready() -> void:
+	loadKeyMap()
+	loadData()
+#endregion
 
 #region publics
 func setPlayerColor(player: int, color: String) -> void:
@@ -52,4 +61,132 @@ func setPlayerColor(player: int, color: String) -> void:
 func incrementDeath(player_num: int) -> void:
 	player_deaths[player_num - 1] += 1
 	updateDeathTracker.emit()
+
+func advanceStage(to_stage: int) -> void:
+	if to_stage >= current_stage:
+		current_stage = to_stage
+
+func getColorName(color: Color) -> String:
+	for key in COLORS.keys():
+		if COLORS[key] == color:
+			return key
+	return ""
+
+func arrayToColorArray(colors: Array) -> Array[Color]:
+	var converted_colors: Array[Color]
+	for color_name in colors:
+		if COLORS.has(color_name):
+			converted_colors.append(COLORS[color_name])
+	return converted_colors
+
+func arrayToIntArray(numbers: Array) -> Array[int]:
+	var converted_deaths: Array[int]
+	for number in numbers:
+		converted_deaths.append(int(number))
+	return converted_deaths
+#endregion
+
+#region keymap
+func resetKeyMap() -> void:
+	for action_name in DEFAULT_KEY_MAP.keys():
+		if InputMap.has_action(action_name):
+			InputMap.action_erase_events(action_name)
+		else:
+			InputMap.add_action(action_name)
+
+		for key_code in DEFAULT_KEY_MAP[action_name]:
+			var event := InputEventKey.new()
+			event.physical_keycode = key_code
+			InputMap.action_add_event(action_name, event)
+
+	saveKeyMap()
+	updateKeyMapButton.emit()
+
+func saveKeyMap() -> void:
+	var save_dict: Dictionary = {}
+	for action_name in InputMap.get_actions():
+		var keys: Array = []
+		for event in InputMap.action_get_events(action_name):
+			if event is InputEventKey:
+				keys.append(event.physical_keycode)
+		if keys.size() > 0:
+			save_dict[action_name] = keys
+
+	var file: FileAccess = FileAccess.open(KEYMAP_PATH, FileAccess.WRITE)
+	if !file: return
+	file.store_string(JSON.stringify(save_dict))
+	file.close()
+
+func loadKeyMap() -> void:
+	if !FileAccess.file_exists(KEYMAP_PATH):
+		resetKeyMap()
+		return
+
+	var file: FileAccess = FileAccess.open(KEYMAP_PATH, FileAccess.READ)
+	if !file: return
+	
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if typeof(data) != TYPE_DICTIONARY:
+		resetKeyMap()
+		return
+
+	for action_name in data.keys():
+		if !InputMap.has_action(action_name):
+			InputMap.add_action(action_name)
+		else:
+			InputMap.action_erase_events(action_name)
+
+		for key_code in data[action_name]:
+			var event := InputEventKey.new()
+			event.physical_keycode = key_code
+			InputMap.action_add_event(action_name, event)
+#endregion
+
+#region saves
+func resetData() -> void:
+	player_colors = [ COLORS["red"], COLORS["purple"] ]
+	player_deaths = [ 0, 0 ]
+	current_stage = 0
+	saveData()
+
+func saveData() -> void:
+	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if !file: return
+
+	var color_names: Array = []
+	for color in player_colors:
+		color_names.append(getColorName(color))
+	
+	var data: Dictionary = {
+		"player_colors": color_names,
+		"player_deaths": player_deaths,
+		"current_stage": current_stage
+	}
+	file.store_string(JSON.stringify(data))
+	file.close()
+
+func loadData() -> void:
+	if !checkForSave(): 
+		return
+	
+	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if !file: 
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(SAVE_PATH))
+		resetData()
+		return
+	
+	var data: Dictionary = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if typeof(data) != TYPE_DICTIONARY: return
+	
+	player_colors = arrayToColorArray(data.get("player_colors", []))
+	player_deaths = arrayToIntArray(data.get("player_deaths", []))
+	current_stage = data.get("current_stage", current_stage)
+
+func checkForSave() -> bool:
+	if FileAccess.file_exists(SAVE_PATH): return true
+	return false
 #endregion

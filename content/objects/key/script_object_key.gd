@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const DECELERATION: float = 4
+const MAX_FALL_SPEED: float = 186.0
 
 var weight: float = 1.2
 var is_grabbed: bool = false
@@ -18,6 +19,9 @@ func _physics_process(delta: float) -> void:
 
 func _applyGravity(delta: float) -> void:
 	velocity += get_gravity() * weight * delta
+		
+	if velocity.y > MAX_FALL_SPEED:
+		velocity.y = MAX_FALL_SPEED
 
 func _checkBonking() -> void:
 	if overlap_area.has_overlapping_bodies() == true:

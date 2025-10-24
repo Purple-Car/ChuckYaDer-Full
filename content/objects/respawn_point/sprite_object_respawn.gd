@@ -2,14 +2,16 @@ extends Node2D
 
 @export var player_num: int
 @export var facing_right: bool
+@export var respawn_timer: float = 0.75
 
 @onready var debug_polygon: Polygon2D = $polygon_object_view
 @onready var animated_sprite: AnimatedSprite2D = $anisprite_respawn_point
+@onready var timer: Timer = $timer_respawn
 
 var _player_scene: PackedScene = preload("res://objects/player/scene_player_body.tscn")
 var player_node_name: String
 var assigned_player: CharacterBody2D = null
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	if player_num == 0:
 		push_warning("player not set in a player spawner")
@@ -23,7 +25,6 @@ func _ready() -> void:
 	player_node_name = "charbody_player_" + str(player_num)
 	debug_polygon.visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
@@ -42,14 +43,16 @@ func _onAnimationFinished() -> void:
 	assigned_player = player
 	player.onPlayerDestroyed.connect(_onPlayerDestroyed)
 	
-	await get_tree().create_timer(0.02).timeout
 	animated_sprite.frame = 0
 
 func _onPlayerDestroyed() -> void:
-	# Disconnect the signal to avoid multiple connections
 	if assigned_player and assigned_player.tree_exited.is_connected(_onPlayerDestroyed):
 		assigned_player.tree_exited.disconnect(_onPlayerDestroyed)
 	
 	assigned_player = null
 	
+	if respawn_timer <= 0: return
+	timer.start(respawn_timer)
+
+func _onTimerTimeout() -> void:
 	animated_sprite.play("respawn")

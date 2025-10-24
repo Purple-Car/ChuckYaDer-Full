@@ -2,12 +2,9 @@ extends Control
 
 @onready var menu_player: AnimationPlayer = $anipl_menu
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):
 		toggleMenu()
@@ -24,10 +21,13 @@ func _onResumePressed() -> void:
 	toggleMenu()
 
 func _onResetPressed() -> void:
+	MasterTracker.incrementDeath(1)
+	MasterTracker.incrementDeath(2)
 	get_tree().reload_current_scene()
 
 func _onBackPressed() -> void:
-	pass # Replace with function body.
+	Gamestate.setNextScene("res://menus/title/scene_menus_title.tscn")
+	Gamestate.changeState(Gamestate.States.fadeout)
 
 func _onQuitPressed() -> void:
 	get_tree().quit()

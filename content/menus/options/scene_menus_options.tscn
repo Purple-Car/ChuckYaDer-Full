@@ -464,7 +464,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_xqqpe")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tu3nv")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1er6u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fv6uv")
-disabled = true
 text = "Reset"
 
 [node name="button_back" type="Button" parent="node_control/9pr_menu/HBoxContainer"]

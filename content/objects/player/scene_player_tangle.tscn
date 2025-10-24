@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqq60v0aiaewr"]
+
+[ext_resource type="Script" uid="uid://dbep5om2oaca8" path="res://objects/player/script_player_scarftangle.gd" id="1_0bfmc"]
+[ext_resource type="Texture2D" uid="uid://dcs81wmfigde4" path="res://objects/player/sprites/player_scarf_knot.png" id="1_hujn7"]
+[ext_resource type="Shader" uid="uid://ct3yu053fitn2" path="res://objects/player/shader_player_color_double.gdshader" id="1_vidsc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rswb8"]
+shader = ExtResource("1_vidsc")
+shader_parameter/target_color_1 = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color_1 = Color(1, 0, 0.8627451, 1)
+shader_parameter/target_color_2 = Color(0, 1, 0.12941177, 1)
+shader_parameter/new_color_2 = Color(0, 1, 0.12941177, 1)
+
+[node name="scene_player_scarftangle" type="Node2D"]
+material = SubResource("ShaderMaterial_rswb8")
+script = ExtResource("1_0bfmc")
+
+[node name="spr_player1" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-9, 0)
+texture = ExtResource("1_hujn7")
+region_enabled = true
+region_rect = Rect2(0, 0, 10, 9)
+
+[node name="spr_player2" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(9, 0)
+texture = ExtResource("1_hujn7")
+region_enabled = true
+region_rect = Rect2(10, 0, 10, 9)
+
+[node name="spr_knot" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("1_hujn7")
+region_enabled = true
+region_rect = Rect2(20, 0, 10, 9)
