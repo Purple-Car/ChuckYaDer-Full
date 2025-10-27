@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://mv433xmpi8yo"]
+
+[ext_resource type="Script" uid="uid://c2jnx2gfpcbtk" path="res://objects/breakable_block/script_objects_breakblock.gd" id="1_8cis0"]
+[ext_resource type="Texture2D" uid="uid://b16ejueyj7ysy" path="res://objects/breakable_block/Breakable Block.png" id="1_cnjea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysd16"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnjea"]
+size = Vector2(16, 16)
+
+[node name="statbod_breakblock_root" type="StaticBody2D"]
+script = ExtResource("1_8cis0")
+texture = ExtResource("1_cnjea")
+
+[node name="spr2D_sprite" type="Sprite2D" parent="."]
+position = Vector2(4, 4)
+texture = ExtResource("1_cnjea")
+
+[node name="area2D_overlap" type="Area2D" parent="."]
+position = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 64
+
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
+shape = SubResource("RectangleShape2D_ysd16")
+
+[node name="colshape_collision" type="CollisionShape2D" parent="."]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_cnjea")
+debug_color = Color(0.72071725, 0.26783824, 0.97702235, 0.41960785)
+
+[connection signal="area_entered" from="area2D_overlap" to="." method="_onAreaEntered"]

@@ -1255,7 +1255,7 @@ size = Vector2(22, 24)
 [node name="charbody_player_root" type="CharacterBody2D" groups=["grabbable", "player", "wrappable"]]
 z_index = 1
 material = SubResource("ShaderMaterial_8v5pd")
-collision_layer = 34
+collision_layer = 802
 collision_mask = 17
 script = ExtResource("1_r1is3")
 

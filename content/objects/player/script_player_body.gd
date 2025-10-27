@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const SPEED: float = 84.0
 const JUMP_VELOCITY: float = -60.0
@@ -34,7 +35,13 @@ func _ready() -> void:
 	if get_parent().get_child(0).name == "node_tangle":
 		scarf_player.hide()
 
-func _physics_process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	var carry_state: State = $"node_substate_machine/carry"
+	if grabbed_object == null and sub_states_machine.current_state == carry_state:
+		var to_substate: State = $"node_substate_machine/none"
+		sub_states_machine.current_state.next_state = to_substate
+
+func _physics_process(_delta: float) -> void:
 	_directionalMovement()
 	_changeFacingDirection()
 	_mergeVelocities()

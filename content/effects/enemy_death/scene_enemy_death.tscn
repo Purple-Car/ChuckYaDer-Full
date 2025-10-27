@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://clv0gk6mfbk2l"]
+
+[ext_resource type="Texture2D" uid="uid://hxmk3trwlofs" path="res://effects/enemy_death/Enemy Die.png" id="1_33q0j"]
+
+[sub_resource type="GDScript" id="GDScript_xeul5"]
+script/source = "extends Node2D
+
+@onready var animated_sprite: AnimatedSprite2D = $anisprite_enemy_death
+
+func _ready() -> void:
+	pass
+
+func _onAnimationFinished() -> void:
+	queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpodb"]
+atlas = ExtResource("1_33q0j")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnl2e"]
+atlas = ExtResource("1_33q0j")
+region = Rect2(22, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayckt"]
+atlas = ExtResource("1_33q0j")
+region = Rect2(0, 22, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20es6"]
+atlas = ExtResource("1_33q0j")
+region = Rect2(22, 22, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxfro"]
+atlas = ExtResource("1_33q0j")
+region = Rect2(0, 44, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb2hw"]
+atlas = ExtResource("1_33q0j")
+region = Rect2(22, 44, 22, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xeul5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpodb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnl2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayckt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20es6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxfro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb2hw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="node_enemy_death" type="Node2D"]
+script = SubResource("GDScript_xeul5")
+
+[node name="anisprite_enemy_death" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xeul5")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="anisprite_enemy_death" to="." method="_onAnimationFinished"]

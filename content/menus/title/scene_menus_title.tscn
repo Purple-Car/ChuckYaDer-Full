@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dho5uboywkire"]
+[gd_scene load_steps=18 format=3 uid="uid://dho5uboywkire"]
 
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_a28g2"]
 [ext_resource type="Script" uid="uid://bthfp0lfp0tg8" path="res://menus/title/script_menus_title.gd" id="1_enske"]
 [ext_resource type="Texture2D" uid="uid://i5c72au3ifgf" path="res://menus/title/sprites/Title.png" id="2_4w0t1"]
 [ext_resource type="PackedScene" uid="uid://dfgv3ed8ylkfg" path="res://resources/backgrounds/scene_background_clouds.tscn" id="3_2dmyk"]
 [ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="4_2dmyk"]
+[ext_resource type="PackedScene" uid="uid://h804jvol5gvn" path="res://resources/backgrounds/scene_background_sundown.tscn" id="4_t8moa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fq1rk"]
 
@@ -36,6 +37,9 @@ background_element = NodePath("node_background_clouds")
 
 [node name="node_background_clouds" parent="node_camera" instance=ExtResource("3_2dmyk")]
 position = Vector2(0, -157)
+
+[node name="node_background_sundown" parent="node_camera" instance=ExtResource("4_t8moa")]
+position = Vector2(159, -172)
 
 [node name="sprite_title" type="Sprite2D" parent="."]
 position = Vector2(160, 50)

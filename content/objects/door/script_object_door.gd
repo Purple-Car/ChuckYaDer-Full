@@ -27,6 +27,10 @@ func _onAreaEntered(area: Area2D) -> void:
 		if area_root.is_in_group("key") and !area_root.getIsGrabbed():
 			area_root.beConsumed()
 			unlockDoor()
+		elif area_root.is_in_group("player") and area_root.grabbed_object and  area_root.grabbed_object.is_in_group("key"):
+			var held_key = area_root.grabbed_object
+			held_key.beConsumed()
+			unlockDoor()
 		return
 	
 	if end_door: MasterTracker.advanceStage(stage)

@@ -1,7 +1,7 @@
 extends Node
 
 #region constants
-const COLORS := {
+const COLORS: Dictionary = {
 	"red":		Color(1.0, 0.243, 0.278, 1.0),
 	"orange":	Color(1.0, 0.627, 0.227, 1.0),
 	"yellow":	Color(1.0, 0.847, 0.169, 1.0),

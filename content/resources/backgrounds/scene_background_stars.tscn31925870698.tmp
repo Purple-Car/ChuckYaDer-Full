@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpc64qtxoi6l1"]
+
+[ext_resource type="Texture2D" uid="uid://ddd8yaqurok7i" path="res://resources/background_stars.png" id="1_56d0j"]
+[ext_resource type="Texture2D" uid="uid://oqqfx5ss2tdj" path="res://resources/sea_starry.png" id="2_56d0j"]
+
+[sub_resource type="GDScript" id="GDScript_56d0j"]
+script/source = "extends Sprite2D
+
+var blink: float = 2.0
+
+func _ready() -> void:
+	pass
+
+
+func _process(delta: float) -> void:
+	if blink <= 0:
+		modulate.a = randf()
+		blink = 2.0
+	else:
+		blink - delta
+"
+
+[sub_resource type="Animation" id="Animation_pr2b2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr2D_sea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spr2D_sea:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sc3bj"]
+resource_name = "sea"
+length = 16.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr2D_sea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spr2D_sea:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8, 16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ufa8"]
+_data = {
+&"RESET": SubResource("Animation_pr2b2"),
+&"sea": SubResource("Animation_sc3bj")
+}
+
+[node name="background_stars_root" type="Node2D"]
+
+[node name="prlx_farstars" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 180)
+repeat_times = 6
+ignore_camera_scroll = true
+
+[node name="spr2D_stars" type="Sprite2D" parent="prlx_farstars"]
+position = Vector2(2, 171)
+texture = ExtResource("1_56d0j")
+script = SubResource("GDScript_56d0j")
+
+[node name="prlx_sea" type="Parallax2D" parent="."]
+repeat_size = Vector2(128, 0)
+repeat_times = 30
+
+[node name="spr2D_sea" type="Sprite2D" parent="prlx_sea"]
+position = Vector2(0, 341)
+texture = ExtResource("2_56d0j")
+hframes = 5
+region_rect = Rect2(0, 0, 128, 161)
+
+[node name="aniplayr_sea" type="AnimationPlayer" parent="prlx_sea"]
+libraries = {
+&"": SubResource("AnimationLibrary_4ufa8")
+}
+autoplay = "sea"

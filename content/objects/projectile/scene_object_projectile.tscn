@@ -48,17 +48,17 @@ size = Vector2(8, 6)
 [node name="node_root_projectile" type="Node2D" groups=["wrappable"]]
 script = ExtResource("1_0biry")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="anisprite_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0biry")
 animation = &"fireball"
 autoplay = "fireball"
 frame_progress = 0.11278373
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="area2D_overlap" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_3x2wf")
 debug_color = Color(0.106467165, 0.62573576, 0.4867429, 0.41960785)
@@ -68,5 +68,5 @@ shape = SubResource("RectangleShape2D_3x2wf")
 disabled = true
 debug_color = Color(0.8150098, 0.40812427, 5.7756904e-07, 0.41960785)
 
-[connection signal="area_entered" from="Area2D" to="." method="_onAreaEntered"]
-[connection signal="body_entered" from="Area2D" to="." method="_onBodyEntered"]
+[connection signal="area_entered" from="area2D_overlap" to="." method="_onAreaEntered"]
+[connection signal="body_entered" from="area2D_overlap" to="." method="_onBodyEntered"]

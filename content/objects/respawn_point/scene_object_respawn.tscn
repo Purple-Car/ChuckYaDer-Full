@@ -83,7 +83,7 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="node_respawn_point" type="Node2D"]
+[node name="node_respawn_point" type="Node2D" groups=["respawn"]]
 script = ExtResource("1_jkolm")
 
 [node name="polygon_object_view" type="Polygon2D" parent="."]

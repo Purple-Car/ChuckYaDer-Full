@@ -93,7 +93,10 @@ anchor_mode = 0
 script = ExtResource("1_iwfsl")
 background_color = 1
 
-[node name="pol_background" type="Polygon2D" parent="."]
+[node name="canlay_bg" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="pol_background" type="Polygon2D" parent="canlay_bg"]
 color = Color(0.666667, 0.85098, 1, 1)
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 0, 1080)
 
@@ -102,7 +105,7 @@ texture = ExtResource("2_oytsc")
 centered = false
 
 [node name="canlay_nozoom" type="CanvasLayer" parent="."]
-layer = 2
+layer = 4
 scale = Vector2(6, 6)
 transform = Transform2D(6, 0, 0, 6, 0, 0)
 

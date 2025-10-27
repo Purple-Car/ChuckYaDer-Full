@@ -50,6 +50,10 @@ grabbable=""
 key=""
 player=""
 wrappable=""
+explosion=""
+enemy=""
+platform=""
+respawn=""
 
 [input]
 
@@ -117,7 +121,10 @@ menu={
 2d_physics/layer_4="Door"
 2d_physics/layer_5="Containers"
 2d_physics/layer_6="Player"
+2d_physics/layer_7="Explode"
 2d_physics/layer_8="Death"
+2d_physics/layer_9="Enemy"
+2d_physics/layer_10="Button"
 
 [physics]
 

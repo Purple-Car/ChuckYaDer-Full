@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1byxqioeqbw3"]
+
+[ext_resource type="Script" uid="uid://dpla7d3kepeup" path="res://objects/button/script_objects_button.gd" id="1_05cme"]
+[ext_resource type="Texture2D" uid="uid://cgq2yyi1y1c7d" path="res://objects/button/button.png" id="1_qj5qq"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="2_siirh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w305g"]
+shader = ExtResource("2_siirh")
+shader_parameter/target_color = Color(1, 0.24313726, 0.2784314, 1)
+shader_parameter/new_color = Color(1, 0.24313726, 0.2784314, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siirh"]
+atlas = ExtResource("1_qj5qq")
+region = Rect2(0, 8, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w305g"]
+atlas = ExtResource("1_qj5qq")
+region = Rect2(0, 16, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05cme"]
+atlas = ExtResource("1_qj5qq")
+region = Rect2(0, 0, 24, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58fus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_siirh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w305g")
+}],
+"loop": false,
+"name": &"press",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_siirh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05cme")
+}],
+"loop": false,
+"name": &"unpress",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05cme"]
+size = Vector2(22, 6)
+
+[node name="node_button" type="Node2D"]
+script = ExtResource("1_05cme")
+
+[node name="anispr_sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_w305g")
+sprite_frames = SubResource("SpriteFrames_58fus")
+animation = &"unpress"
+
+[node name="area2D_overlap" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 512
+
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_05cme")

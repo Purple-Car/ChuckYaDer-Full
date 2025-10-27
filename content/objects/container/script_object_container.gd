@@ -2,8 +2,10 @@ extends CharacterBody2D
 
 const DECELERATION: float = 4
 const MAX_FALL_SPEED: float = 192.0
+const BREAK_SPEED: float = 135.0
 
 @export var info: GrabbableContainer
+@export var _contains: PackedScene
 
 var weight: float
 var resistance: int
@@ -19,6 +21,10 @@ func _ready() -> void:
 	sprite.texture = info.texture
 	weight = 1 + info.weight/10
 	resistance = info.resistance
+	
+	collision.shape = collision.shape.duplicate()
+	overlap.shape = overlap.shape.duplicate()
+	wrapbounds.shape = wrapbounds.shape.duplicate()
 	
 	collision.shape.extents = info.hitbox_size
 	overlap.shape.extents = info.hitbox_size
@@ -38,7 +44,10 @@ func _physics_process(delta: float) -> void:
 			setCollidingWithPlayer(false)
 			_applyGravity(delta)
 			_checkBonking()
+	var heading_velocity: Vector2 = velocity
 	move_and_slide()
+	if resistance < 1:
+		_checkBreak(heading_velocity)
 
 func _applyGravity(delta: float) -> void:
 	velocity += get_gravity() * weight * delta
@@ -49,6 +58,12 @@ func _applyGravity(delta: float) -> void:
 func _checkBonking() -> void:
 	if overlap_area.has_overlapping_bodies() == true:
 		setImpulse( Vector2( velocity.x, -50 ))
+
+func _checkBreak(heading_velocity: Vector2) -> void:
+	var heading_speed = abs(heading_velocity.length())
+	if heading_speed > BREAK_SPEED:
+		if is_on_floor() or is_on_ceiling() or is_on_wall():
+			doBreak()
 
 func setGrabbed() -> void:
 	setImpulse(Vector2.ZERO)
@@ -72,7 +87,26 @@ func getIsGrabbed() -> bool:
 	if is_grabbed: return true
 	return false
 
+func doBreak() -> void:
+	if _contains:
+		var spawn_thing = _contains.instantiate()
+		get_parent().get_parent().get_node("node_grabbables").add_child(spawn_thing)
+		spawn_thing.global_position = global_position
+		spawn_thing.name = "node_projectile_root"
+		spawn_thing.setImpulse( Vector2( velocity.x, -50 ))
+	
+	Utils.explode_texture(info.texture, global_position + Vector2(8, 8))
+	queue_free()
+
 func _onBodyEntered(body: Node2D) -> void:
 	if is_grabbed or is_on_floor(): return 
+	
+	if body.is_in_group("enemy"):
+		body.doDeath()
+	
 	var direction_x: float = (global_position - body.global_position).normalized().x
 	setImpulse( Vector2( direction_x * velocity.x, -60 ))
+
+func _onAreaEntered(area: Area2D) -> void:
+	if area.get_parent().is_in_group("explosion") and resistance < 2:
+		doBreak()

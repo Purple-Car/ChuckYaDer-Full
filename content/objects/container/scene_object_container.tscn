@@ -12,7 +12,7 @@ size = Vector2(8, 8)
 size = Vector2(8, 8)
 
 [node name="charbody_container_root" type="CharacterBody2D" groups=["grabbable", "wrappable"]]
-collision_layer = 18
+collision_layer = 530
 collision_mask = 17
 script = ExtResource("1_6uexc")
 
@@ -20,7 +20,7 @@ script = ExtResource("1_6uexc")
 
 [node name="area2D_overlap" type="Area2D" parent="."]
 collision_layer = 20
-collision_mask = 32
+collision_mask = 352
 
 [node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
 shape = SubResource("RectangleShape2D_hct26")
@@ -34,4 +34,5 @@ shape = SubResource("RectangleShape2D_xpy36")
 disabled = true
 debug_color = Color(0.8150098, 0.40812427, 5.7756904e-07, 0.41960785)
 
+[connection signal="area_entered" from="area2D_overlap" to="." method="_onAreaEntered"]
 [connection signal="body_entered" from="area2D_overlap" to="." method="_onBodyEntered"]

@@ -104,5 +104,5 @@ func toggleReady(player_num: int) -> void:
 
 func _onButtonReadyPressed() -> void:
 	MasterTracker.saveData()
-	Gamestate.setNextScene("res://stages/stage_1/scene_stage_1_area_1.tscn")
+	Gamestate.setNextScene("res://menus/level_title/scene_level_title.tscn")
 	Gamestate.changeState(Gamestate.States.fadeout)

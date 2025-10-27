@@ -4,16 +4,17 @@ extends Camera2D
 @export var scale_multiplier: float
 @export var background_element: Node2D
 
-enum Colors { white, day, sunset, night }
+enum Colors { white, day, sunset, night, black }
 
 var _background_colors: Dictionary = {
 	Colors.white: "ffffff", 
 	Colors.day: "aad9ff", 
-	Colors.sunset: "f77758", 
+	Colors.sunset: "6d36ff", 
 	Colors.night: "0C001f",
+	Colors.black: "000000",
 }
 
-@onready var background: Polygon2D = $"pol_background"
+@onready var background: Polygon2D = $"canlay_bg/pol_background"
 @onready var debug_screen: Sprite2D = $"spr2D_reference"
 @onready var fade_screen: Polygon2D = $canlay_nozoom/pol_fade
 @onready var fade_player: AnimationPlayer = $"anipl_fade"

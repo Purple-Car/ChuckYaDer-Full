@@ -2,6 +2,9 @@ extends Node
 
 func _process(delta: float) -> void:
 	var camera: Camera2D = get_viewport().get_camera_2d()
+	
+	if camera.global_position != Vector2.ZERO: return
+	
 	if camera == null:
 		return
 
@@ -12,8 +15,8 @@ func _process(delta: float) -> void:
 	for body in get_tree().get_nodes_in_group("wrappable"):
 		var pos = body.global_position
 
-		var extent := Vector2.ZERO
-		var shape_node := body.get_node_or_null("colshape_wrapbounds")
+		var extent: Vector2 = Vector2.ZERO
+		var shape_node: Node = body.get_node_or_null("colshape_wrapbounds")
 		if shape_node and shape_node.shape is RectangleShape2D:
 			extent = shape_node.shape.extents
 

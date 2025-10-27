@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://h804jvol5gvn"]
+[gd_scene load_steps=17 format=3 uid="uid://h804jvol5gvn"]
 
 [ext_resource type="Texture2D" uid="uid://bst13ofbp5cst" path="res://resources/cluds_sundown.png" id="1_ium5o"]
 [ext_resource type="Texture2D" uid="uid://c31ti1utjrl6l" path="res://resources/sea_sundown.png" id="2_ium5o"]
 [ext_resource type="Texture2D" uid="uid://hevdihel631" path="res://resources/sky_sundown.png" id="3_32myq"]
 [ext_resource type="Texture2D" uid="uid://ci14fa1a5valt" path="res://resources/sundown.png" id="3_cwq8e"]
+[ext_resource type="Texture2D" uid="uid://bol84nugtl0p2" path="res://resources/sundownstatic.png" id="3_pxy0c"]
+[ext_resource type="Shader" uid="uid://bl4tn6ia32wl1" path="res://resources/backgrounds/shader_sunblend.gdshader" id="4_2xgqx"]
 
 [sub_resource type="Animation" id="Animation_pr2b2"]
 length = 0.001
@@ -68,6 +70,9 @@ _data = {
 &"sea": SubResource("Animation_sc3bj")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2avkc"]
+shader = ExtResource("4_2xgqx")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxy0c"]
 atlas = ExtResource("3_cwq8e")
 region = Rect2(0, 0, 48, 24)
@@ -111,7 +116,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="background_clouds_root" type="Node2D"]
+[node name="background_sundown_root" type="Node2D"]
 
 [node name="prlx_sea" type="Parallax2D" parent="."]
 repeat_size = Vector2(128, 0)
@@ -134,10 +139,16 @@ libraries = {
 autoplay = "sea"
 
 [node name="anisprite_sun" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 249)
+material = SubResource("ShaderMaterial_2avkc")
+position = Vector2(0, 275)
+scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_5uv5y")
 autoplay = "default"
 frame_progress = 0.17542149
+
+[node name="spr2D_sun" type="Sprite2D" parent="."]
+position = Vector2(0, 250)
+texture = ExtResource("3_pxy0c")
 
 [node name="prlx_clouds" type="Parallax2D" parent="."]
 repeat_size = Vector2(578, 0)

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://y153sgpqeb8u"]
+
+[ext_resource type="Texture2D" uid="uid://cda3874vnt5xt" path="res://objects/boss/guardian/sprites/guardian hand.png" id="1_3crc5"]
+[ext_resource type="Script" uid="uid://be67hth71hmwu" path="res://objects/boss/guardian/script_boss_guardhand.gd" id="1_ndnco"]
+[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/guardian/script_guardian_state_machine.gd" id="2_sj2cp"]
+[ext_resource type="Script" uid="uid://dscpt2jkga7wy" path="res://objects/boss/guardian/hand_states/script_guardian_hand_state_idle.gd" id="3_bvev5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3olgt"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3crc5"]
+size = Vector2(12, 14)
+
+[node name="charbod_gardhand_root" type="CharacterBody2D" groups=["grabbable"]]
+collision_layer = 2
+script = ExtResource("1_ndnco")
+
+[node name="colshape_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_3olgt")
+
+[node name="spr2D_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_3crc5")
+
+[node name="area2D_overlap" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 128
+collision_mask = 0
+
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_3crc5")
+debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
+
+[node name="node_hand_states" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sj2cp")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="node_hand_states" node_paths=PackedStringArray("guard_hand")]
+script = ExtResource("3_bvev5")
+guard_hand = NodePath("../..")
+
+[node name="attack" type="Node" parent="node_hand_states"]
+
+[node name="sitting" type="Node" parent="node_hand_states"]
+
+[node name="grabbed" type="Node" parent="node_hand_states"]
+
+[node name="thrown" type="Node" parent="node_hand_states"]

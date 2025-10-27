@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://lvm62hurcwt2"]
+
+[ext_resource type="Texture2D" uid="uid://csq71tj3fhf28" path="res://objects/bomb/sprites/Bomb.png" id="1_6koyh"]
+[ext_resource type="Script" uid="uid://bcktn23akh3fd" path="res://objects/bomb/script_object_bomb.gd" id="1_vj0qp"]
+[ext_resource type="Texture2D" uid="uid://cy4tqim5xaatb" path="res://objects/bomb/sprites/Bomb_active.png" id="1_vsfh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj0qp"]
+atlas = ExtResource("1_vsfh3")
+region = Rect2(0, 0, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndaur"]
+atlas = ExtResource("1_vsfh3")
+region = Rect2(15, 0, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyt4o"]
+atlas = ExtResource("1_vsfh3")
+region = Rect2(30, 0, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ynij"]
+atlas = ExtResource("1_vsfh3")
+region = Rect2(45, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skr1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj0qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndaur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyt4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ynij")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6koyh")
+}],
+"loop": true,
+"name": &"deactivated",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj0qp"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndaur"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyt4o"]
+size = Vector2(12, 12)
+
+[node name="charbody_bomb_root" type="CharacterBody2D" groups=["grabbable", "wrappable"]]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_vj0qp")
+
+[node name="anisprite_sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_skr1v")
+animation = &"deactivated"
+autoplay = "deactivated"
+frame_progress = 0.84917486
+
+[node name="area2D_overlap" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 4
+collision_mask = 0
+
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
+shape = SubResource("RectangleShape2D_vj0qp")
+debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
+
+[node name="colshape_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ndaur")
+
+[node name="colshape_wrapbounds" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_iyt4o")
+disabled = true
+debug_color = Color(0.8150098, 0.40812427, 5.7756904e-07, 0.41960785)
+
+[connection signal="body_entered" from="area2D_overlap" to="." method="_onBodyEntered"]

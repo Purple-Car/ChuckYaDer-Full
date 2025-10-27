@@ -12,8 +12,8 @@ size = Vector2(12, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asvfx"]
 size = Vector2(12, 14)
 
-[node name="charbody_key_root" type="CharacterBody2D" groups=["grabbable", "key", "wrappable"]]
-collision_layer = 2
+[node name="charbody_key_root" type="CharacterBody2D" groups=["button", "grabbable", "key", "wrappable"]]
+collision_layer = 514
 collision_mask = 17
 script = ExtResource("1_a1ux4")
 

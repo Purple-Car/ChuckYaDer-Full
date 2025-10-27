@@ -9,7 +9,7 @@ var scarf_instance: Node2D
 var players: Array[CharacterBody2D]
 
 func _physics_process(delta: float) -> void:
-	players = getLivePlayers()
+	players = Utils.getLivePlayers()
 	
 	if players.size() < 2: 
 		if scarf_instance and scarf_instance.is_inside_tree():
@@ -34,14 +34,6 @@ func spawnScarf() -> void:
 	scarf_instance = scarf_scene.instantiate()
 	scarf_instance.setupScarf(player_1, player_2, rope_length, spring_strength)
 	add_child(scarf_instance)
-
-func getLivePlayers() -> Array[CharacterBody2D]:
-	var live_players: Array[CharacterBody2D] = []
-	var siblings: Array[Node] = get_parent().get_children()
-	for sibling in siblings:
-		if sibling.is_in_group("player"):
-			live_players.append(sibling)
-	return live_players
 
 func getPlayerPositions(players_to_process: Array[CharacterBody2D]) -> Array[Vector2]:
 	var processed_positions: Array[Vector2] = []
