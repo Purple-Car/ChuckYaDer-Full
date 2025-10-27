@@ -14,42 +14,34 @@ func Exit(): pass
 func Update(_delta: float): pass
 
 func physicsUpdate(delta: float):
-	
-	_goTowardPlayer(delta)
 	_updateAnimations()
+	_goTowardPlayer(delta)
 
 func _updateAnimations() -> void:
 	guard_body.doAnimations()
 	guard_body.playHandAnimation()
 
-func getClosestPlayer() -> Player:
-	var players = Utils.getLivePlayers()
-	var closest_player: Player
-	var closest_proximity: int = 0
-	
-	for player in players:
-		var proximity: Vector2 = player.global_position - guard_body.global_position
-		
-		if closest_proximity < proximity.length():
-			closest_player = player
-			closest_proximity = proximity.length()
-	
-	return closest_player
-
 func _goTowardPlayer(delta: float) -> void:
-	if !getClosestPlayer(): closest_player_dir = 0
+	var closest_player: Player = guard_body.getClosestPlayer()
 	var future_velocity: float = 0.0
 	
-	if countdown > 0:
-		countdown -= delta
-		future_velocity = guard_body.SPEED
+	if closest_player == null: 
+		closest_player_dir = 0
 	else:
-		countdown = randf_range(0.4, 2)
-		if getClosestPlayer():
-			closest_player_dir = sign(getClosestPlayer().global_position.x - guard_body.global_position.x)
-	
-	# Se estiver perto demais reduz a velocidade
-	# Se estiver quase colado, realiza ataque
+		if countdown > 0:
+			countdown -= delta
+			future_velocity = guard_body.SPEED
+		else:
+			countdown = randf_range(0.4, 2)
+			closest_player_dir = sign(closest_player.global_position.x - guard_body.global_position.x)
+		if guard_body.is_on_floor():
+			if abs(closest_player.global_position.x - guard_body.global_position.x) < 42:
+				future_velocity = 0
+				Transitioned.emit(self, "attack")
+			elif abs(closest_player.global_position.x - guard_body.global_position.x) < 64:
+				future_velocity /= 2
+			if randi_range(0, 255) == 255:
+				guard_body.velocity.y = guard_body.JUMP_VELOCITY
 	
 	future_velocity = future_velocity * closest_player_dir
 	

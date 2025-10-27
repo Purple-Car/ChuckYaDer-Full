@@ -15,4 +15,5 @@ func Update(_delta: float): pass
 func physicsUpdate(_delta: float): pass
 
 func _onAnimationFinished(anim_name: StringName) -> void:
-	Transitioned.emit(self, "normal")
+	if anim_name == "intro":
+		Transitioned.emit(self, "normal")

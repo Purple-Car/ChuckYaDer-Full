@@ -39,7 +39,7 @@ func getLivePlayers() -> Array[CharacterBody2D]:
 			#
 			#tween.finished.connect(sprite.queue_free)
 
-func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 3, speed: float = 200.0, lifetime: float = 2.0, gravity_scale: float = 1.0):
+func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, speed: float = 200.0, lifetime: float = 2.0, gravity_scale: float = 1.0):
 	var size: Vector2 = texture.get_size()
 	var chunk_size: Vector2 = size / chunks
 	

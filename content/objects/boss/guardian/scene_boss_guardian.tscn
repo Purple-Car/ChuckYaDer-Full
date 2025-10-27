@@ -149,7 +149,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_e0uu5"]
 resource_name = "attack_l"
 length = 0.66667
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -186,11 +185,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, -10), Vector2(-3, -12), Vector2(0, -10)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/anisprite_body:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
 
 [sub_resource type="Animation" id="Animation_dbcco"]
 resource_name = "attack_r"
 length = 0.66667
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -226,6 +236,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -10), Vector2(3, -12), Vector2(0, -10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/anisprite_body:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
 }
 
 [sub_resource type="Animation" id="Animation_2cdmi"]
@@ -314,7 +336,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0ty3k"]
 resource_name = "intro"
-length = 2.66667
+length = 2.8333368
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -346,10 +368,10 @@ tracks/2/path = NodePath("node_sprites/node_rhand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.1333333, 1.2333333, 1.3333333, 1.4333334, 1.5333333, 1.6333332, 1.6999999, 1.8666667, 2, 2.1, 2.3, 2.3999999, 2.6333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.1333333, 1.2333333, 1.3333333, 1.4333334, 1.5333333, 1.6333332, 1.6999999, 1.7333333, 1.7666667, 1.8, 2, 2.1333332, 2.233333, 2.4333332, 2.533333, 2.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-17, -3), Vector2(-15, -2), Vector2(-17, -3), Vector2(-15, -2), Vector2(-17, -3), Vector2(-15, -2), Vector2(-15, 8), Vector2(-15, -2), Vector2(-15, -2), Vector2(-5, 0), Vector2(-15, -2), Vector2(-5, 0), Vector2(-14, 2)]
+"values": [Vector2(-17, -3), Vector2(-15, -2), Vector2(-17, -3), Vector2(-15, -2), Vector2(-17, -3), Vector2(-15, -2), Vector2(-15, 9), Vector2(-16, 9), Vector2(-15, 9), Vector2(-14, 9), Vector2(-15, -2), Vector2(-15, -2), Vector2(-5, 0), Vector2(-15, -2), Vector2(-5, 0), Vector2(-14, 2)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -358,10 +380,10 @@ tracks/3/path = NodePath("node_sprites/node_lhand:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.1333333, 1.2333333, 1.3333333, 1.4333334, 1.5333333, 1.6333332, 1.6999999, 1.8666667, 2, 2.1, 2.3, 2.3999999, 2.6333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.1333333, 1.2333333, 1.3333333, 1.4333334, 1.5333333, 1.6333332, 1.6999999, 1.7333333, 1.7666667, 1.8, 2, 2.1333332, 2.233333, 2.4333332, 2.533333, 2.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(17, -3), Vector2(15, -2), Vector2(17, -3), Vector2(15, -2), Vector2(17, -3), Vector2(15, -2), Vector2(15, 8), Vector2(15, -2), Vector2(15, -2), Vector2(5, 0), Vector2(15, -2), Vector2(5, 0), Vector2(14, 2)]
+"values": [Vector2(17, -3), Vector2(15, -2), Vector2(17, -3), Vector2(15, -2), Vector2(17, -3), Vector2(15, -2), Vector2(15, 9), Vector2(16, 9), Vector2(15, 9), Vector2(14, 9), Vector2(15, -2), Vector2(15, -2), Vector2(5, 0), Vector2(15, -2), Vector2(5, 0), Vector2(14, 2)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -463,14 +485,12 @@ debug_color = Color(0.37351868, 0.48543483, 0.9774155, 0.41960785)
 position = Vector2(-14, 2)
 
 [node name="spr2D_rhand" type="Sprite2D" parent="node_sprites/node_rhand"]
-visible = false
 texture = ExtResource("4_ybxi3")
 
 [node name="node_lhand" type="Node2D" parent="node_sprites"]
 position = Vector2(14, 2)
 
 [node name="spr2D_lhand" type="Sprite2D" parent="node_sprites/node_lhand"]
-visible = false
 scale = Vector2(-1, 1)
 texture = ExtResource("4_ybxi3")
 
@@ -496,3 +516,4 @@ script = ExtResource("9_dbcco")
 guard_body = NodePath("../..")
 
 [connection signal="animation_finished" from="aniplr" to="node_body_states/intro" method="_onAnimationFinished"]
+[connection signal="animation_finished" from="aniplr" to="node_body_states/attack" method="_onAnimationFinished"]

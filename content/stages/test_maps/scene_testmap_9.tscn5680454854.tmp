@@ -51,9 +51,8 @@ end_door = true
 [node name="node_grabbables" type="Node" parent="."]
 process_mode = 1
 
-[node name="node_boss_guardian" parent="node_grabbables" node_paths=PackedStringArray("guardhands") instance=ExtResource("8_j6gpj")]
+[node name="node_boss_guardian" parent="node_grabbables" instance=ExtResource("8_j6gpj")]
 position = Vector2(200, 112)
-guardhands = [NodePath("../charbod_gardhand_root_r"), NodePath("../charbod_gardhand_root_l")]
 
 [node name="charbod_gardhand_root_r" parent="node_grabbables" node_paths=PackedStringArray("guard_body") instance=ExtResource("9_amvse")]
 position = Vector2(-63, 124)
@@ -61,8 +60,8 @@ guard_body = NodePath("../node_boss_guardian")
 
 [node name="charbod_gardhand_root_l" parent="node_grabbables" node_paths=PackedStringArray("guard_body") instance=ExtResource("9_amvse")]
 position = Vector2(-35, 124)
-guard_body = NodePath("../node_boss_guardian")
 left_hand = true
+guard_body = NodePath("../node_boss_guardian")
 
 [node name="node_spawnmove" type="Node2D" parent="." node_paths=PackedStringArray("spawners")]
 script = ExtResource("10_7lvcr")

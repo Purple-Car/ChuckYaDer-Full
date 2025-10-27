@@ -79,6 +79,7 @@ animations = [{
 }]
 
 [node name="node_player_death" type="Node2D"]
+process_mode = 3
 script = SubResource("GDScript_n0467")
 
 [node name="anisprite_player_death" type="AnimatedSprite2D" parent="."]

@@ -11,5 +11,5 @@ func Exit(): pass
 
 func Update(_delta: float): pass
 
-func physicsUpdate(_delta: float): 
-	guard_hand.snapToBody()
+func physicsUpdate(delta: float): 
+	guard_hand.snapToBody(delta)

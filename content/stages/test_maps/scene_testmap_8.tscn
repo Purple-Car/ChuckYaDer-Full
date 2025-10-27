@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=4 uid="uid://cagnaflcuhbor"]
+[gd_scene load_steps=12 format=4 uid="uid://cagnaflcuhbor"]
 
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_amvse"]
 [ext_resource type="PackedScene" uid="uid://dfgv3ed8ylkfg" path="res://resources/backgrounds/scene_background_clouds.tscn" id="2_7lvcr"]
 [ext_resource type="PackedScene" uid="uid://b24movy8m12mx" path="res://fundamental elements/scene_element_hud.tscn" id="3_1cipy"]
 [ext_resource type="PackedScene" uid="uid://bdvmh3q4h5i8l" path="res://tileset/scene_tilemap_background.tscn" id="4_3s2ie"]
+[ext_resource type="PackedScene" uid="uid://3idqhr7bti72" path="res://fundamental elements/scene_element_killbounds.tscn" id="4_chvfu"]
 [ext_resource type="PackedScene" uid="uid://sjbhkglr5rca" path="res://tileset/scene_tilemap_default.tscn" id="5_pk0v6"]
 [ext_resource type="PackedScene" uid="uid://x2jr324a5jb5" path="res://objects/respawn_point/scene_object_respawn.tscn" id="6_1tmln"]
 [ext_resource type="PackedScene" uid="uid://e1v1qgipm8ah" path="res://objects/door/scene_object_door.tscn" id="7_6meb6"]
 [ext_resource type="PackedScene" uid="uid://d23t6au776x7j" path="res://stages/test_maps/scene_testmap_9.tscn" id="8_mhbkj"]
-[ext_resource type="Script" uid="uid://batae5ohnofam" path="res://stages/test_maps/script_mechanic_autoscroll.gd" id="9_cekwi"]
+[ext_resource type="Script" uid="uid://batae5ohnofam" path="res://fundamental elements/script_mechanic_autoscroll.gd" id="9_cekwi"]
+[ext_resource type="Script" uid="uid://bbt1573kp2tfs" path="res://fundamental elements/script_mechanic_spawnmove.gd" id="10_hjwqj"]
 
 [node name="node_stage" type="Node2D"]
 
@@ -20,12 +22,7 @@ position = Vector2(0, -151)
 
 [node name="ctrl_hud_root" parent="node_camera" instance=ExtResource("3_1cipy")]
 
-[node name="statbod_bounds" type="StaticBody2D" parent="node_camera"]
-
-[node name="colpol_bounds" type="CollisionPolygon2D" parent="node_camera/statbod_bounds"]
-position = Vector2(160.00002, 88)
-scale = Vector2(19.2, 12)
-polygon = PackedVector2Array(8.333331, -7.333333, 8.333331, 7.666666, -8.333333, 7.666666, -8.333333, -7.333333, 8.333331, -7.333333, 9.166665, -8.666666, -9.166666, -8.666666, -9.166666, 8.999999, 9.166665, 8.999999, 9.166665, -8.666666)
+[node name="statbod_bounds" parent="node_camera" instance=ExtResource("4_chvfu")]
 
 [node name="node_tilemaps" type="Node" parent="."]
 process_mode = 1
@@ -54,15 +51,15 @@ to_scene = ExtResource("8_mhbkj")
 [node name="node_grabbables" type="Node" parent="."]
 process_mode = 1
 
-[node name="node_autoscroll" type="Node2D" parent="node_grabbables" node_paths=PackedStringArray("bounds", "camera", "spawners")]
+[node name="node_autoscroll" type="Node2D" parent="." node_paths=PackedStringArray("bounds", "camera")]
 script = ExtResource("9_cekwi")
-bounds = NodePath("../../node_camera/statbod_bounds")
-camera = NodePath("../../node_camera")
+bounds = NodePath("../node_camera/statbod_bounds")
+camera = NodePath("../node_camera")
 max_speed = 40.0
-spawners = [NodePath("../../node_statics/node_respawn_point"), NodePath("../../node_statics/node_respawn_point2")]
 
-[node name="node_destination_1" type="Node2D" parent="node_grabbables/node_autoscroll"]
+[node name="node_destination_1" type="Node2D" parent="node_autoscroll"]
 position = Vector2(624, 0)
 
-[node name="node_destination_2" type="Node2D" parent="node_grabbables/node_autoscroll"]
-position = Vector2(624, -144)
+[node name="node_spawnmove" type="Node2D" parent="." node_paths=PackedStringArray("spawners")]
+script = ExtResource("10_hjwqj")
+spawners = [NodePath("../node_statics/node_respawn_point"), NodePath("../node_statics/node_respawn_point2")]

@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _onButtonNewgamePressed() -> void:
 	MasterTracker.resetData()
-	Gamestate.setNextScene("E:/Godot/ChuckYaDer-Full/content/menus/color_select/scene_menus_colorsel.tscn")
+	Gamestate.setNextScene("res://menus/color_select/scene_menus_colorsel.tscn")
 	Gamestate.changeState(Gamestate.States.fadeout)
 
 func _onButtonContinuePressed() -> void:
