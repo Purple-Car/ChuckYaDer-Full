@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bxqrhpqehncin"]
+[gd_scene load_steps=30 format=3 uid="uid://bxqrhpqehncin"]
 
 [ext_resource type="Texture2D" uid="uid://cyhc1kpf5iwkx" path="res://objects/boss/guardian/sprites/guardian fall.png" id="1_iuwtt"]
 [ext_resource type="Script" uid="uid://ckpkoeku60ku4" path="res://objects/boss/guardian/script_boss_guardian.gd" id="1_k3lfl"]
@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://diwjb4vmqcl6o" path="res://objects/boss/guardian/body_states/script_guardian_body_state_intro.gd" id="7_tr2fq"]
 [ext_resource type="Script" uid="uid://dg4yufrwsys45" path="res://objects/boss/guardian/body_states/script_guardian_body_state_normal.gd" id="8_2cdmi"]
 [ext_resource type="Script" uid="uid://cu08e20khd5t8" path="res://objects/boss/guardian/body_states/script_guardian_body_state_attack.gd" id="9_dbcco"]
+[ext_resource type="Script" uid="uid://c8y3onbwddhi0" path="res://objects/boss/guardian/body_states/script_guardian_body_state_knockback.gd" id="10_e0uu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvcds"]
-size = Vector2(18, 20)
+size = Vector2(32, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iuwtt"]
 atlas = ExtResource("2_3lwqo")
@@ -148,7 +149,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_e0uu5"]
 resource_name = "attack_l"
-length = 0.66667
+length = 0.50000334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -156,7 +157,7 @@ tracks/0/path = NodePath("node_sprites/node_rhand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 0.6666667),
+"times": PackedFloat32Array(0, 0.36666664, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-14, 2), Vector2(-14, 1), Vector2(-14, 2)]
@@ -168,7 +169,7 @@ tracks/1/path = NodePath("node_sprites/node_lhand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.53333336, 0.6666667),
+"times": PackedFloat32Array(0, 0.43333334, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(14, 2), Vector2(12, -8), Vector2(20, -10)]
@@ -180,7 +181,7 @@ tracks/2/path = NodePath("node_sprites/node_head:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 0.6666667),
+"times": PackedFloat32Array(0, 0.36666664, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -10), Vector2(-3, -12), Vector2(0, -10)]
@@ -200,7 +201,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_dbcco"]
 resource_name = "attack_r"
-length = 0.66667
+length = 0.50000334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -208,7 +209,7 @@ tracks/0/path = NodePath("node_sprites/node_rhand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336, 0.6666667),
+"times": PackedFloat32Array(0, 0.43333334, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-14, 2), Vector2(-12, -8), Vector2(-20, -10)]
@@ -220,7 +221,7 @@ tracks/1/path = NodePath("node_sprites/node_lhand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 0.6666667),
+"times": PackedFloat32Array(0, 0.36666664, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(14, 2), Vector2(14, 1), Vector2(14, 2)]
@@ -232,7 +233,7 @@ tracks/2/path = NodePath("node_sprites/node_head:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 0.6666667),
+"times": PackedFloat32Array(0, 0.36666664, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -10), Vector2(3, -12), Vector2(0, -10)]
@@ -451,11 +452,51 @@ _data = {
 &"walk": SubResource("Animation_k3lfl")
 }
 
+[sub_resource type="Animation" id="Animation_c8np5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wvrge"]
+resource_name = "flicker"
+length = 0.40000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666665, 0.33333337, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8np5"]
+_data = {
+&"RESET": SubResource("Animation_c8np5"),
+&"flicker": SubResource("Animation_wvrge")
+}
+
 [node name="charbod_guardian_root" type="CharacterBody2D" node_paths=PackedStringArray("animation_p")]
 visible = false
 collision_layer = 0
 script = ExtResource("1_k3lfl")
 animation_p = NodePath("aniplr")
+texture_head = ExtResource("3_3lwqo")
+texture_hand = ExtResource("4_ybxi3")
+texture_body = ExtResource("1_iuwtt")
 
 [node name="colshape_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -475,6 +516,8 @@ position = Vector2(0, -1)
 texture = ExtResource("3_3lwqo")
 
 [node name="area2D_hurtbox" type="Area2D" parent="node_sprites/node_head"]
+collision_layer = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="node_sprites/node_head/area2D_hurtbox"]
 position = Vector2(0, -1)
@@ -485,18 +528,25 @@ debug_color = Color(0.37351868, 0.48543483, 0.9774155, 0.41960785)
 position = Vector2(-14, 2)
 
 [node name="spr2D_rhand" type="Sprite2D" parent="node_sprites/node_rhand"]
+visible = false
 texture = ExtResource("4_ybxi3")
 
 [node name="node_lhand" type="Node2D" parent="node_sprites"]
 position = Vector2(14, 2)
 
 [node name="spr2D_lhand" type="Sprite2D" parent="node_sprites/node_lhand"]
+visible = false
 scale = Vector2(-1, 1)
 texture = ExtResource("4_ybxi3")
 
 [node name="aniplr" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_paka2")
+}
+
+[node name="aniplr_flicker" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c8np5")
 }
 
 [node name="node_body_states" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -515,5 +565,11 @@ guard_body = NodePath("../..")
 script = ExtResource("9_dbcco")
 guard_body = NodePath("../..")
 
+[node name="knockback" type="Node" parent="node_body_states" node_paths=PackedStringArray("guard_body")]
+script = ExtResource("10_e0uu5")
+guard_body = NodePath("../..")
+
+[connection signal="animation_changed" from="node_sprites/anisprite_body" to="." method="_onAnimationChanged"]
+[connection signal="body_entered" from="node_sprites/node_head/area2D_hurtbox" to="." method="_onBodyEntered"]
 [connection signal="animation_finished" from="aniplr" to="node_body_states/intro" method="_onAnimationFinished"]
 [connection signal="animation_finished" from="aniplr" to="node_body_states/attack" method="_onAnimationFinished"]

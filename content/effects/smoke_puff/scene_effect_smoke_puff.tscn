@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://cygu7glgd24sc"]
+
+[ext_resource type="Texture2D" uid="uid://cf7tv2b558wo" path="res://effects/smoke_puff/smoke_puff.png" id="1_hd3pj"]
+
+[sub_resource type="GDScript" id="GDScript_hd3pj"]
+script/source = "extends Node2D
+
+var flip: bool = false
+
+@onready var sprite: AnimatedSprite2D = $anisprite_sprite
+
+func _process(delta: float) -> void:
+	sprite.flip_h = flip
+
+func _onAnimationFinished() -> void:
+	queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7be16"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdpoe"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ft67"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0evu2"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jpth"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o10c4"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47i30"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86ev5"]
+atlas = ExtResource("1_hd3pj")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_il5cl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7be16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdpoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ft67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0evu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jpth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o10c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47i30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86ev5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="node_smoke_puff_root" type="Node2D"]
+script = SubResource("GDScript_hd3pj")
+
+[node name="anisprite_sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_il5cl")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="anisprite_sprite" to="." method="_onAnimationFinished"]

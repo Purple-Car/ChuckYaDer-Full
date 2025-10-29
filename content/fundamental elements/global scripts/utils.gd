@@ -14,6 +14,15 @@ func getLivePlayers() -> Array[CharacterBody2D]:
 			live_players.append(sibling)
 	return live_players
 
+func spawnSmokePuff(on_position: Vector2, offset_x: int = 2, offset_y: int = 0) -> void:
+	var puff_effect: PackedScene = preload("res://effects/smoke_puff/scene_effect_smoke_puff.tscn")
+	var smoke_puffs = [puff_effect.instantiate(), puff_effect.instantiate()]
+	for number in range(2):
+		get_parent().add_child(smoke_puffs[number])
+		var dir: int = Utils.boolToSign(number)
+		smoke_puffs[number].position = on_position + Vector2( offset_x * dir, offset_y)
+		smoke_puffs[number].flip = !bool(number)
+
 #func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 3, speed: float = 80.0) -> void:
 	#var size: Vector2 = texture.get_size()
 	#var chunk_size: Vector2 = size / chunks

@@ -31,16 +31,23 @@ func _goTowardPlayer(delta: float) -> void:
 		if countdown > 0:
 			countdown -= delta
 			future_velocity = guard_body.SPEED
+			future_velocity -= guard_body.boss_hp * 2.5
 		else:
 			countdown = randf_range(0.4, 2)
 			closest_player_dir = sign(closest_player.global_position.x - guard_body.global_position.x)
 		if guard_body.is_on_floor():
 			if abs(closest_player.global_position.x - guard_body.global_position.x) < 42:
-				future_velocity = 0
-				Transitioned.emit(self, "attack")
+				# Filthy Code
+				if closest_player_dir == 1 and guard_body.guardhands[1].getHandStateName() == "idle":
+					Transitioned.emit(self, "attack")
+					future_velocity = 0
+				elif closest_player_dir == -1 and guard_body.guardhands[0].getHandStateName() == "idle": 
+					Transitioned.emit(self, "attack")
+					future_velocity = 0
+				
 			elif abs(closest_player.global_position.x - guard_body.global_position.x) < 64:
 				future_velocity /= 2
-			if randi_range(0, 255) == 255:
+			if randi_range(0, 383) == 255:
 				guard_body.velocity.y = guard_body.JUMP_VELOCITY
 	
 	future_velocity = future_velocity * closest_player_dir

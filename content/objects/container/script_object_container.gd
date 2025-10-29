@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 const DECELERATION: float = 4
 const MAX_FALL_SPEED: float = 192.0
-const BREAK_SPEED: float = 135.0
+const BREAK_SPEED: float = 180.0
 
 @export var info: GrabbableContainer
-@export var _contains: PackedScene
+@export var contains: PackedScene
 
 var weight: float
 var resistance: int
@@ -88,11 +88,11 @@ func getIsGrabbed() -> bool:
 	return false
 
 func doBreak() -> void:
-	if _contains:
-		var spawn_thing = _contains.instantiate()
+	if contains:
+		var spawn_thing = contains.instantiate()
 		get_parent().get_parent().get_node("node_grabbables").add_child(spawn_thing)
 		spawn_thing.global_position = global_position
-		spawn_thing.name = "node_projectile_root"
+		spawn_thing.name = "node_container_item_root"
 		spawn_thing.setImpulse( Vector2( velocity.x, -50 ))
 	
 	Utils.explode_texture(info.texture, global_position + Vector2(8, 8))
