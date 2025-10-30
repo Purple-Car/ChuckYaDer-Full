@@ -22,6 +22,8 @@ var last_hit_direction: int
 @onready var flicker: AnimationPlayer = $aniplr_flicker
 @onready var state_machine: Node = $node_body_states
 
+signal updateHealth(damage: float)
+
 func _physics_process(delta: float) -> void:
 	_applyGravity(delta)
 	move_and_slide()
@@ -92,6 +94,9 @@ func doDeath():
 
 	call_deferred("queue_free")
 
+func getName() -> String:
+	return "THE GUARDIAN"
+
 func _onAnimationChanged() -> void:
 	_checkIfLanded()
 
@@ -101,6 +106,7 @@ func _onBodyEntered(body: Node2D) -> void:
 		body.setImpulse(Vector2(-body.velocity.x,-100))
 	last_hit_direction = sign(global_position.x - body.global_position.x)
 	boss_hp -= 1
+	updateHealth.emit(boss_hp)
 	if boss_hp <= 0:
 		doDeath()
 	flicker.seek(0)

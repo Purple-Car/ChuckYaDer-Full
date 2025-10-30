@@ -8,8 +8,6 @@ var countdown: float
 func Enter():
 	countdown = 1.0
 	guard_body.velocity.x = 100 * guard_body.last_hit_direction
-	print(countdown)
-	print(guard_body.velocity.x)
 
 func Exit(): pass
 

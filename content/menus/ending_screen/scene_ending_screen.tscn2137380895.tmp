@@ -1,0 +1,997 @@
+[gd_scene load_steps=63 format=3 uid="uid://diynrlh5ohouv"]
+
+[ext_resource type="Script" uid="uid://mluh63s5foh6" path="res://menus/ending_screen/script_ending_screen.gd" id="1_hflvm"]
+[ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_rv367"]
+[ext_resource type="Texture2D" uid="uid://b84s6uwwcxupe" path="res://objects/player/sprites/player_win.png" id="2_rv367"]
+[ext_resource type="Texture2D" uid="uid://d3s6edu715ab5" path="res://objects/star/star.png" id="3_bsduf"]
+[ext_resource type="Texture2D" uid="uid://ocfqslv2vmju" path="res://resources/star1.png" id="4_fl6fh"]
+[ext_resource type="Script" uid="uid://b7d51ssfcqs2m" path="res://resources/backgrounds/scritp_anispr_star.gd" id="5_18idd"]
+[ext_resource type="Texture2D" uid="uid://cmy0dvjqtvny" path="res://resources/sky_starry.png" id="5_v6ajn"]
+[ext_resource type="Texture2D" uid="uid://co1m2bb7pvlus" path="res://resources/star2.png" id="6_s7qeg"]
+[ext_resource type="Texture2D" uid="uid://ddd8yaqurok7i" path="res://resources/background_stars.png" id="7_18idd"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="8_s7qeg"]
+[ext_resource type="FontFile" uid="uid://cx680grmaoqdt" path="res://resources/fonts/chuckyader_font.png" id="11_i8vmh"]
+[ext_resource type="FontFile" uid="uid://ccbf3s442slah" path="res://resources/fonts/chuckcounter_font.png" id="12_eniqq"]
+[ext_resource type="Script" uid="uid://bibsdi0um55f4" path="res://fundamental elements/script_container_death.gd" id="13_6ppso"]
+[ext_resource type="Texture2D" uid="uid://l2rmhm1d3flo" path="res://resources/death_counter_icon.png" id="14_18xtd"]
+
+[sub_resource type="GDScript" id="GDScript_s7qeg"]
+script/source = "extends Sprite2D
+
+var blink: float = 0.04
+
+func _ready() -> void:
+	pass
+
+func _process(delta: float) -> void:
+	if blink <= 0:
+		modulate.a = randf_range(0.6,1.0)
+		blink = 0.04
+	else:
+		blink -= delta
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo7ob"]
+atlas = ExtResource("4_fl6fh")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00f5k"]
+atlas = ExtResource("4_fl6fh")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7br6"]
+atlas = ExtResource("4_fl6fh")
+region = Rect2(0, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkcli"]
+atlas = ExtResource("4_fl6fh")
+region = Rect2(12, 12, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i8vmh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo7ob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00f5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkcli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00f5k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a78s1"]
+atlas = ExtResource("6_s7qeg")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd628"]
+atlas = ExtResource("6_s7qeg")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36wjn"]
+atlas = ExtResource("6_s7qeg")
+region = Rect2(0, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsgyd"]
+atlas = ExtResource("6_s7qeg")
+region = Rect2(12, 12, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eniqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a78s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd628")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36wjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsgyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36wjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd628")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8vmh"]
+shader = ExtResource("8_s7qeg")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsduf"]
+atlas = ExtResource("2_rv367")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hflvm"]
+atlas = ExtResource("2_rv367")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6ajn"]
+atlas = ExtResource("2_rv367")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcwoc"]
+atlas = ExtResource("2_rv367")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5wpi"]
+atlas = ExtResource("2_rv367")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6fh"]
+atlas = ExtResource("2_rv367")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18idd"]
+atlas = ExtResource("2_rv367")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qeg"]
+atlas = ExtResource("2_rv367")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8vmh"]
+atlas = ExtResource("2_rv367")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eniqq"]
+atlas = ExtResource("2_rv367")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsex4"]
+atlas = ExtResource("2_rv367")
+region = Rect2(96, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ppso"]
+atlas = ExtResource("2_rv367")
+region = Rect2(120, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18xtd"]
+atlas = ExtResource("2_rv367")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui5bk"]
+atlas = ExtResource("2_rv367")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jga4h"]
+atlas = ExtResource("2_rv367")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2loj"]
+atlas = ExtResource("2_rv367")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlutn"]
+atlas = ExtResource("2_rv367")
+region = Rect2(96, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4l31"]
+atlas = ExtResource("2_rv367")
+region = Rect2(120, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jrmg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsduf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hflvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6ajn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcwoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5wpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6fh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18idd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7qeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8vmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eniqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsex4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ppso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18xtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui5bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jga4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2loj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlutn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4l31")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s7qeg"]
+shader = ExtResource("8_s7qeg")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p73j"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2277g"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e01bs"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkyi1"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqup5"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itjkg"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77cf5"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(40, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovet3"]
+atlas = ExtResource("3_bsduf")
+region = Rect2(60, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hflvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p73j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2277g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e01bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkyi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqup5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itjkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77cf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovet3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="Animation" id="Animation_hflvm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anispr_player_1:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anispr_player_1:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anispr_player_2:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-30.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anispr_player_2:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bsduf"]
+resource_name = "rotate"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anispr_player_1:position:x")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30.0, -30.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anispr_player_1:position:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7666667, 1.5, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 0.0, -10.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anispr_player_2:position:x")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-30.0, 30.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anispr_player_2:position:y")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 1.5, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -10.0, 0.0, 10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v6ajn"]
+_data = {
+&"RESET": SubResource("Animation_hflvm"),
+&"rotate": SubResource("Animation_bsduf")
+}
+
+[sub_resource type="Animation" id="Animation_eniqq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("label_thanks:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 74)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../node_sprites:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 104)]
+}
+
+[sub_resource type="Animation" id="Animation_i8vmh"]
+resource_name = "appear"
+length = 10.00005
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("label_thanks:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 64), Vector2(256, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("label_anykey:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.5, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 36), Vector2(116, 36)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../node_sprites:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 240), Vector2(160, 240), Vector2(160, 104)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eniqq"]
+_data = {
+&"RESET": SubResource("Animation_eniqq"),
+&"appear": SubResource("Animation_i8vmh")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui5bk"]
+shader = ExtResource("8_s7qeg")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
+
+[node name="node_ending_screen" type="Node2D"]
+script = ExtResource("1_hflvm")
+
+[node name="node_camera" parent="." node_paths=PackedStringArray("background_element") instance=ExtResource("1_rv367")]
+background_color = 3
+background_element = NodePath("node_background_blank")
+
+[node name="node_background" type="Node2D" parent="node_camera"]
+
+[node name="prlx_sky" type="Parallax2D" parent="node_camera/node_background"]
+repeat_size = Vector2(0, 128)
+repeat_times = 4
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="spr_background_starryl" type="Sprite2D" parent="node_camera/node_background/prlx_sky"]
+position = Vector2(-30, 116)
+rotation = -1.5707964
+texture = ExtResource("5_v6ajn")
+
+[node name="spr_background_starryr" type="Sprite2D" parent="node_camera/node_background/prlx_sky"]
+position = Vector2(350, 116)
+rotation = 1.5707964
+texture = ExtResource("5_v6ajn")
+
+[node name="prlx_farstars" type="Parallax2D" parent="node_camera/node_background"]
+repeat_size = Vector2(0, 180)
+autoscroll = Vector2(0, 20)
+repeat_times = 3
+follow_viewport = false
+ignore_camera_scroll = true
+screen_offset = Vector2(0, 20)
+
+[node name="spr2D_stars" type="Sprite2D" parent="node_camera/node_background/prlx_farstars"]
+position = Vector2(160, 90)
+texture = ExtResource("7_18idd")
+script = SubResource("GDScript_s7qeg")
+
+[node name="prlx_stars" type="Parallax2D" parent="node_camera/node_background"]
+modulate = Color(1, 1, 1, 0.5254902)
+repeat_size = Vector2(0, 180)
+autoscroll = Vector2(0, 30)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="anispr_star+_1" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(156, 44)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_1" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(148, 102)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_2" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(177, 9)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_2" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(186, 157)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_3" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(163, 136)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_3" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(191, 102)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_4" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(174, 77)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_4" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(132, 170)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_5" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(128, 25)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_5" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(130, 76)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_6" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(131, 128)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_6" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars"]
+position = Vector2(190, 42)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="prlx_stars_1" type="Parallax2D" parent="node_camera/node_background"]
+modulate = Color(1, 1, 1, 0.74509805)
+repeat_size = Vector2(0, 180)
+autoscroll = Vector2(0, 40)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="anispr_star+_1" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(70, 44)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_1" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(62, 102)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_2" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(91, 9)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_2" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(100, 157)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_3" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(77, 136)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_3" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(105, 102)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_4" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(88, 77)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_4" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(104, 42)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_5" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(220, 72)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_5" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(212, 130)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_6" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(241, 37)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_6" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(250, 185)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_7" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(227, 164)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_7" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(255, 130)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_8" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(238, 105)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_8" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_1"]
+position = Vector2(254, 70)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="prlx_stars_2" type="Parallax2D" parent="node_camera/node_background"]
+modulate = Color(1, 1, 1, 0.87058824)
+repeat_size = Vector2(0, 180)
+autoscroll = Vector2(0, 50)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="anispr_star+_1" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(10, 62)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_2" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(31, 27)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_2" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(40, 175)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_3" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(17, 154)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_3" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(46, 132)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_4" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(28, 95)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_4" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(44, 60)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_5" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(273, 54)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_6" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(294, 19)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_5" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(303, 167)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_7" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(280, 146)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_6" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(309, 124)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_star+_8" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(291, 87)
+sprite_frames = SubResource("SpriteFrames_i8vmh")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="anispr_starx_7" type="AnimatedSprite2D" parent="node_camera/node_background/prlx_stars_2"]
+position = Vector2(307, 52)
+sprite_frames = SubResource("SpriteFrames_eniqq")
+autoplay = "default"
+script = ExtResource("5_18idd")
+
+[node name="node_background_blank" type="Node2D" parent="node_camera"]
+
+[node name="node_sprites" type="Node2D" parent="."]
+process_mode = 3
+position = Vector2(160, 104)
+scale = Vector2(2, 2)
+
+[node name="anispr_player_2" type="AnimatedSprite2D" parent="node_sprites"]
+material = SubResource("ShaderMaterial_i8vmh")
+position = Vector2(-30, 0)
+sprite_frames = SubResource("SpriteFrames_0jrmg")
+autoplay = "default"
+frame_progress = 0.2813655
+
+[node name="anispr_player_1" type="AnimatedSprite2D" parent="node_sprites"]
+material = SubResource("ShaderMaterial_s7qeg")
+position = Vector2(30, 0)
+sprite_frames = SubResource("SpriteFrames_0jrmg")
+autoplay = "default"
+frame_progress = 0.59777975
+
+[node name="anisprt_sprite" type="AnimatedSprite2D" parent="node_sprites"]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_hflvm")
+autoplay = "default"
+frame_progress = 0.12608571
+
+[node name="aniplr_sprites" type="AnimationPlayer" parent="node_sprites"]
+libraries = {
+&"": SubResource("AnimationLibrary_v6ajn")
+}
+autoplay = "rotate"
+
+[node name="control_labels" type="Control" parent="."]
+z_index = 120
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="label_thanks" type="Label" parent="control_labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_right = 130.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_i8vmh")
+text = "THANKS FOR PLAYING"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="label_anykey" type="Label" parent="control_labels"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -36.0
+offset_right = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.69411767)
+theme_override_fonts/font = ExtResource("12_eniqq")
+theme_override_font_sizes/font_size = 8
+text = "Press any Key to Return"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="aniplr_labels" type="AnimationPlayer" parent="control_labels"]
+libraries = {
+&"": SubResource("AnimationLibrary_eniqq")
+}
+autoplay = "appear"
+
+[node name="control_deaths" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="colrect_darkne" type="ColorRect" parent="control_deaths"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.023529412, 0, 0.07058824, 0.654902)
+
+[node name="label_deathtoll" type="Label" parent="control_deaths/colrect_darkne"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -29.0
+offset_right = 70.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_i8vmh")
+text = "Death Toll"
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="container_death" type="VBoxContainer" parent="control_deaths"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 2.0
+offset_right = 0.5
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_constants/separation = 1
+
+[node name="container_death_p1" type="HBoxContainer" parent="control_deaths/container_death"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+script = ExtResource("13_6ppso")
+player_num = 1
+
+[node name="icon_death" type="TextureRect" parent="control_deaths/container_death/container_death_p1"]
+material = SubResource("ShaderMaterial_ui5bk")
+layout_mode = 2
+texture = ExtResource("14_18xtd")
+
+[node name="label_death" type="Label" parent="control_deaths/container_death/container_death_p1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("12_eniqq")
+theme_override_font_sizes/font_size = 8
+text = "0"
+vertical_alignment = 1
+
+[node name="container_death_p2" type="HBoxContainer" parent="control_deaths/container_death"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+script = ExtResource("13_6ppso")
+player_num = 2
+
+[node name="icon_death" type="TextureRect" parent="control_deaths/container_death/container_death_p2"]
+material = SubResource("ShaderMaterial_ui5bk")
+layout_mode = 2
+texture = ExtResource("14_18xtd")
+
+[node name="label_death" type="Label" parent="control_deaths/container_death/container_death_p2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("12_eniqq")
+theme_override_font_sizes/font_size = 8
+text = "0"
+vertical_alignment = 1
+
+[node name="aniplr_deaths" type="AnimationPlayer" parent="control_deaths"]

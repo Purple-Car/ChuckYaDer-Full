@@ -12,7 +12,7 @@ func _ready() -> void:
 	if to_scene:
 		Gamestate.setNextScene(to_scene.resource_path)
 	else:
-		assert(true, "No scene set to door")
+		Gamestate.setNextScene("res://menus/ending_screen/scene_ending_screen.tscn")
 	if locked:
 		sprite.play(definePrefix()+"closed")
 	else:
