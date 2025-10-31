@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddml7nifbiym4"]
+[gd_scene load_steps=7 format=3 uid="uid://ddml7nifbiym4"]
 
 [ext_resource type="Script" uid="uid://bpjy1oybnddv0" path="res://objects/item_pipe/script_objects_itempipe.gd" id="1_a3r18"]
 [ext_resource type="Texture2D" uid="uid://bsmm8fwj3ygmy" path="res://objects/item_pipe/item_pipe.png" id="1_okbyi"]
-[ext_resource type="PackedScene" uid="uid://dse3i6rp8hvcm" path="res://objects/container/scene_object_container.tscn" id="3_0uqes"]
-[ext_resource type="Resource" uid="uid://dc1x6apyamr71" path="res://resources/containers/resource_container_safe.tres" id="4_377ae"]
 
 [sub_resource type="Animation" id="Animation_0cqov"]
 length = 0.001
@@ -76,9 +74,5 @@ libraries = {
 
 [node name="node_spawn_point" type="Node2D" parent="."]
 position = Vector2(4, 9)
-
-[node name="charbody_container_root2" parent="." instance=ExtResource("3_0uqes")]
-position = Vector2(99, 136)
-info = ExtResource("4_377ae")
 
 [connection signal="animation_finished" from="aniplayer" to="." method="_onAnimationFinished"]

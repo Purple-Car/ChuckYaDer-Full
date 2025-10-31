@@ -1,8 +1,15 @@
 extends Node2D
 
 const LEVEL_TITLE: Array[String] = [
-	"Pequenos Degrais",
-	"Que a morte os separe",
+	"Small steps",
+	"Death do you apart",
+	"Hall of the Knight",
+	"Stage 4",
+	"Stage 5",
+	"Stage 6",
+	"Stage 7",
+	"Stage 8",
+	"Stage 9",
 ]
 
 @onready var level_label: Label = $control/label_level_title

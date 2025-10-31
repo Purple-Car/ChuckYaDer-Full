@@ -77,6 +77,7 @@ func doDeath() -> void:
 
 func _onAreaEntered(area: Area2D) -> void:
 	if is_grabbed: return
+	if area.get_parent().is_in_group("enemy"): return
 	doDeath()
 
 func _onBodyEntered(body: Node2D) -> void:
