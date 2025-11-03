@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cda3874vnt5xt" path="res://objects/boss/guardian/sprites/guardian hand.png" id="1_3crc5"]
 [ext_resource type="Script" uid="uid://be67hth71hmwu" path="res://objects/boss/guardian/script_boss_guardhand.gd" id="1_ndnco"]
-[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/guardian/script_guardian_state_machine.gd" id="2_sj2cp"]
+[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="2_sj2cp"]
 [ext_resource type="Script" uid="uid://dscpt2jkga7wy" path="res://objects/boss/guardian/hand_states/script_guardian_hand_state_idle.gd" id="3_bvev5"]
 [ext_resource type="Script" uid="uid://crbdb68xcnte6" path="res://objects/boss/guardian/hand_states/script_guardian_hand_state_attack.gd" id="5_kvpiv"]
 [ext_resource type="Script" uid="uid://c41iqiq236wdd" path="res://objects/boss/guardian/hand_states/script_guardian_hand_state_sitting.gd" id="6_cxjrc"]

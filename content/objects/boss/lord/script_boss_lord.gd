@@ -1,8 +1,8 @@
 extends CharacterBody2D
-class_name GuardianBody
+class_name LordBody
 
 const MAX_FALL_SPEED: float = 200.0
-const SPEED: float = 40.0
+const SPEED: float = 50.0
 const JUMP_VELOCITY: float = -160.0
 const MAX_HP: int = 4
 
@@ -101,7 +101,7 @@ func doDeath():
 	call_deferred("queue_free")
 
 func getName() -> String:
-	return "THE FIGHTER"
+	return "THE LORD"
 
 func _onAnimationChanged() -> void:
 	_checkIfLanded()

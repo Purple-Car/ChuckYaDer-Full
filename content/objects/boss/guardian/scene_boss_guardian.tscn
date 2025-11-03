@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b306kqovwgyvb" path="res://objects/boss/guardian/sprites/guardian walk.png" id="2_3lwqo"]
 [ext_resource type="Texture2D" uid="uid://cmi3r2ryrrj2k" path="res://objects/boss/guardian/sprites/guardian head.png" id="3_3lwqo"]
 [ext_resource type="Texture2D" uid="uid://cda3874vnt5xt" path="res://objects/boss/guardian/sprites/guardian hand.png" id="4_ybxi3"]
-[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/guardian/script_guardian_state_machine.gd" id="6_paka2"]
+[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="6_paka2"]
 [ext_resource type="Script" uid="uid://diwjb4vmqcl6o" path="res://objects/boss/guardian/body_states/script_guardian_body_state_intro.gd" id="7_tr2fq"]
 [ext_resource type="Script" uid="uid://dg4yufrwsys45" path="res://objects/boss/guardian/body_states/script_guardian_body_state_normal.gd" id="8_2cdmi"]
 [ext_resource type="Script" uid="uid://cu08e20khd5t8" path="res://objects/boss/guardian/body_states/script_guardian_body_state_attack.gd" id="9_dbcco"]
