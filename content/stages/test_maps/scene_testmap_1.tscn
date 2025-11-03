@@ -72,7 +72,7 @@ info = ExtResource("13_jlbpk")
 
 [node name="node_spring_root" parent="node_statics/charbody_container_root5" instance=ExtResource("14_xj5vl")]
 position = Vector2(0, -8)
-strength = 208
+strength = 128
 
 [node name="node_grabbables" type="Node" parent="."]
 process_mode = 1

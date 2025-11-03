@@ -10,6 +10,7 @@ var _death_effect: PackedScene = preload("res://effects/enemy_death/scene_enemy_
 var weight: float = 1.1
 var is_grabbed: bool = false
 
+@onready var collision: CollisionShape2D = $colshape_collision
 @onready var sprite: AnimatedSprite2D = $anisprite_sprite
 @onready var overlap_area: Area2D = $area2D_overlap
 
@@ -42,10 +43,12 @@ func _updateScaleDirection() -> void:
 
 func setGrabbed() -> void:
 	setImpulse(Vector2.ZERO)
+	collision.call_deferred("set_disabled", true)
 	is_grabbed = true
 	setCollidingWithPlayer(false)
 
 func setUngrabbed() -> void:
+	collision.call_deferred("set_disabled", false)
 	is_grabbed = false
 	setCollidingWithPlayer(true)
 

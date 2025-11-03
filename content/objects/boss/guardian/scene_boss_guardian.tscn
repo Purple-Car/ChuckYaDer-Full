@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://c8y3onbwddhi0" path="res://objects/boss/guardian/body_states/script_guardian_body_state_knockback.gd" id="10_e0uu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvcds"]
-size = Vector2(32, 20)
+size = Vector2(22, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iuwtt"]
 atlas = ExtResource("2_3lwqo")

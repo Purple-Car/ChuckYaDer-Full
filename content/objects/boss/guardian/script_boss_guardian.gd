@@ -43,12 +43,16 @@ func doAnimations() -> void:
 	if is_on_floor():
 		if velocity.x < 0:
 			body_sprite.play("walk")
+			body_sprite.speed_scale = body_sprite.speed_scale * SPEED / 
 		elif velocity.x > 0:
 			body_sprite.play("walk", -1.0, true)
+			body_sprite.speed_scale =
 		else:
 			body_sprite.play("idle")
+			body_sprite.speed_scale = 1
 	else:
 		body_sprite.play("fall")
+		body_sprite.speed_scale = 1
 
 func playHandAnimation(to_anim: String = body_sprite.animation) -> void:
 	animation_p.play(to_anim)

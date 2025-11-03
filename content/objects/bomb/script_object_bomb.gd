@@ -8,6 +8,7 @@ var weight: float = 1
 var is_grabbed: bool = false
 var is_ignited: bool = false
 
+@onready var collision: CollisionShape2D = $colshape_collision
 @onready var sprite : AnimatedSprite2D = $anisprite_sprite
 @onready var overlap_area: Area2D = $area2D_overlap
 
@@ -37,11 +38,13 @@ func _checkBlowUp() -> void:
 
 func setGrabbed() -> void:
 	setImpulse(Vector2.ZERO)
+	collision.call_deferred("set_disabled", true)
 	is_grabbed = true
 	sprite.play("activated")
 	is_ignited = true
 
 func setUngrabbed() -> void:
+	collision.call_deferred("set_disabled", false)
 	is_grabbed = false
 
 func setImpulse(impulse: Vector2, override: bool = false) -> void:

@@ -23,31 +23,6 @@ func spawnSmokePuff(on_position: Vector2, offset_x: int = 2, offset_y: int = 0) 
 		smoke_puffs[number].position = on_position + Vector2( offset_x * dir, offset_y)
 		smoke_puffs[number].flip = !bool(number)
 
-#func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 3, speed: float = 80.0) -> void:
-	#var size: Vector2 = texture.get_size()
-	#var chunk_size: Vector2 = size / chunks
-	#
-	#for x in range(chunks):
-		#for y in range(chunks):
-			#var region: Rect2 = Rect2(x * chunk_size.x, y * chunk_size.y, chunk_size.x, chunk_size.y)
-			#var chunk_tex: AtlasTexture = AtlasTexture.new()
-			#chunk_tex.atlas = texture
-			#chunk_tex.region = region
-			#
-			#var sprite = Sprite2D.new()
-			#sprite.texture = chunk_tex
-			#sprite.position = position + region.size / 2 - size / 2
-			#get_tree().current_scene.add_child(sprite)
-			#
-			#var angle: float = randf() * PI * 2
-			#var direction = Vector2(cos(angle), sin(angle))
-			#
-			#var tween: Tween = sprite.create_tween()
-			#tween.tween_property(sprite, "position", sprite.position + direction * speed, 0.5)
-			#tween.tween_property(sprite, "modulate:a", 0.0, 0.1)
-			#
-			#tween.finished.connect(sprite.queue_free)
-
 func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, speed: float = 200.0, lifetime: float = 2.0, gravity_scale: float = 1.0):
 	var size: Vector2 = texture.get_size()
 	var chunk_size: Vector2 = size / chunks
@@ -60,7 +35,7 @@ func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, spe
 			chunk_tex.region = region
 			
 			var body: RigidBody2D = RigidBody2D.new()
-			body.position = position + region.size / 2 - size / 2
+			body.position = position + Vector2(x * chunk_size.x, y * chunk_size.y) - size / 2
 			body.gravity_scale = gravity_scale
 			body.linear_damp = 0.1
 			body.angular_damp = 0.1
@@ -73,8 +48,10 @@ func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, spe
 			sprite.z_index = 50
 			body.add_child(sprite)
 			
-			var angle: float = randf() * PI * 2
-			var direction: Vector2 = Vector2(cos(angle), sin(angle))
+			var chunk_center = Vector2(x * chunk_size.x + chunk_size.x / 2, y * chunk_size.y + chunk_size.y / 2)
+			var dir_from_center = (chunk_center - size / 2).normalized()
+			var angle_offset = deg_to_rad(randf_range(-10, 10)) # Add randomness
+			var direction = dir_from_center.rotated(angle_offset)
 			body.linear_velocity = direction * speed
 			body.angular_velocity = 0
 			

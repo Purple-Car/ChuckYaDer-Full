@@ -6,6 +6,7 @@ const MAX_FALL_SPEED: float = 186.0
 var weight: float = 1.2
 var is_grabbed: bool = false
 
+@onready var collision: CollisionShape2D = $colshape_collision
 @onready var sprite : Sprite2D = $spr2D_sprite
 @onready var overlap_area: Area2D = $area2D_overlap
 
@@ -29,9 +30,11 @@ func _checkBonking() -> void:
 
 func setGrabbed() -> void:
 	setImpulse(Vector2.ZERO)
+	collision.call_deferred("set_disabled", true)
 	is_grabbed = true
 
 func setUngrabbed() -> void:
+	collision.call_deferred("set_disabled", false)
 	is_grabbed = false
 
 func setImpulse(impulse: Vector2, override: bool = false) -> void:
