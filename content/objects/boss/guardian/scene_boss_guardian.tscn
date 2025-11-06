@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bxqrhpqehncin"]
+[gd_scene load_steps=31 format=3 uid="uid://bxqrhpqehncin"]
 
 [ext_resource type="Texture2D" uid="uid://cyhc1kpf5iwkx" path="res://objects/boss/guardian/sprites/guardian fall.png" id="1_iuwtt"]
 [ext_resource type="Script" uid="uid://ckpkoeku60ku4" path="res://objects/boss/guardian/script_boss_guardian.gd" id="1_k3lfl"]
 [ext_resource type="Texture2D" uid="uid://b306kqovwgyvb" path="res://objects/boss/guardian/sprites/guardian walk.png" id="2_3lwqo"]
 [ext_resource type="Texture2D" uid="uid://cmi3r2ryrrj2k" path="res://objects/boss/guardian/sprites/guardian head.png" id="3_3lwqo"]
 [ext_resource type="Texture2D" uid="uid://cda3874vnt5xt" path="res://objects/boss/guardian/sprites/guardian hand.png" id="4_ybxi3"]
+[ext_resource type="Texture2D" uid="uid://ym8jhc2fbp26" path="res://effects/explode_in_pieces/hitparticle.png" id="5_0ty3k"]
 [ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="6_paka2"]
 [ext_resource type="Script" uid="uid://diwjb4vmqcl6o" path="res://objects/boss/guardian/body_states/script_guardian_body_state_intro.gd" id="7_tr2fq"]
 [ext_resource type="Script" uid="uid://dg4yufrwsys45" path="res://objects/boss/guardian/body_states/script_guardian_body_state_normal.gd" id="8_2cdmi"]
@@ -338,6 +339,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_0ty3k"]
 resource_name = "intro"
 length = 2.8333368
+step = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -497,6 +499,7 @@ animation_p = NodePath("aniplr")
 texture_head = ExtResource("3_3lwqo")
 texture_hand = ExtResource("4_ybxi3")
 texture_body = ExtResource("1_iuwtt")
+texture_hit = ExtResource("5_0ty3k")
 
 [node name="colshape_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

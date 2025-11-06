@@ -11,6 +11,7 @@ const MAX_HP: int = 4
 @export var texture_head: Texture2D
 @export var texture_hand: Texture2D
 @export var texture_body: Texture2D
+@export var texture_hit: Texture2D
 @export var contains: PackedScene
 
 var boss_hp: int = MAX_HP
@@ -107,7 +108,7 @@ func _onAnimationChanged() -> void:
 	_checkIfLanded()
 
 func _onBodyEntered(body: Node2D) -> void:
-	Utils.explode_texture(texture_head, body.global_position, 4)
+	Utils.explode_texture(texture_hit, body.global_position, 4)
 	if body is GuardianHand:
 		body.setImpulse(Vector2(-body.velocity.x,-100))
 	last_hit_direction = sign(global_position.x - body.global_position.x)
