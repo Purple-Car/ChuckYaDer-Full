@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://c7ekmmjsiibq3"]
+[gd_scene load_steps=13 format=4 uid="uid://c7ekmmjsiibq3"]
 
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_bxybu"]
 [ext_resource type="PackedScene" uid="uid://h804jvol5gvn" path="res://resources/backgrounds/scene_background_sundown.tscn" id="2_bxybu"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bqr5ali6ieeif" path="res://stages/test_maps/scene_testmap_10.tscn" id="9_gag3h"]
 [ext_resource type="PackedScene" uid="uid://b01druweyw5m6" path="res://objects/boss/lord/scene_boss_lord.tscn" id="10_gmcgm"]
 [ext_resource type="PackedScene" uid="uid://d4ms80geg0juq" path="res://objects/spring/scene_object_spring.tscn" id="10_oh3d4"]
-[ext_resource type="PackedScene" uid="uid://carpsgawwj4k7" path="res://objects/key/scene_object_key.tscn" id="12_bxybu"]
 [ext_resource type="Script" uid="uid://bbt1573kp2tfs" path="res://fundamental elements/script_mechanic_spawnmove.gd" id="13_xd1t6"]
 
 [node name="node_stage" type="Node2D" groups=["respawn"]]
@@ -78,7 +77,6 @@ process_mode = 1
 
 [node name="charbod_lord_root" parent="node_grabbables" instance=ExtResource("10_gmcgm")]
 position = Vector2(192, 138)
-contains = ExtResource("12_bxybu")
 
 [node name="node_spawnmove" type="Node2D" parent="." node_paths=PackedStringArray("spawners")]
 script = ExtResource("13_xd1t6")

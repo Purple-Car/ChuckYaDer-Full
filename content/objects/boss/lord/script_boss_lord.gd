@@ -2,15 +2,16 @@ extends CharacterBody2D
 class_name LordBody
 
 const MAX_FALL_SPEED: float = 200.0
-const SPEED: float = 50.0
-const JUMP_VELOCITY: float = -160.0
-const MAX_HP: int = 4
+const SPEED: float = 20.0
+const JUMP_VELOCITY: float = -120.0
+const MAX_HP: int = 5
 
 @export var animation_p: AnimationPlayer
 @export var guardhands: Array[GuardianHand]
 @export var texture_head: Texture2D
 @export var texture_hand: Texture2D
 @export var texture_body: Texture2D
+@export var texture_hit: Texture2D
 @export var contains: PackedScene
 
 var boss_hp: int = MAX_HP
@@ -21,6 +22,7 @@ var last_hit_direction: int
 @onready var hands: Array[Node2D] = [$node_sprites/node_rhand, $node_sprites/node_lhand]
 @onready var flicker: AnimationPlayer = $aniplr_flicker
 @onready var state_machine: Node = $node_body_states
+@onready var hurtbox_area: Area2D = $node_sprites/node_head/area2D_hurtbox
 
 signal updateHealth(damage: float)
 
@@ -36,18 +38,16 @@ func _applyGravity(delta: float) -> void:
 
 func _checkIfLanded() -> void:
 	if not was_on_floor and is_on_floor():
-		Utils.spawnSmokePuff(global_position, 12, 8)
+		Utils.spawnSmokePuff(global_position, 18, 14)
 	was_on_floor = is_on_floor()
 
 func doAnimations() -> void:
 	if is_on_floor():
 		if velocity.x < 0:
-			if body_sprite.animation != "walk":
-				body_sprite.play("walk")
+			body_sprite.play("walk")
 			body_sprite.speed_scale = -velocity.x / SPEED
 		elif velocity.x > 0:
-			if body_sprite.animation != "walk":
-				body_sprite.play("walk", -1.0, true)
+			body_sprite.play("walk", -1.0, true)
 			body_sprite.speed_scale =  velocity.x / SPEED
 		else:
 			body_sprite.play("idle")
@@ -85,8 +85,8 @@ func doDeath():
 		Utils.explode_texture(texture_hand, guardhand.global_position)
 		guardhand.queue_free()
 
-	Utils.explode_texture(texture_body, global_position)
-	Utils.explode_texture(texture_head, global_position - Vector2(0, 6))
+	Utils.explode_texture(texture_body, global_position + Vector2(16, 11))
+	Utils.explode_texture(texture_head, global_position - Vector2(-6, 16))
 
 	if contains:
 		var spawn_thing = contains.instantiate()
@@ -107,10 +107,11 @@ func _onAnimationChanged() -> void:
 	_checkIfLanded()
 
 func _onBodyEntered(body: Node2D) -> void:
-	Utils.explode_texture(texture_head, body.global_position, 4)
-	if body is GuardianHand:
-		body.setImpulse(Vector2(-body.velocity.x,-100))
+	if body.velocity.y <= 0 or body.global_position.y + 6 >= hurtbox_area.global_position.y : return
+	Utils.explode_texture(texture_hit, body.global_position, 4)
 	last_hit_direction = sign(global_position.x - body.global_position.x)
+	if body is Player:
+		body.setImpulse(Vector2(200 - last_hit_direction,-50))
 	boss_hp -= 1
 	updateHealth.emit(boss_hp)
 	if boss_hp <= 0:

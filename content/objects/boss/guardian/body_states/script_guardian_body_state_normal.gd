@@ -31,7 +31,7 @@ func _goTowardPlayer(delta: float) -> void:
 		if countdown > 0:
 			countdown -= delta
 			future_velocity = guard_body.SPEED
-			future_velocity -= guard_body.boss_hp * 2.5
+			future_velocity -= guard_body.boss_hp * 0.4
 		else:
 			countdown = randf_range(0.4, 2)
 			closest_player_dir = sign(closest_player.global_position.x - guard_body.global_position.x)

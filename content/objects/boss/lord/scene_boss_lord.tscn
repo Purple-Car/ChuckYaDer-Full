@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b01druweyw5m6"]
+[gd_scene load_steps=41 format=3 uid="uid://b01druweyw5m6"]
 
 [ext_resource type="Texture2D" uid="uid://bacj4u202xlwd" path="res://objects/boss/lord/sprites/lord body.png" id="1_fh4fn"]
 [ext_resource type="Texture2D" uid="uid://dkvq6apdyd2w5" path="res://objects/boss/lord/sprites/lord body fall.png" id="1_jylpb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d15b35suld3uu" path="res://objects/boss/lord/sprites/lord body walk.png" id="3_tp0hq"]
 [ext_resource type="Texture2D" uid="uid://bjp7qwbh6rpac" path="res://objects/boss/lord/sprites/lord head.png" id="4_tp0hq"]
 [ext_resource type="Texture2D" uid="uid://dg6c0raktja1q" path="res://objects/boss/lord/sprites/lord hand.png" id="5_myusw"]
+[ext_resource type="Texture2D" uid="uid://ym8jhc2fbp26" path="res://effects/explode_in_pieces/hitparticle.png" id="5_qxeun"]
 [ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="6_4ks5j"]
 [ext_resource type="Script" uid="uid://byloa1s2q6eab" path="res://objects/boss/lord/body_states/script_lord_body_state_intro.gd" id="9_qxeun"]
 [ext_resource type="Texture2D" uid="uid://dhrskv3yhgeli" path="res://effects/explode_in_pieces/brick.png" id="10_fsf0g"]
@@ -96,7 +97,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 14.0
+"speed": 8.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fsf0g"]
@@ -216,10 +217,22 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("node_sprites/anisprite_body:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
 
 [sub_resource type="Animation" id="Animation_qxeun"]
 resource_name = "intro"
-length = 2.8333368
+length = 2.550005
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -228,10 +241,10 @@ tracks/0/path = NodePath("node_sprites:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.6, 2.0999997, 2.15, 2.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.6, 2.0999997, 2.15, 2.35, 2.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 63), Vector2(0, 63), Vector2(0, -16), Vector2(0, -16), Vector2(0, 0)]
+"values": [Vector2(0, 63), Vector2(0, 63), Vector2(0, -16), Vector2(0, -16), Vector2(0, 1), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -264,8 +277,8 @@ tracks/3/path = NodePath("node_body_states/intro")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.15, 1.45, 1.6952885, 1.75, 1.85, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.15, 1.45, 1.6952885, 1.75, 1.85, 1.95, 2.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"doBrickParticle"
@@ -279,10 +292,13 @@ tracks/3/keys = {
 "args": [],
 "method": &"doBrickParticle"
 }, {
-"args": [],
+"args": [12],
 "method": &"doDustParticle"
 }, {
-"args": [],
+"args": [12],
+"method": &"doDustParticle"
+}, {
+"args": [12],
 "method": &"doDustParticle"
 }]
 }
@@ -310,11 +326,296 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("node_sprites/anisprite_body:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1, 2.3548076),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"fall", &"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_oxt3u"]
+resource_name = "idle"
+length = 1.700005
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("node_sprites/node_rhand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.85, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, -6), Vector2(-16, -4), Vector2(-16, -4), Vector2(-16, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node_sprites/node_lhand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.85, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -6), Vector2(16, -4), Vector2(16, -4), Vector2(16, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/node_head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.85, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d7v5j"]
+resource_name = "attackr"
+length = 1.0666701
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("node_sprites/node_rhand:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.43333334, 0.5, 0.56666666, 0.6333333, 0.7, 0.76666665, 0.8333333, 0.90000004, 0.96666664, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, -6), Vector2(-20, -6), Vector2(-16, -10), Vector2(-12, -6), Vector2(-16, -2), Vector2(-20, -6), Vector2(-16, -10), Vector2(-12, -6), Vector2(-16, -2), Vector2(-20, -6), Vector2(-16, -10), Vector2(-12, -6), Vector2(-16, -2), Vector2(-20, -6), Vector2(-16, -10), Vector2(-12, -6), Vector2(-16, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node_sprites/node_lhand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, -6), Vector2(14, -8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/node_head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_2507t"]
+resource_name = "attackl"
+length = 1.0666701
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("node_sprites/node_rhand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, -6), Vector2(-14, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node_sprites/node_lhand:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.10000001, 0.16666669, 0.23333335, 0.3, 0.3666667, 0.43333337, 0.5, 0.56666666, 0.6333333, 0.7, 0.7666667, 0.8333333, 0.90000004, 0.9666667, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -6), Vector2(20, -6), Vector2(16, -2), Vector2(12, -6), Vector2(16, -10), Vector2(20, -6), Vector2(16, -2), Vector2(12, -6), Vector2(16, -10), Vector2(20, -6), Vector2(16, -2), Vector2(12, -6), Vector2(16, -10), Vector2(20, -6), Vector2(16, -2), Vector2(12, -6), Vector2(16, -10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/node_head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_4c4ax"]
+resource_name = "walk"
+length = 1.450005
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("node_sprites/node_rhand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.65, 0.75, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, -6), Vector2(-16, -4), Vector2(-16, -4), Vector2(-16, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node_sprites/node_lhand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.65, 0.75, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -6), Vector2(16, -4), Vector2(16, -4), Vector2(16, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/node_head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.65, 0.75, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_23q12"]
+resource_name = "fall"
+length = 0.400005
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("node_sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("node_sprites/node_rhand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, -6), Vector2(-15, -6), Vector2(-17, -6), Vector2(-16, -6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("node_sprites/node_lhand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -6), Vector2(17, -6), Vector2(15, -6), Vector2(16, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("node_sprites/node_head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fsf0g"]
 _data = {
 &"RESET": SubResource("Animation_fsf0g"),
-&"intro": SubResource("Animation_qxeun")
+&"attackl": SubResource("Animation_2507t"),
+&"attackr": SubResource("Animation_d7v5j"),
+&"fall": SubResource("Animation_23q12"),
+&"idle": SubResource("Animation_oxt3u"),
+&"intro": SubResource("Animation_qxeun"),
+&"walk": SubResource("Animation_4c4ax")
 }
 
 [sub_resource type="Animation" id="Animation_myusw"]
@@ -345,6 +646,7 @@ animation_p = NodePath("aniplr")
 texture_head = ExtResource("2_qxeun")
 texture_hand = ExtResource("5_myusw")
 texture_body = ExtResource("1_fh4fn")
+texture_hit = ExtResource("5_qxeun")
 
 [node name="colshape_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)
@@ -356,7 +658,7 @@ visible = false
 [node name="anisprite_body" type="AnimatedSprite2D" parent="node_sprites"]
 sprite_frames = SubResource("SpriteFrames_jylpb")
 animation = &"walk"
-frame_progress = 0.84031695
+frame_progress = 0.6475809
 
 [node name="node_head" type="Node2D" parent="node_sprites"]
 
@@ -367,9 +669,11 @@ autoplay = "default"
 frame_progress = 0.49103692
 
 [node name="area2D_hurtbox" type="Area2D" parent="node_sprites/node_head"]
+position = Vector2(0, -31)
+collision_layer = 0
+collision_mask = 32
 
 [node name="colshape_hurtbox" type="CollisionShape2D" parent="node_sprites/node_head/area2D_hurtbox"]
-position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_tp0hq")
 debug_color = Color(0.23279458, 0.520815, 0.9633785, 0.41960785)
 
@@ -419,4 +723,6 @@ lord_body = NodePath("../..")
 
 [node name="knockback" type="Node" parent="node_body_states"]
 
+[connection signal="animation_changed" from="node_sprites/anisprite_body" to="." method="_onAnimationChanged"]
+[connection signal="body_entered" from="node_sprites/node_head/area2D_hurtbox" to="." method="_onBodyEntered"]
 [connection signal="animation_finished" from="aniplr" to="node_body_states/intro" method="_onAnimationFinished"]

@@ -86,8 +86,8 @@ func doDeath():
 		Utils.explode_texture(texture_hand, guardhand.global_position)
 		guardhand.queue_free()
 
-	Utils.explode_texture(texture_body, global_position)
-	Utils.explode_texture(texture_head, global_position - Vector2(0, 6))
+	Utils.explode_texture(texture_body, global_position + Vector2(6, 8))
+	Utils.explode_texture(texture_head, global_position - Vector2(-4, 6))
 
 	if contains:
 		var spawn_thing = contains.instantiate()
