@@ -4,7 +4,7 @@ class_name LordIntro
 @export var guard_body: LordBody
 @export var texture_brick: Texture2D
 
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 
 func Enter():
 	guard_body.playHandAnimation("intro")

@@ -4,6 +4,7 @@ extends Node2D
 @onready var animation: AnimationPlayer = $aniplayer
 
 @export var _spawn_thing: PackedScene
+@export var flipped: bool = false
 
 var linked_object: Object
 
@@ -22,3 +23,6 @@ func _onAnimationFinished(anim_name: StringName) -> void:
 	spawn_thing.global_position = spawn_point.global_position
 	spawn_thing.name = "node_projectile_root"
 	linked_object = spawn_thing
+	
+	if flipped and spawn_thing is EnemyBird:
+		spawn_thing.sprite.flip_h = true

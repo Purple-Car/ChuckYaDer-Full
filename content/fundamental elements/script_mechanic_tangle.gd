@@ -6,7 +6,7 @@ extends Node2D
 @export var scarf_scene: PackedScene
 
 var scarf_instance: Node2D
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 
 func _physics_process(delta: float) -> void:
 	players = Utils.getLivePlayers()

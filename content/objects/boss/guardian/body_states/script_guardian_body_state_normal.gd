@@ -4,7 +4,7 @@ class_name GuardianNormal
 @export var guard_body: GuardianBody
 
 var countdown: float
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 var closest_player_dir: int
 
 func Enter(): pass

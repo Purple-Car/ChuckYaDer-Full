@@ -3,7 +3,7 @@ class_name GuardianAttack
 
 @export var guard_body: GuardianBody
 
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 var no_attack: bool
 
 func Enter():

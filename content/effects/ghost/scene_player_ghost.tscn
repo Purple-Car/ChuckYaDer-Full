@@ -1,0 +1,257 @@
+[gd_scene load_steps=31 format=3 uid="uid://bmu8ujw2gbslq"]
+
+[ext_resource type="Texture2D" uid="uid://b1ym7trivkt0n" path="res://effects/ghost/sprites/ghostabsorb.png" id="1_o61vp"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="1_w4gaq"]
+[ext_resource type="Texture2D" uid="uid://gabp1xl8ld6j" path="res://effects/ghost/sprites/ghost.png" id="2_w4gaq"]
+[ext_resource type="Texture2D" uid="uid://davx3f4kccos3" path="res://effects/ghost/sprites/ghostfade.png" id="3_dckc2"]
+
+[sub_resource type="GDScript" id="GDScript_w4gaq"]
+resource_name = "script_player_ghost"
+script/source = "extends Node2D
+
+const SPEED = 20
+const ABSORB_DISTANCE = 15
+
+var player_num: int
+var active: bool = true
+var boss: CharacterBody2D
+
+@onready var animated_sprite: AnimatedSprite2D = $anisprite_sprite
+
+func _ready() -> void:
+	get_parent().move_child(self, 0)
+	
+	for child in get_tree().current_scene.get_node(\"node_grabbables\").get_children():
+		if child.is_in_group(\"boss\"):
+			boss = child as CharacterBody2D
+			break
+
+func _physics_process(delta: float) -> void:
+	if !active: return
+	if boss:
+		var destination: Vector2 = boss.global_position
+		if global_position != destination:
+			var step: float = SPEED * delta
+			if global_position.distance_to(destination) <= ABSORB_DISTANCE:
+				animated_sprite.play(\"absorb\")
+				active = false
+				boss.healSelf()
+			else:
+				global_position = global_position.move_toward(destination, step)
+	else:
+		animated_sprite.play(\"vanish\")
+		active = false
+
+func setupColor(to_player_num: int) -> void:
+	player_num = to_player_num
+	animated_sprite.material = animated_sprite.material.duplicate()
+	animated_sprite.material.set(\"shader_parameter/new_color\", MasterTracker.player_colors[player_num - 1])
+
+func _onAreaEntered(_area: Area2D) -> void:
+	animated_sprite.play(\"vanish\")
+	active = false
+
+func _onAnimationFinished() -> void:
+	queue_free()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dckc2"]
+shader = ExtResource("1_w4gaq")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6q38"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qu7p"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orx8i"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq8tf"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nohg0"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8c0q"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdwai"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy3mh"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usyjm"]
+atlas = ExtResource("1_o61vp")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ufl"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy17s"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow0gb"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb8hu"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utjtv"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ggm0"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60onw"]
+atlas = ExtResource("2_w4gaq")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_740ih"]
+atlas = ExtResource("3_dckc2")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpwy0"]
+atlas = ExtResource("3_dckc2")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlnr0"]
+atlas = ExtResource("3_dckc2")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nxe7"]
+atlas = ExtResource("3_dckc2")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdc0p"]
+atlas = ExtResource("3_dckc2")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6gs7"]
+atlas = ExtResource("3_dckc2")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtagk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6q38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qu7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orx8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq8tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nohg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8c0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdwai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy3mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usyjm")
+}],
+"loop": false,
+"name": &"absorb",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1ufl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy17s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow0gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb8hu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utjtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ggm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60onw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_740ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpwy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlnr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nxe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdc0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6gs7")
+}],
+"loop": false,
+"name": &"vanish",
+"speed": 22.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4gaq"]
+radius = 6.0
+
+[node name="node_ghost_root" type="Node2D"]
+script = SubResource("GDScript_w4gaq")
+
+[node name="anisprite_sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dckc2")
+sprite_frames = SubResource("SpriteFrames_mtagk")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.18349949
+
+[node name="area2D_collision" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 2048
+
+[node name="colshape_collision" type="CollisionShape2D" parent="area2D_collision"]
+shape = SubResource("CircleShape2D_w4gaq")
+
+[connection signal="animation_finished" from="anisprite_sprite" to="." method="_onAnimationFinished"]
+[connection signal="area_entered" from="area2D_collision" to="." method="_onAreaEntered"]

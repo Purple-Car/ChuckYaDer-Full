@@ -19,7 +19,19 @@ func _ready() -> void:
 	texture.custom_minimum_size = rect_shape.extents * 2
 
 func _physics_process(delta: float) -> void:
-	var destination: Vector2 = target_position if active else initial_position
+	active = false
+	for button in get_tree().get_nodes_in_group("button"):
+		if button.platform_id == platform_id and button.active:
+			active = true
+	
+	var destination: Vector2
+	if active:
+		destination = target_position
+		changeColor(color)
+	else:
+		destination = initial_position
+		changeColor(color * 0.6)
+	
 	if global_position != destination:
 		var step: float = speed * delta
 		if global_position.distance_to(destination) <= step:
@@ -27,13 +39,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			global_position = global_position.move_toward(destination, step)
 
-func setActive(to_set: bool) -> void:
-	if active != to_set:
-		active = to_set
-		if to_set:
-			changeColor(color)
-		else:
-			changeColor(color * 0.6)
+#func setActive(to_set: bool) -> void:
+	#if active != to_set:
+		#active = to_set
+		#if to_set:
+			#changeColor(color)
+		#else:
+			#changeColor(color * 0.6)
 
 func getPlatformId() -> int:
 	return platform_id

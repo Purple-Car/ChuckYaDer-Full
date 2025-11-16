@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b306kqovwgyvb" path="res://objects/boss/guardian/sprites/guardian walk.png" id="2_3lwqo"]
 [ext_resource type="Texture2D" uid="uid://cmi3r2ryrrj2k" path="res://objects/boss/guardian/sprites/guardian head.png" id="3_3lwqo"]
 [ext_resource type="Texture2D" uid="uid://cda3874vnt5xt" path="res://objects/boss/guardian/sprites/guardian hand.png" id="4_ybxi3"]
-[ext_resource type="Texture2D" uid="uid://ym8jhc2fbp26" path="res://effects/explode_in_pieces/hitparticle.png" id="5_0ty3k"]
+[ext_resource type="Texture2D" uid="uid://cnhpqyv34eaju" path="res://effects/explode_in_pieces/hitparticleb1.png" id="5_0ty3k"]
 [ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="6_paka2"]
 [ext_resource type="Script" uid="uid://diwjb4vmqcl6o" path="res://objects/boss/guardian/body_states/script_guardian_body_state_intro.gd" id="7_tr2fq"]
 [ext_resource type="Script" uid="uid://dg4yufrwsys45" path="res://objects/boss/guardian/body_states/script_guardian_body_state_normal.gd" id="8_2cdmi"]
@@ -491,7 +491,7 @@ _data = {
 &"flicker": SubResource("Animation_wvrge")
 }
 
-[node name="charbod_guardian_root" type="CharacterBody2D" node_paths=PackedStringArray("animation_p")]
+[node name="charbod_guardian_root" type="CharacterBody2D" node_paths=PackedStringArray("animation_p") groups=["boss"]]
 visible = false
 collision_layer = 0
 script = ExtResource("1_k3lfl")

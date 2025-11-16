@@ -4,10 +4,10 @@ class_name LordBody
 const MAX_FALL_SPEED: float = 200.0
 const SPEED: float = 20.0
 const JUMP_VELOCITY: float = -120.0
-const MAX_HP: int = 5
+const MAX_HP: int = 20.0
 
 @export var animation_p: AnimationPlayer
-@export var guardhands: Array[GuardianHand]
+@export var lordhands: Array[LordHand]
 @export var texture_head: Texture2D
 @export var texture_hand: Texture2D
 @export var texture_body: Texture2D
@@ -63,10 +63,13 @@ func getHandPosition(left_hand: int):
 	return hands[left_hand].global_position
 
 func getClosestPlayer() -> Player:
-	var players = Utils.getLivePlayers()
+	var players: Array[Player] = Utils.getLivePlayers()
 	var closest_player: Player
 	var closest_proximity: float = 320
-
+	
+	if players.size() == 0:
+		return null
+	
 	for player in players:
 		var proximity: float = abs(player.global_position.x - global_position.x)
 		
@@ -77,13 +80,13 @@ func getClosestPlayer() -> Player:
 	return closest_player
 
 func launchHand(is_left_hand: bool):
-	guardhands[int(is_left_hand)].tryAttack()
+	lordhands[int(is_left_hand)].tryAttack()
 	pass
 	
 func doDeath():
-	for guardhand in guardhands:
-		Utils.explode_texture(texture_hand, guardhand.global_position)
-		guardhand.queue_free()
+	for lordhand in lordhands:
+		Utils.explode_texture(texture_hand, lordhand.global_position)
+		lordhand.queue_free()
 
 	Utils.explode_texture(texture_body, global_position + Vector2(16, 11))
 	Utils.explode_texture(texture_head, global_position - Vector2(-6, 16))
@@ -103,6 +106,10 @@ func doDeath():
 func getName() -> String:
 	return "THE LORD"
 
+func healSelf() -> void:
+	boss_hp = min(boss_hp + 1, MAX_HP)
+	updateHealth.emit(boss_hp)
+
 func _onAnimationChanged() -> void:
 	_checkIfLanded()
 
@@ -111,8 +118,8 @@ func _onBodyEntered(body: Node2D) -> void:
 	Utils.explode_texture(texture_hit, body.global_position, 4)
 	last_hit_direction = sign(global_position.x - body.global_position.x)
 	if body is Player:
-		body.setImpulse(Vector2(200 - last_hit_direction,-50))
-	boss_hp -= 1
+		body.setImpulse(Vector2(-200 * last_hit_direction,-50))
+	boss_hp -= 4
 	updateHealth.emit(boss_hp)
 	if boss_hp <= 0:
 		doDeath()

@@ -5,11 +5,6 @@ enum States { fadein, fadeout, gameplay, pause, wait }
 var game_state: States = States.fadein
 var next_scene: String
 
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("menu"):
-		#get_tree().paused = !get_tree().paused
-		#print("PAUSE")
-
 signal call_fade
 
 func changeState(to_state: States) -> void:

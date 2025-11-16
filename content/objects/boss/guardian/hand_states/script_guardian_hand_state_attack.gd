@@ -1,9 +1,9 @@
 extends EnemyState
 class_name GuardHandAttack
 
-@export var guard_hand: CharacterBody2D
+@export var guard_hand: GuardianHand
 
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 
 func Enter(): 
 	guard_hand.velocity = Vector2(Utils.boolToSign(guard_hand.left_hand) * -180, -90)

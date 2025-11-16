@@ -10,6 +10,7 @@ shader_parameter/target_color = Color(1, 0.24313726, 0.2784314, 1)
 shader_parameter/new_color = Color(1, 0.24313726, 0.2784314, 1)
 
 [node name="animtblebod_platform_root" type="AnimatableBody2D" node_paths=PackedStringArray("nine_patch") groups=["platform"]]
+collision_layer = 129
 script = ExtResource("1_rnth0")
 nine_patch = NodePath("control_texture/9pr_texture")
 

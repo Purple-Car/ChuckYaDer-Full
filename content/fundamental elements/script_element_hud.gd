@@ -1,9 +1,10 @@
 extends Control
 
 @onready var menu_player: AnimationPlayer = $anipl_menu
+@onready var menu_button: TextureButton = $canlay_menu/ctrl_hud/txbutt_pause
 
 func _ready() -> void:
-	pass
+	menu_button.show()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):

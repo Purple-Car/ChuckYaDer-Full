@@ -1,0 +1,173 @@
+[gd_scene load_steps=16 format=3 uid="uid://5bd63caixbh6"]
+
+[ext_resource type="Texture2D" uid="uid://ck0nmuaw62eb4" path="res://objects/boss/angel/sprites/angel hand close.png" id="1_ijoqp"]
+[ext_resource type="Script" uid="uid://cdlq8f6k08mrs" path="res://objects/boss/angel/script_boss_angelhand.gd" id="1_sbkd7"]
+[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="3_hbke1"]
+[ext_resource type="Script" uid="uid://clo54d8ecg0o6" path="res://objects/boss/angel/hand_states/script_angel_hand_state_idle.gd" id="4_sbkd7"]
+[ext_resource type="Script" uid="uid://c01q86qhtb8gx" path="res://objects/boss/angel/hand_states/script_angel_hand_state_attack.gd" id="5_hbke1"]
+[ext_resource type="Script" uid="uid://c0j8uy40okpdt" path="res://objects/boss/angel/hand_states/script_angel_hand_state_returning.gd" id="6_i34sy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i34sy"]
+size = Vector2(14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jl0p"]
+atlas = ExtResource("1_ijoqp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_444jt"]
+atlas = ExtResource("1_ijoqp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvgc7"]
+atlas = ExtResource("1_ijoqp")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46wxg"]
+atlas = ExtResource("1_ijoqp")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20qyl"]
+atlas = ExtResource("1_ijoqp")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3md5r"]
+atlas = ExtResource("1_ijoqp")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ukt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jl0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_444jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvgc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46wxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20qyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3md5r")
+}],
+"loop": false,
+"name": &"close",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3md5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20qyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46wxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvgc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_444jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jl0p")
+}],
+"loop": false,
+"name": &"open",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3md5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20qyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46wxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvgc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_444jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jl0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_444jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvgc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46wxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20qyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3md5r")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 32.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi4h0"]
+size = Vector2(12, 14)
+
+[node name="charbod_angelhand_root" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_sbkd7")
+
+[node name="colshape_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_i34sy")
+
+[node name="anispr_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, 3)
+sprite_frames = SubResource("SpriteFrames_7ukt7")
+animation = &"throw"
+autoplay = "open"
+frame = 10
+frame_progress = 1.0
+
+[node name="area2D_overlap" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 128
+collision_mask = 0
+
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_mi4h0")
+debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
+
+[node name="timer_after_image" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="node_hand_states" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_hbke1")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="node_hand_states" node_paths=PackedStringArray("angel_hand")]
+script = ExtResource("4_sbkd7")
+angel_hand = NodePath("../..")
+
+[node name="attack" type="Node" parent="node_hand_states" node_paths=PackedStringArray("angel_hand")]
+script = ExtResource("5_hbke1")
+angel_hand = NodePath("../..")
+
+[node name="returning" type="Node" parent="node_hand_states" node_paths=PackedStringArray("angel_hand")]
+script = ExtResource("6_i34sy")
+angel_hand = NodePath("../..")
+
+[connection signal="timeout" from="timer_after_image" to="." method="_onTimeout"]

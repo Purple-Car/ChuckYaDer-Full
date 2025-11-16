@@ -16,8 +16,6 @@ func _physics_process(delta: float) -> void:
 	if !is_grabbed:
 		velocity.x = move_toward(velocity.x, 0, DECELERATION * weight)
 		_applyGravity(delta)
-		if !is_on_floor():
-			_checkBonking()
 	move_and_slide()
 	if is_ignited and !is_grabbed:
 		_checkBlowUp()
@@ -27,10 +25,6 @@ func _applyGravity(delta: float) -> void:
 		
 	if velocity.y > MAX_FALL_SPEED:
 		velocity.y = MAX_FALL_SPEED
-
-func _checkBonking() -> void:
-	if overlap_area.has_overlapping_bodies() == true:
-		setImpulse( Vector2( velocity.x, -50 ))
 
 func _checkBlowUp() -> void:
 	if is_on_ceiling() or is_on_floor() or is_on_wall():
@@ -63,5 +57,5 @@ func blowUp() -> void:
 	queue_free()
 
 func _onBodyEntered(body: Node2D) -> void:
-	if is_ignited and !body.is_in_group("player") and !is_grabbed:
-		blowUp()
+	if is_ignited and !is_grabbed:
+		call_deferred("blowUp")

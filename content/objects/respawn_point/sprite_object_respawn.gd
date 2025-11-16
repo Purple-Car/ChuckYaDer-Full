@@ -11,6 +11,9 @@ extends Node2D
 var _player_scene: PackedScene = preload("res://objects/player/scene_player_body.tscn")
 var player_node_name: String
 var assigned_player: CharacterBody2D = null
+var ghostable: bool = false
+
+signal onRespawnStart
 
 func _ready() -> void:
 	if player_num == 0:
@@ -23,13 +26,13 @@ func _ready() -> void:
 	animated_sprite.material.set("shader_parameter/new_color", MasterTracker.player_colors[player_num - 1])
 	
 	player_node_name = "charbody_player_" + str(player_num)
-	debug_polygon.visible = false
+	debug_polygon.hide()
 
 func _process(delta: float) -> void:
 	pass
 
 func _onAnimationFinished() -> void:
-	var player = _player_scene.instantiate()
+	var player: Player = _player_scene.instantiate()
 	get_parent().get_parent().get_node("node_grabbables").add_child(player)
 	player.position = position
 	player.player_num = player_num
@@ -39,6 +42,9 @@ func _onAnimationFinished() -> void:
 	if facing_right:
 		player.is_flipped = true
 		player._updateScaleDirection()
+	
+	if ghostable:
+		player.ghostable = true
 	
 	assigned_player = player
 	player.onPlayerDestroyed.connect(_onPlayerDestroyed)
@@ -55,4 +61,5 @@ func _onPlayerDestroyed() -> void:
 	timer.start(respawn_timer)
 
 func _onTimerTimeout() -> void:
+	onRespawnStart.emit(player_num)
 	animated_sprite.play("respawn")

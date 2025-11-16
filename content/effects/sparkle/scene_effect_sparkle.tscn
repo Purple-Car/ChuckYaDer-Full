@@ -1,0 +1,152 @@
+[gd_scene load_steps=20 format=3 uid="uid://bww36lqv6w7gd"]
+
+[ext_resource type="Texture2D" uid="uid://bcck62owba7ss" path="res://effects/sparkle/star_particle.png" id="1_kt2g5"]
+
+[sub_resource type="GDScript" id="GDScript_k7ukd"]
+resource_name = "script_effect_sparkle"
+script/source = "extends Node2D
+
+const GRAVITY: float = 1
+
+var velocity: Vector2 = Vector2.ZERO
+
+func _physics_process(delta: float) -> void:
+	velocity.y += GRAVITY
+	global_position += velocity * delta
+
+func _onAnimationFinished() -> void:
+	queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bwnh"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(0, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5at7"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(19, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3w0a"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(38, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ehvi"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(57, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21lxp"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(0, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lajbr"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(19, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpjs4"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(38, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bth7l"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(57, 19, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ec6"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(0, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykvtt"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(19, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur4qs"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(38, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiavd"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(57, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtjye"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(0, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vmld"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(19, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g7yd"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(38, 57, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6ktt"]
+atlas = ExtResource("1_kt2g5")
+region = Rect2(57, 57, 19, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwtjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bwnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5at7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3w0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ehvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21lxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lajbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpjs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bth7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2ec6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykvtt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur4qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiavd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtjye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vmld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6g7yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6ktt")
+}],
+"loop": false,
+"name": &"sparkle",
+"speed": 14.0
+}]
+
+[node name="effect_sparkle_root" type="Node2D"]
+process_mode = 3
+script = SubResource("GDScript_k7ukd")
+
+[node name="anispr_sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wwtjq")
+animation = &"sparkle"
+autoplay = "sparkle"
+frame = 15
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="anispr_sprite" to="." method="_onAnimationFinished"]

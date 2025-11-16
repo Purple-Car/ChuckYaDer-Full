@@ -34,6 +34,9 @@ func _onAreaEntered(area: Area2D) -> void:
 		return
 	
 	if end_door: MasterTracker.advanceStage(stage)
+	for number in range(-2, 3):
+		var to_vector: Vector2 = Vector2(20 * number, -30 + 5 * abs(number))
+		Utils.spawnSparkle(global_position, get_tree().current_scene.find_child("node_statics", true, false),to_vector)
 	MasterTracker.saveData()
 	Gamestate.changeState(Gamestate.States.fadeout)
 

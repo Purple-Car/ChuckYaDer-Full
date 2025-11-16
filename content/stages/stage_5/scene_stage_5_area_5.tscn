@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=4 uid="uid://c0pxtseu17eqw"]
+
+[ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_rrntm"]
+[ext_resource type="PackedScene" uid="uid://h804jvol5gvn" path="res://resources/backgrounds/scene_background_sundown.tscn" id="2_arrae"]
+[ext_resource type="PackedScene" uid="uid://b24movy8m12mx" path="res://fundamental elements/scene_element_hud.tscn" id="3_kch5y"]
+[ext_resource type="PackedScene" uid="uid://bdvmh3q4h5i8l" path="res://tileset/scene_tilemap_background.tscn" id="4_8l1kh"]
+[ext_resource type="PackedScene" uid="uid://sjbhkglr5rca" path="res://tileset/scene_tilemap_default.tscn" id="5_tjoj8"]
+[ext_resource type="PackedScene" uid="uid://x2jr324a5jb5" path="res://objects/respawn_point/scene_object_respawn.tscn" id="6_ld05o"]
+[ext_resource type="PackedScene" uid="uid://e1v1qgipm8ah" path="res://objects/door/scene_object_door.tscn" id="7_iu40n"]
+[ext_resource type="PackedScene" uid="uid://nlivln4ws5j8" path="res://stages/stage_5/scene_stage_5_area_6.tscn" id="8_arrae"]
+[ext_resource type="Script" uid="uid://rs1pqjqvkx5a" path="res://fundamental elements/script_mechanic_tangle.gd" id="8_pojms"]
+[ext_resource type="PackedScene" uid="uid://bqq60v0aiaewr" path="res://objects/player/scene_player_tangle.tscn" id="9_csgsp"]
+
+[node name="node_stage" type="Node2D"]
+
+[node name="node_camera" parent="." node_paths=PackedStringArray("background_element") instance=ExtResource("1_rrntm")]
+background_color = 2
+background_element = NodePath("canlay_stage_bg/background_sundown_root")
+
+[node name="canlay_stage_bg" type="CanvasLayer" parent="node_camera"]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="background_sundown_root" parent="node_camera/canlay_stage_bg" instance=ExtResource("2_arrae")]
+position = Vector2(148, -140)
+
+[node name="ctrl_hud_root" parent="node_camera" instance=ExtResource("3_kch5y")]
+
+[node name="node_tilemaps" type="Node" parent="."]
+
+[node name="node_tilemap_back" parent="node_tilemaps" instance=ExtResource("4_8l1kh")]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAJABcAAQABAAEAAAAJABYAAQAFAAEAAAAJABUAAQAFAAEAAAAJABQAAQAFAAEAAAAJABMAAQAFAAEAAAAJABIAAQAFAAEAAAAJABEAAQAFAAEAAAAJABAAAQAFAAEAAAAJAA8AAQAFAAEAAAAJAA4AAQAFAAEAAAAJAA0AAQAFAAEAAAAJAAwAAQABAAAAAAAIABcAAQAEAAEAAAAIABYAAQAQAAAAAAAIABUAAQAQAAAAAAAIABQAAQAQAAAAAAAIABMAAQAQAAAAAAAIABIAAQAQAAAAAAAIABEAAQAQAAAAAAAIABAAAQAQAAAAAAAIAA8AAQAQAAAAAAAIAA4AAQAQAAAAAAAIAA0AAQAQAAAAAAAIAAwAAQAFAAAAAAAHABcAAQAEAAEAAAAHABYAAQAQAAAAAAAHABUAAQAQAAAAAAAHABQAAQAQAAAAAAAHABMAAQAQAAAAAAAHABIAAQAQAAAAAAAHABEAAQAQAAAAAAAHABAAAQAQAAAAAAAHAA8AAQAQAAAAAAAHAA4AAQAQAAAAAAAHAA0AAQAQAAAAAAAHAAwAAQAFAAAAAAAGABcAAQAEAAEAAAAGABYAAQAQAAAAAAAGABUAAQAQAAAAAAAGABQAAQAQAAAAAAAGABMAAQAQAAAAAAAGABIAAQAQAAAAAAAGABEAAQAQAAAAAAAGABAAAQAQAAAAAAAGAA8AAQAQAAAAAAAGAA4AAQAQAAAAAAAGAA0AAQAQAAAAAAAGAAwAAQAFAAAAAAAFABcAAQAEAAEAAAAFABYAAQAQAAAAAAAFABUAAQAQAAAAAAAFABQAAQAQAAAAAAAFABMAAQAQAAAAAAAFABIAAQAQAAAAAAAFABEAAQAQAAAAAAAFABAAAQAQAAAAAAAFAA8AAQAQAAAAAAAFAA4AAQAQAAAAAAAFAA0AAQAQAAAAAAAFAAwAAQAFAAAAAAAEABcAAQAEAAEAAAAEABYAAQAQAAAAAAAEABUAAQAQAAAAAAAEABQAAQAQAAAAAAAEABMAAQAQAAAAAAAEABIAAQAQAAAAAAAEABEAAQAQAAAAAAAEABAAAQAQAAAAAAAEAA8AAQAQAAAAAAAEAA4AAQAQAAAAAAAEAA0AAQAQAAAAAAAEAAwAAQAFAAAAAAADABcAAQAEAAEAAAADABYAAQAQAAAAAAADABUAAQAQAAAAAAADABQAAQAQAAAAAAADABMAAQAQAAAAAAADABIAAQAQAAAAAAADABEAAQAQAAAAAAADABAAAQAQAAAAAAADAA8AAQAQAAAAAAADAA4AAQAQAAAAAAADAA0AAQAQAAAAAAADAAwAAQAFAAAAAAACABcAAQAAAAEAAAACABYAAQAEAAAAAAACABUAAQAEAAAAAAACABQAAQAEAAAAAAACABMAAQAEAAAAAAACABIAAQAEAAAAAAACABEAAQAEAAAAAAACABAAAQAEAAAAAAACAA8AAQAEAAAAAAACAA4AAQAEAAAAAAACAA0AAQAEAAAAAAACAAwAAQAAAAAAAAAfABcAAQABAAEAAAAfABYAAQAFAAEAAAAfABUAAQAFAAEAAAAfABQAAQAFAAEAAAAfABMAAQAFAAEAAAAfABIAAQAFAAEAAAAfABEAAQAFAAEAAAAfABAAAQABAAAAAAAeABcAAQAEAAEAAAAeABYAAQAQAAAAAAAeABUAAQAQAAAAAAAeABQAAQAQAAAAAAAeABMAAQAQAAAAAAAeABIAAQAQAAAAAAAeABEAAQAQAAAAAAAeABAAAQAFAAAAAAAdABcAAQAEAAEAAAAdABYAAQAQAAAAAAAdABUAAQAQAAAAAAAdABQAAQAQAAAAAAAdABMAAQAQAAAAAAAdABIAAQAQAAAAAAAdABEAAQAQAAAAAAAdABAAAQAFAAAAAAAcABcAAQAAAAEAAAAcABYAAQAEAAAAAAAcABUAAQAEAAAAAAAcABQAAQAEAAAAAAAcABMAAQAEAAAAAAAcABIAAQAEAAAAAAAcABEAAQAEAAAAAAAcABAAAQAAAAAAAAA=")
+
+[node name="node_tilemap_solid" parent="node_tilemaps" instance=ExtResource("5_tjoj8")]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAJAA0AAAABAAEAAAAJAAwAAAABAAAAAAAIAA0AAAAEAAEAAAAIAAwAAAAFAAAAAAAHAA0AAAAEAAEAAAAHAAwAAAAFAAAAAAAGAA0AAAAEAAEAAAAGAAwAAAAFAAAAAAAFAA0AAAAEAAEAAAAFAAwAAAAFAAAAAAAEAA0AAAAEAAEAAAAEAAwAAAAFAAAAAAADAA0AAAAEAAEAAAADAAwAAAAFAAAAAAACAA0AAAAAAAEAAAACAAwAAAAAAAAAAAAfABEAAAABAAEAAAAfABAAAAABAAAAAAAeABEAAAAEAAEAAAAeABAAAAAFAAAAAAAdABEAAAAEAAEAAAAdABAAAAAFAAAAAAAcABEAAAAAAAEAAAAcABAAAAAAAAAAAAA=")
+
+[node name="node_statics" type="Node" parent="."]
+
+[node name="node_respawn_point" parent="node_statics" instance=ExtResource("6_ld05o")]
+position = Vector2(65, 84)
+player_num = 1
+facing_right = true
+
+[node name="node_respawn_point2" parent="node_statics" instance=ExtResource("6_ld05o")]
+position = Vector2(33, 84)
+player_num = 2
+facing_right = true
+
+[node name="node_door" parent="node_statics" instance=ExtResource("7_iu40n")]
+position = Vector2(240, 112)
+to_scene = ExtResource("8_arrae")
+
+[node name="node_grabbables" type="Node" parent="."]
+
+[node name="node_tangle" type="Node2D" parent="node_grabbables"]
+script = ExtResource("8_pojms")
+rope_length = 40
+scarf_scene = ExtResource("9_csgsp")
+
+[node name="canmod" type="CanvasModulate" parent="."]
+color = Color(0.974978, 0.7280714, 0.7318405, 1)

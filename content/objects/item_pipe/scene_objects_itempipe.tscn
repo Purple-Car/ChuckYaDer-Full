@@ -75,4 +75,7 @@ libraries = {
 [node name="node_spawn_point" type="Node2D" parent="."]
 position = Vector2(4, 9)
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(3, 2, 2, 2)
+
 [connection signal="animation_finished" from="aniplayer" to="." method="_onAnimationFinished"]

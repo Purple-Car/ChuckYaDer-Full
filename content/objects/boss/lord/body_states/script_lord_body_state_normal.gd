@@ -4,7 +4,7 @@ class_name LordNormal
 @export var lord_body: LordBody
 
 var countdown: float
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 var closest_player_dir: int
 
 func Enter():
@@ -35,30 +35,24 @@ func _goTowardPlayer(delta: float) -> void:
 				future_velocity = lord_body.SPEED
 			else:
 				countdown = randf_range(0.4, 2)
+				if randi_range(0, 200) > abs(closest_player.global_position.x - lord_body.global_position.x):
+					Transitioned.emit(self, "attack")
+					future_velocity = 0
 			
 			closest_player_dir = sign(closest_player.global_position.x - lord_body.global_position.x)
 			future_velocity += abs(closest_player.global_position.x - lord_body.global_position.x) * 0.25
 			
-			if closest_player.global_position.y + 6 >= lord_body.hurtbox_area.global_position.y and abs(closest_player.global_position.x - lord_body.global_position.x) < 32:
-				lord_body.velocity.y = lord_body.JUMP_VELOCITY
+			if  abs(closest_player.global_position.x - lord_body.global_position.x) < 32:
 				closest_player_dir = -closest_player_dir
-				future_velocity = 80
+				if closest_player.global_position.y + 6 >= lord_body.hurtbox_area.global_position.y:
+					lord_body.velocity.y = lord_body.JUMP_VELOCITY
+					future_velocity = 80
+					Transitioned.emit(self, "attack")
+				else:
+					future_velocity = 60
 	else:
 		future_velocity = abs(lord_body.velocity.x)
 	
-				# Filthy Code
-				#if closest_player_dir == 1 and guard_body.guardhands[1].getHandStateName() == "idle":
-					#Transitioned.emit(self, "attack")
-					#future_velocity = 0
-				#elif closest_player_dir == -1 and guard_body.guardhands[0].getHandStateName() == "idle": 
-					#Transitioned.emit(self, "attack")
-					#future_velocity = 0
-				#
-			#elif abs(closest_player.global_position.x - guard_body.global_position.x) < 64:
-				#future_velocity /= 2
-			#if randi_range(0, 383) == 255:
-				#guard_body.velocity.y = guard_body.JUMP_VELOCITY
-	#
 	future_velocity = future_velocity * closest_player_dir
 
 	lord_body.velocity.x = future_velocity

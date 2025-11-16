@@ -22,11 +22,11 @@ background_element = NodePath("node_background_clouds")
 [node name="node_background_clouds" parent="node_camera" instance=ExtResource("2_7lvcr")]
 position = Vector2(0, -151)
 
-[node name="ctrl_hud_root" parent="node_camera" instance=ExtResource("3_1cipy")]
-
 [node name="ctrl_boss_health" parent="node_camera" node_paths=PackedStringArray("boss") instance=ExtResource("4_pk0v6")]
 boss = NodePath("../../node_grabbables/node_boss_guardian")
 intro_time = 2.8
+
+[node name="ctrl_hud_root" parent="node_camera" instance=ExtResource("3_1cipy")]
 
 [node name="node_tilemaps" type="Node" parent="."]
 process_mode = 1
@@ -75,3 +75,15 @@ left_hand = true
 [node name="node_spawnmove" type="Node2D" parent="." node_paths=PackedStringArray("spawners")]
 script = ExtResource("10_7lvcr")
 spawners = [NodePath("../node_statics/node_respawn_point"), NodePath("../node_statics/node_respawn_point2")]
+
+[node name="node_spawn_1" type="Node2D" parent="node_spawnmove"]
+position = Vector2(48, 116)
+
+[node name="node_spawn_2" type="Node2D" parent="node_spawnmove"]
+position = Vector2(272, 116)
+
+[node name="node_spawn_3" type="Node2D" parent="node_spawnmove"]
+position = Vector2(112, 116)
+
+[node name="node_spawn_4" type="Node2D" parent="node_spawnmove"]
+position = Vector2(208, 116)

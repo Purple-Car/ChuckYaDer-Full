@@ -410,6 +410,7 @@ offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="txbutt_pause" type="TextureButton" parent="canlay_menu/ctrl_hud"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

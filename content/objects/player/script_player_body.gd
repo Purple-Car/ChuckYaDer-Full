@@ -9,12 +9,14 @@ enum States { idle, walk, crouch, jump, fall, grabbed }
 enum Sub_States { grab, carry, throw }
 
 var _death_effect: PackedScene = preload("res://effects/player_death/scene_player_death.tscn")
+var _ghost_object: PackedScene = preload("res://effects/ghost/scene_player_ghost.tscn")
 var is_flipped: bool = false
 var direction_y: float
 var direction_x: float
 var player_num: int = 1
 var grabbed_object: Object
 var weight = 1.3
+var ghostable: bool = false
 
 var walk_velocity: Vector2
 var grav_velocity: Vector2
@@ -103,27 +105,29 @@ func _hitHeadOrFoot() -> void:
 		grav_velocity.y = 0
 	if is_on_wall() and abs(grav_velocity.x) > 0:
 		grav_velocity.x = 0
+
+func _spawnGhost() -> void:
+	var ghost_object = _ghost_object.instantiate()
+	get_parent().add_child(ghost_object)
+	ghost_object.position = position
+	ghost_object.setupColor(player_num)
 #endregion
 
 #region publics
 func playBodyAnimation(next_animation: String = "") -> void:
-	# If function called with no parameters it resumes the animation
 	if next_animation == "": 
 		body_player.play()
 		return
-	
-	# Play animation if it's a different animation
+
 	if getBodyAnimation() != next_animation:
 		body_player.play(next_animation)
 	updateSpriteSpeedScale()
 
 func playHandsAnimation(next_animation: String = "") -> void:
-	# If function called with no parameters it resumes the animation
 	if next_animation == "": 
 		hands_player.play()
 		return
-	
-	# Play animation if it's a different animation
+
 	if getHandsAnimation() != next_animation:
 		hands_player.play(next_animation)
 
@@ -139,8 +143,11 @@ func doDeath() -> void:
 		grabbed_object.setUngrabbed()
 		ungrabObject()
 	
+	if ghostable:
+		call_deferred("_spawnGhost")
+	
 	MasterTracker.incrementDeath(player_num)
-	queue_free()
+	call_deferred("queue_free")
 
 func getBodyAnimation() -> String:
 	return body_player.animation

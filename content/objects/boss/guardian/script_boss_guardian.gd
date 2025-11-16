@@ -4,7 +4,7 @@ class_name GuardianBody
 const MAX_FALL_SPEED: float = 200.0
 const SPEED: float = 40.0
 const JUMP_VELOCITY: float = -160.0
-const MAX_HP: int = 4
+const MAX_HP: int = 16
 
 @export var animation_p: AnimationPlayer
 @export var guardhands: Array[GuardianHand]
@@ -104,6 +104,10 @@ func doDeath():
 func getName() -> String:
 	return "THE FIGHTER"
 
+func healSelf() -> void:
+	boss_hp = min(boss_hp + 1, MAX_HP)
+	updateHealth.emit(boss_hp)
+
 func _onAnimationChanged() -> void:
 	_checkIfLanded()
 
@@ -112,7 +116,7 @@ func _onBodyEntered(body: Node2D) -> void:
 	if body is GuardianHand:
 		body.setImpulse(Vector2(-body.velocity.x,-100))
 	last_hit_direction = sign(global_position.x - body.global_position.x)
-	boss_hp -= 1
+	boss_hp -= 4
 	updateHealth.emit(boss_hp)
 	if boss_hp <= 0:
 		doDeath()

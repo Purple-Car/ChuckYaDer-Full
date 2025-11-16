@@ -22,10 +22,6 @@ func _process(_delta: float) -> void:
 	else:
 		playAnimation("unpress")
 		active = false
-	
-	for platform in get_tree().get_nodes_in_group("platform"):
-		if platform.getPlatformId() == platform_id:
-			platform.setActive(active)
 
 func playAnimation(to_anim: String) -> void:
 	if sprite.animation != to_anim:

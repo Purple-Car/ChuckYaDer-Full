@@ -46,6 +46,7 @@ func getIsGrabbed() -> bool:
 	return false
 
 func beConsumed() -> void:
+	Utils.spawnSparkle(global_position, get_tree().current_scene.find_child("node_statics", true, false),Vector2(0, -20))
 	queue_free()
 
 func _onBodyEntered(body: Node2D) -> void:

@@ -6,8 +6,8 @@ func boolToSign(to_transform: bool) -> int:
 func check() -> void:
 	if true: return
 
-func getLivePlayers() -> Array[CharacterBody2D]:
-	var live_players: Array[CharacterBody2D] = []
+func getLivePlayers() -> Array[Player]:
+	var live_players: Array[Player] = []
 	var siblings: Array[Node] = get_tree().current_scene.find_child("node_grabbables", true, false).get_children()
 	for sibling in siblings:
 		if sibling.is_in_group("player"):
@@ -22,6 +22,18 @@ func spawnSmokePuff(on_position: Vector2, offset_x: int = 2, offset_y: int = 0) 
 		var dir: int = Utils.boolToSign(number)
 		smoke_puffs[number].position = on_position + Vector2( offset_x * dir, offset_y)
 		smoke_puffs[number].flip = !bool(number)
+
+func spawnAfterImage(to_texture: Texture2D, to_position: Vector2, parent: Node, flip: bool = false, to_z = 0) -> void:
+	var after_image: Node = preload("res://effects/angel_after_image/scene_angel_after_image.tscn").instantiate()
+	parent.add_child(after_image)
+	after_image.setTexture(to_texture, to_position, flip, to_z)
+
+func spawnSparkle(to_position: Vector2, parent: Node, to_velocity: Vector2 = Vector2.ZERO) -> void:
+	var sparkle_effect: PackedScene = preload("res://effects/sparkle/scene_effect_sparkle.tscn")
+	var sparkle = sparkle_effect.instantiate()
+	parent.add_child(sparkle)
+	sparkle.global_position = to_position
+	sparkle.velocity = to_velocity
 
 func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, speed: float = 200.0, lifetime: float = 2.0, gravity_scale: float = 1.0):
 	var size: Vector2 = texture.get_size()
@@ -50,7 +62,7 @@ func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, spe
 			
 			var chunk_center = Vector2(x * chunk_size.x + chunk_size.x / 2, y * chunk_size.y + chunk_size.y / 2)
 			var dir_from_center = (chunk_center - size / 2).normalized()
-			var angle_offset = deg_to_rad(randf_range(-10, 10)) # Add randomness
+			var angle_offset = deg_to_rad(randf_range(-10, 10))
 			var direction = dir_from_center.rotated(angle_offset)
 			body.linear_velocity = direction * speed
 			body.angular_velocity = 0

@@ -1,9 +1,9 @@
 extends EnemyState
-class_name GuardHandIdle
+class_name GuardHandReturning
 
-@export var guard_hand: CharacterBody2D
+@export var guard_hand: GuardianHand
 
-var players: Array[CharacterBody2D]
+var players: Array[Player]
 
 func Enter(): pass
 

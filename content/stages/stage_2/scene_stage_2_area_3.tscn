@@ -55,7 +55,7 @@ position = Vector2(136, 104)
 strength = 164
 
 [node name="node_spring_root2" parent="node_statics" instance=ExtResource("8_qm7wm")]
-position = Vector2(248, 72)
+position = Vector2(232, 72)
 strength = 112
 
 [node name="node_grabbables" type="Node" parent="."]
@@ -75,4 +75,4 @@ position = Vector2(28, 48)
 info = ExtResource("7_mq3yh")
 
 [node name="charbody_key_root" parent="node_grabbables" instance=ExtResource("11_q34r0")]
-position = Vector2(240, 104)
+position = Vector2(231, 104)

@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://c86cimmi1ylb"]
+
+[ext_resource type="Script" uid="uid://d4k8e1dwl5vrm" path="res://objects/boss/lord/script_boss_lordhand.gd" id="1_03jdm"]
+[ext_resource type="Texture2D" uid="uid://dg6c0raktja1q" path="res://objects/boss/lord/sprites/lord hand.png" id="1_4xldn"]
+[ext_resource type="Script" uid="uid://e7xdv6p1jog0" path="res://objects/boss/script_boss_state_machine.gd" id="2_yihjm"]
+[ext_resource type="Script" uid="uid://cmqtnj4aglvc7" path="res://objects/boss/lord/hand_states/script_lord_hand_state_idle.gd" id="3_dsg06"]
+[ext_resource type="Script" uid="uid://chcqfs5do1e7u" path="res://objects/boss/lord/hand_states/script_lord_hand_state_attack.gd" id="5_wj5t8"]
+[ext_resource type="Script" uid="uid://dvm467wjwrfi1" path="res://objects/boss/lord/hand_states/script_lord_hand_state_sitting.gd" id="6_cu12e"]
+[ext_resource type="Script" uid="uid://bmtlbknmprd24" path="res://objects/boss/lord/hand_states/script_lord_hand_state_returning.gd" id="7_pw5gy"]
+[ext_resource type="Script" uid="uid://c5no2uuokagwn" path="res://objects/boss/lord/hand_states/script_lord_hand_state_grabbed.gd" id="8_07w48"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yihjm"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsg06"]
+size = Vector2(12, 14)
+
+[node name="charbod_lordhand_root" type="CharacterBody2D" groups=["grabbable"]]
+collision_layer = 0
+script = ExtResource("1_03jdm")
+
+[node name="colshape_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_yihjm")
+
+[node name="spr2D_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_4xldn")
+
+[node name="area2D_overlap" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 128
+collision_mask = 0
+
+[node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_dsg06")
+debug_color = Color(0.952477, 8.66354e-07, 0.558445, 0.42)
+
+[node name="node_hand_states" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_yihjm")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="node_hand_states" node_paths=PackedStringArray("lord_hand")]
+script = ExtResource("3_dsg06")
+lord_hand = NodePath("../..")
+
+[node name="attack" type="Node" parent="node_hand_states" node_paths=PackedStringArray("lord_hand")]
+script = ExtResource("5_wj5t8")
+lord_hand = NodePath("../..")
+
+[node name="sitting" type="Node" parent="node_hand_states" node_paths=PackedStringArray("lord_hand")]
+script = ExtResource("6_cu12e")
+lord_hand = NodePath("../..")
+
+[node name="returning" type="Node" parent="node_hand_states" node_paths=PackedStringArray("lord_hand")]
+script = ExtResource("7_pw5gy")
+lord_hand = NodePath("../..")
+
+[node name="grabbed" type="Node" parent="node_hand_states" node_paths=PackedStringArray("lord_hand")]
+script = ExtResource("8_07w48")
+lord_hand = NodePath("../..")

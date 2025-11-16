@@ -95,7 +95,7 @@ func doBreak() -> void:
 		spawn_thing.name = "node_container_item_root"
 		spawn_thing.setImpulse( Vector2( velocity.x, -50 ))
 	
-	Utils.explode_texture(info.texture, global_position + Vector2(8, 8))
+	Utils.explode_texture(info.texture, global_position + Vector2(5, 4))
 	queue_free()
 
 func _onBodyEntered(body: Node2D) -> void:

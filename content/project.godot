@@ -55,6 +55,8 @@ explosion=""
 enemy=""
 platform=""
 respawn=""
+boss=""
+button=""
 
 [input]
 
@@ -126,6 +128,8 @@ menu={
 2d_physics/layer_8="Death"
 2d_physics/layer_9="Enemy"
 2d_physics/layer_10="Button"
+2d_physics/layer_11="Boss"
+2d_physics/layer_12="Ghost"
 
 [physics]
 

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name EnemyBird
 
 @export var initial_state: String
 @export var start_flipped: bool = false

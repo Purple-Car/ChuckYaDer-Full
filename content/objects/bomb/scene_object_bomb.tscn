@@ -71,7 +71,7 @@ frame_progress = 0.84917486
 [node name="area2D_overlap" type="Area2D" parent="."]
 position = Vector2(0, 1)
 collision_layer = 4
-collision_mask = 0
+collision_mask = 1376
 
 [node name="colshape_overlap" type="CollisionShape2D" parent="area2D_overlap"]
 shape = SubResource("RectangleShape2D_vj0qp")
