@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b3o6vsi6myf6f"]
+[gd_scene load_steps=19 format=4 uid="uid://b3o6vsi6myf6f"]
 
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_7llbx"]
 [ext_resource type="PackedScene" uid="uid://dfgv3ed8ylkfg" path="res://resources/backgrounds/scene_background_clouds.tscn" id="2_x5eir"]
@@ -17,6 +17,76 @@
 [ext_resource type="PackedScene" uid="uid://dse3i6rp8hvcm" path="res://objects/container/scene_object_container.tscn" id="13_3y3sp"]
 [ext_resource type="Resource" uid="uid://me6tquanb3xf" path="res://resources/containers/resource_container_block.tres" id="14_amocp"]
 [ext_resource type="Resource" uid="uid://ctkg4jjad717k" path="res://resources/containers/resource_container_rock.tres" id="15_amocp"]
+
+[sub_resource type="GDScript" id="GDScript_amocp"]
+script/source = "@tool
+extends Node2D
+
+@export var camera_size: Vector2 = Vector2(320, 180)
+@export var rect_color: Color = Color(1, 0.5, 0)
+@export var line_width: float = 2.0
+
+
+func _ready():
+	if Engine.is_editor_hint():
+		queue_redraw()
+
+
+func _draw():
+	if Engine.is_editor_hint():
+		_draw_camera_rects()
+
+
+func _draw_camera_rects() -> void:
+	if get_parent():
+		var siblings = get_parent().get_children()
+		var node2d_siblings = []
+		
+		# First, collect all Node2D siblings
+		for sibling in siblings:
+			if sibling is Node2D:
+				node2d_siblings.append(sibling)
+		
+		# Draw rectangles and connect corners
+		for i in range(node2d_siblings.size()):
+			var current_sibling = node2d_siblings[i]
+			var current_pos: Vector2 = current_sibling.position
+			
+			# Calculate corners for current sibling
+			var current_tl: Vector2 = current_pos
+			var current_tr: Vector2 = current_pos + Vector2(camera_size.x, 0)
+			var current_bl: Vector2 = current_pos + Vector2(0, camera_size.y)
+			var current_br: Vector2 = current_pos + camera_size
+			
+			# Draw rectangle edges
+			draw_line(current_tl, current_tr, rect_color, line_width)
+			draw_line(current_tr, current_br, rect_color, line_width)
+			draw_line(current_br, current_bl, rect_color, line_width)
+			draw_line(current_bl, current_tl, rect_color, line_width)
+			
+			# Draw corner markers
+			draw_circle(current_tl, 4, rect_color)
+			draw_circle(current_tr, 4, rect_color)
+			draw_circle(current_bl, 4, rect_color)
+			draw_circle(current_br, 4, rect_color)
+			
+			# Connect to next sibling's corners
+			if i < node2d_siblings.size() - 1:
+				var next_sibling = node2d_siblings[i + 1]
+				var next_pos: Vector2 = next_sibling.position
+				
+				# Calculate corners for next sibling
+				var next_tl: Vector2 = next_pos
+				var next_tr: Vector2 = next_pos + Vector2(camera_size.x, 0)
+				var next_bl: Vector2 = next_pos + Vector2(0, camera_size.y)
+				var next_br: Vector2 = next_pos + camera_size
+				
+				# Connect all four corresponding corners
+				draw_line(current_tl, next_tl, rect_color.darkened(0.3), line_width)  # Top-left to Top-left
+				draw_line(current_tr, next_tr, rect_color.darkened(0.3), line_width)  # Top-right to Top-right
+				draw_line(current_bl, next_bl, rect_color.darkened(0.3), line_width)  # Bottom-left to Bottom-left
+				draw_line(current_br, next_br, rect_color.darkened(0.3), line_width)  # Bottom-right to Bottom-right
+"
 
 [node name="node_stage" type="Node2D"]
 
@@ -159,6 +229,10 @@ script = ExtResource("10_wqgom")
 bounds = NodePath("../node_camera/statbod_bounds")
 camera = NodePath("../node_camera")
 max_speed = 20.0
+
+[node name="node_show_scroll" type="Node2D" parent="node_autoscroll"]
+script = SubResource("GDScript_amocp")
+rect_color = Color(0.41298798, 0.00055961625, 0.51833826, 1)
 
 [node name="node_destination_1" type="Node2D" parent="node_autoscroll"]
 position = Vector2(2000, 0)

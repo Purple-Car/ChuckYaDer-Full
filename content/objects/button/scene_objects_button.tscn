@@ -56,6 +56,8 @@ script = ExtResource("1_05cme")
 material = SubResource("ShaderMaterial_w305g")
 sprite_frames = SubResource("SpriteFrames_58fus")
 animation = &"unpress"
+frame = 1
+frame_progress = 1.0
 
 [node name="area2D_overlap" type="Area2D" parent="."]
 collision_layer = 0

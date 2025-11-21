@@ -60,9 +60,12 @@ func _checkBonking() -> void:
 		setImpulse( Vector2( velocity.x, -50 ))
 
 func _checkBreak(heading_velocity: Vector2) -> void:
-	var heading_speed = abs(heading_velocity.length())
-	if heading_speed > BREAK_SPEED:
-		if is_on_floor() or is_on_ceiling() or is_on_wall():
+	#var heading_speed = abs(heading_velocity.length())
+	#if heading_speed > BREAK_SPEED:
+		#if is_on_floor():
+			#doBreak()
+	if heading_velocity.y > BREAK_SPEED:
+		if is_on_floor():
 			doBreak()
 
 func setGrabbed() -> void:
@@ -109,4 +112,4 @@ func _onBodyEntered(body: Node2D) -> void:
 
 func _onAreaEntered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("explosion") and resistance < 2:
-		doBreak()
+		call_deferred("doBreak")

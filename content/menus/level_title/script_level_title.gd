@@ -6,7 +6,7 @@ const LEVEL_TITLE: Array[String] = [
 	"Hall of the Knight",
 	"Around the World",
 	"On the line of fire",
-	"Stage 6",
+	"Regal transportation",
 	"Stage 7",
 	"Stage 8",
 	"Stage 9",
@@ -19,7 +19,7 @@ func _ready() -> void:
 	level_label.text = LEVEL_TITLE[MasterTracker.current_stage]
 	level_number.text = str(MasterTracker.current_stage + 1)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _onTimeout() -> void:

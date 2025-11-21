@@ -14,6 +14,7 @@ func _ready() -> void:
 	for platform in get_tree().get_nodes_in_group("platform"):
 		if platform.getPlatformId() == platform_id:
 			platform.setColor(to_color)
+	sprite.frame = 1
 
 func _process(_delta: float) -> void:
 	if overlap.get_overlapping_bodies():

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GrabbableContainer" load_steps=3 format=3 uid="uid://caejpkdwadahk"]
+
+[ext_resource type="Script" uid="uid://6awigbjyciao" path="res://resources/containers/container_class.gd" id="1_6axh6"]
+[ext_resource type="Texture2D" uid="uid://cjohlbbln60la" path="res://objects/container/tall_spring_base.png" id="2_6axh6"]
+
+[resource]
+script = ExtResource("1_6axh6")
+texture = ExtResource("2_6axh6")
+weight = 3.0
+hitbox_size = Vector2(5, 3)
+metadata/_custom_type_script = "uid://6awigbjyciao"

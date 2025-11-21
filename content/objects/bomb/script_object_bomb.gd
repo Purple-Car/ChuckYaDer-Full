@@ -7,6 +7,7 @@ var _explosion_effect: PackedScene = preload("res://effects/explosion/scene_bomb
 var weight: float = 1
 var is_grabbed: bool = false
 var is_ignited: bool = false
+var originator: Object = self
 
 @onready var collision: CollisionShape2D = $colshape_collision
 @onready var sprite : AnimatedSprite2D = $anisprite_sprite
@@ -57,5 +58,7 @@ func blowUp() -> void:
 	queue_free()
 
 func _onBodyEntered(body: Node2D) -> void:
+	if originator and body == originator:
+		return
 	if is_ignited and !is_grabbed:
 		call_deferred("blowUp")

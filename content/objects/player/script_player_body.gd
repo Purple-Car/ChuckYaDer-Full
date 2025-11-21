@@ -167,6 +167,8 @@ func ungrabObject() ->void:
 	setGrabbedObject(null)
 
 func throwObject() -> void:
+	if grabbed_object.get("originator"):
+		grabbed_object.originator = self
 	grabbed_object.setUngrabbed()
 	var impulse_x: float = -192 * sign(Utils.boolToSign(is_flipped))
 	var impulse_y: float = -96.0

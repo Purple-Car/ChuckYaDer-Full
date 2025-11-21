@@ -81,6 +81,7 @@ func throwBombs(is_left_hand: bool):
 	for rep in range(bomb_count):
 		var bomb = bomb_object.instantiate()
 		get_parent().add_child(bomb)
+		bomb.originator = self
 		bomb.global_position = angelhands[int(is_left_hand)].global_position
 
 		var angle_offset: float = deg_to_rad((rep - (bomb_count - 1) / 2.0) * spread_angle)

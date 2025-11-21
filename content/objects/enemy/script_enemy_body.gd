@@ -77,7 +77,8 @@ func doDeath() -> void:
 	get_parent().add_child(death_effect)
 	death_effect.position = position
 	death_effect.animated_sprite.flip_h = sprite.flip_h
-	queue_free()
+	call_deferred("queue_free")
+	#queue_free()
 
 func _onAreaEntered(area: Area2D) -> void:
 	if is_grabbed: return

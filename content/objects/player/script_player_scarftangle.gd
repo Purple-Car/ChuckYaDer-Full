@@ -32,6 +32,7 @@ func _onPlayerDestroyed() -> void:
 
 func _handleVisuals() -> void:
 	if players.size() < 2: return
+	if !is_instance_valid(players[0]) or !is_instance_valid(players[1]): return
 	
 	var pos1 = players[0].global_position + OFFSET
 	var pos2 = players[1].global_position + OFFSET
@@ -55,6 +56,9 @@ func _handleVisuals() -> void:
 	scarf_p2.scale.x = distance / IMAGE_WIDTH / 2
 
 func _handlePhysics() -> void:
+	if players.size() < 2: return
+	if !is_instance_valid(players[0]) or !is_instance_valid(players[1]): return
+	
 	var delta_distance = players[0].position - players[1].position
 	var distance = delta_distance.length()
 	

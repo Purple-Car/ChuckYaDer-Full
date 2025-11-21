@@ -39,14 +39,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			global_position = global_position.move_toward(destination, step)
 
-#func setActive(to_set: bool) -> void:
-	#if active != to_set:
-		#active = to_set
-		#if to_set:
-			#changeColor(color)
-		#else:
-			#changeColor(color * 0.6)
-
 func getPlatformId() -> int:
 	return platform_id
 
