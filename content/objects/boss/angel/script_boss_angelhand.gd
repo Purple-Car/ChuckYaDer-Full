@@ -1,10 +1,7 @@
 extends CharacterBody2D
 class_name AngelHand
 
-const SPEED: float = 200.0
-const JUMP_VELOCITY: float = -400.0
-const DECELERATION: float = 2.0
-const MAX_FALL_SPEED: float = 300.0
+const SPEED: float = 160.0
 
 @export var angel_body: AngelBody
 @export var left_hand: bool

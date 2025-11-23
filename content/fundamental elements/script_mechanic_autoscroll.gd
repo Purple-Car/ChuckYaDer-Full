@@ -1,14 +1,13 @@
 extends Node2D
 
-const ACCELERATION: float = 10.0
-
 @export var bounds: StaticBody2D
 @export var camera: Camera2D
 @export var max_speed: float = 25.0
+@export var current_point: int = 0
 
-var current_point: int = 0
 var points: Array[Node2D] = []
 var speed: float = 0
+var acceleration: float = 10.0
 
 var RATIOS: Dictionary = {
 	1.0: 1.0,
@@ -30,7 +29,7 @@ func _process(delta: float) -> void:
 	_cameraMove(delta)
 	
 func _cameraMove(delta: float) -> void:
-	speed = move_toward(speed, max_speed, ACCELERATION * delta)
+	speed = move_toward(speed, max_speed, acceleration * delta)
 	
 	if current_point == points.size(): return
 	
@@ -43,4 +42,11 @@ func _cameraMove(delta: float) -> void:
 		else:
 			camera.global_position = camera.global_position.move_toward(destination, step)
 	else:
-		current_point += 1
+		toPoint(current_point + 1)
+
+func toPoint(to_point: int) -> void:
+	if points[current_point].get("speed"):
+		max_speed = points[current_point].speed
+	if points[current_point].get("acceleration") and points[current_point].acceleration > 0:
+		acceleration = points[current_point].acceleration
+	current_point = to_point

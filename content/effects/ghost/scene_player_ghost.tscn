@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 			var step: float = SPEED * delta
 			if global_position.distance_to(destination) <= ABSORB_DISTANCE:
 				animated_sprite.play(\"absorb\")
+				get_parent().move_child(self, get_parent().get_child_count() - 1)
 				active = false
 				boss.healSelf()
 			else:

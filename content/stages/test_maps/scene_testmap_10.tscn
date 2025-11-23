@@ -45,7 +45,6 @@ position = Vector2(299, 100)
 player_num = 2
 
 [node name="node_star_root" parent="node_statics" instance=ExtResource("7_xhfv8")]
-position = Vector2(160, 78)
 
 [node name="node_grabbables" type="Node" parent="."]
 

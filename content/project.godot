@@ -50,13 +50,13 @@ folder_colors={
 grabbable=""
 key=""
 player=""
-wrappable=""
 explosion=""
 enemy=""
 platform=""
 respawn=""
 boss=""
 button=""
+wrappable=""
 
 [input]
 

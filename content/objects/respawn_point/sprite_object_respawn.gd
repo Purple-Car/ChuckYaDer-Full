@@ -14,6 +14,7 @@ var assigned_player: CharacterBody2D = null
 var ghostable: bool = false
 
 signal onRespawnStart
+signal onRespectivePlayerDeath
 
 func _ready() -> void:
 	if player_num == 0:
@@ -52,6 +53,8 @@ func _onAnimationFinished() -> void:
 	animated_sprite.frame = 0
 
 func _onPlayerDestroyed() -> void:
+	onRespectivePlayerDeath.emit(player_num)
+	
 	if assigned_player and assigned_player.tree_exited.is_connected(_onPlayerDestroyed):
 		assigned_player.tree_exited.disconnect(_onPlayerDestroyed)
 	
@@ -61,5 +64,6 @@ func _onPlayerDestroyed() -> void:
 	timer.start(respawn_timer)
 
 func _onTimerTimeout() -> void:
+	if respawn_timer <= 0: return
 	onRespawnStart.emit(player_num)
 	animated_sprite.play("respawn")

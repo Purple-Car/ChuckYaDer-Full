@@ -7,9 +7,10 @@ const LEVEL_TITLE: Array[String] = [
 	"Around the World",
 	"On the line of fire",
 	"Regal transportation",
-	"Stage 7",
-	"Stage 8",
-	"Stage 9",
+	"Tool of destruction",
+	"Unbreakable bond",
+	"One above all",
+	"Stage Select",
 ]
 
 @onready var level_label: Label = $control/label_level_title
@@ -18,6 +19,9 @@ const LEVEL_TITLE: Array[String] = [
 func _ready() -> void:
 	level_label.text = LEVEL_TITLE[MasterTracker.current_stage]
 	level_number.text = str(MasterTracker.current_stage + 1)
+	
+	if MasterTracker.current_stage == 9:
+		get_tree().change_scene_to_file("res://stages/stage_misc/scene_stage_select.tscn")
 
 func _process(_delta: float) -> void:
 	pass

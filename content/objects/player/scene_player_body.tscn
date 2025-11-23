@@ -1365,8 +1365,12 @@ shape = SubResource("RectangleShape2D_8v5pd")
 disabled = true
 debug_color = Color(0.8150098, 0.40812427, 5.7756904e-07, 0.41960785)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-11, -16, 30, 32)
+
 [connection signal="area_entered" from="area2D_overlap" to="." method="_onAreaEntered"]
 [connection signal="body_entered" from="area2D_overlap" to="." method="_onOverlapBodyEntered"]
 [connection signal="animation_finished" from="node2D_sprites/anisprite_body" to="node_state_machine" method="_onBodyAnimationFinished"]
 [connection signal="body_entered" from="node2D_sprites/area2D_grab" to="node_substate_machine" method="_onGrabBodyEntered"]
 [connection signal="animation_finished" from="anipl_hands" to="node_substate_machine" method="_onHandAnimationFinished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_onExitedScreen"]

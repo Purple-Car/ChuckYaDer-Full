@@ -33,9 +33,7 @@ var grav_velocity: Vector2
 
 signal onPlayerDestroyed
 
-func _ready() -> void:
-	if get_parent().get_child(0).name == "node_tangle":
-		scarf_player.hide()
+func _ready() -> void: pass
 
 func _process(_delta: float) -> void:
 	var carry_state: State = $"node_substate_machine/carry"
@@ -231,3 +229,7 @@ func _onOverlapBodyEntered(body: Node2D) -> void:
 func _onAreaEntered(area: Area2D) -> void:
 	if states_machine.current_state != $"node_state_machine/grabbed":
 		doDeath()
+
+
+func _onExitedScreen() -> void:
+	doDeath()

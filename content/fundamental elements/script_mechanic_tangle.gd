@@ -15,9 +15,13 @@ func _physics_process(delta: float) -> void:
 		if scarf_instance and scarf_instance.is_inside_tree():
 			scarf_instance.queue_free()
 			scarf_instance = null
+		for player in get_tree().get_nodes_in_group("player"):
+			player.scarf_player.show()
 		return
 	
 	if not scarf_instance:
+		for player in get_tree().get_nodes_in_group("player"):
+			player.scarf_player.hide()
 		spawnScarf()
 
 func spawnScarf() -> void:

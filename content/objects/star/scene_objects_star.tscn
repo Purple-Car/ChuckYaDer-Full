@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dd3hsiopt0xq3"]
+[gd_scene load_steps=22 format=3 uid="uid://dd3hsiopt0xq3"]
 
 [ext_resource type="Script" uid="uid://dkopktbltldto" path="res://objects/star/script_objects_star.gd" id="1_5p73j"]
 [ext_resource type="Texture2D" uid="uid://d3s6edu715ab5" path="res://objects/star/star.png" id="1_ct250"]
@@ -145,6 +145,67 @@ _data = {
 &"shake": SubResource("Animation_e01bs")
 }
 
+[sub_resource type="Animation" id="Animation_itjkg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mqup5"]
+resource_name = "spawn"
+length = 10.000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1666667, 9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-32.0, -32.0, 180.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [240.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_77cf5"]
+_data = {
+&"RESET": SubResource("Animation_itjkg"),
+&"spawn": SubResource("Animation_mqup5")
+}
+
 [node name="node_star_root" type="Node2D"]
 script = ExtResource("1_5p73j")
 
@@ -172,6 +233,11 @@ autoplay = "bobble"
 [node name="aniplr_shake" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_rkyi1")
+}
+
+[node name="aniplr_spawn" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_77cf5")
 }
 
 [node name="timer_after_image" type="Timer" parent="."]
