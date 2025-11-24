@@ -67,7 +67,7 @@ rope_length = 48
 scarf_scene = ExtResource("10_42dgo")
 
 [node name="charbody_container_root" parent="node_grabbables" instance=ExtResource("9_qm7wm")]
-position = Vector2(168, 130)
+position = Vector2(160, 152)
 info = ExtResource("13_j4of0")
 contains = ExtResource("11_q34r0")
 

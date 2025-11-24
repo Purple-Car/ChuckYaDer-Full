@@ -4,7 +4,7 @@ class_name LordBody
 const MAX_FALL_SPEED: float = 200.0
 const SPEED: float = 20.0
 const JUMP_VELOCITY: float = -120.0
-const MAX_HP: int = 20.0
+const MAX_HP: int = 16
 
 @export var animation_p: AnimationPlayer
 @export var lordhands: Array[LordHand]

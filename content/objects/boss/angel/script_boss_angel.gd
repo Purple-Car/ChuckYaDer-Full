@@ -4,7 +4,7 @@ class_name AngelBody
 const MAX_SPEED: float = 180.0
 const SPEED: float = 20.0
 const JUMP_VELOCITY: float = -120.0
-const MAX_HP: int = 24
+const MAX_HP: int = 16
 const ACCELERATION: float = 50.0
 const DECELERATION: float = 100.0
 const RAM_ACCELERATION: float = 125.0

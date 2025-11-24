@@ -9,10 +9,6 @@ extends Node2D
 @onready var overlap: Area2D = $area2D_overlap
 
 func _ready() -> void:
-	if to_scene:
-		Gamestate.setNextScene(to_scene.resource_path)
-	else:
-		Gamestate.setNextScene("res://menus/ending_screen/scene_ending_screen.tscn")
 	if locked:
 		sprite.play(definePrefix()+"closed")
 	else:
@@ -38,6 +34,13 @@ func _onAreaEntered(area: Area2D) -> void:
 		var to_vector: Vector2 = Vector2(20 * number, -30 + 5 * abs(number))
 		Utils.spawnSparkle(global_position, get_tree().current_scene.find_child("node_statics", true, false),to_vector)
 	MasterTracker.saveData()
+	
+	if MasterTracker.current_stage == 9 and end_door:
+		Gamestate.setNextScene("res://stages/stage_misc/scene_stage_select.tscn")
+	elif to_scene:
+		Gamestate.setNextScene(to_scene.resource_path)
+	else:
+		Gamestate.setNextScene("res://menus/ending_screen/scene_ending_screen.tscn")
 	Gamestate.changeState(Gamestate.States.fadeout)
 
 func unlockDoor() -> void:
