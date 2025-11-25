@@ -39,10 +39,33 @@ O conteúdo presente em uma cópia são o executável e um arquivo .pck (padrão
 ## Autoria
 
 ### Desenvolvedor/Artista/Animador/Game Designer:
-Eduardo da Maia Haak
 
-### Agradecimentos
-Bitlytic e Filip Rachůnek, pelo material de referência publicado.
+<a href="https://github.com/Purple-Car">
+  <img src="https://github.com/Purple-Car.png" width="80" height="80" style="border-radius: 50%">
+  <br>
+  <sub><b>Eduardo H</b><sub>
+</a>
+
+### Agradecimentos / Referências
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Bitlytic">
+        <img src="https://github.com/Bitlytic.png" width="80"/><br>
+        <sub><b>Bitlytic</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://filip.rachunek.com/index.html">
+        <img src="https://filip.rachunek.com/assets/img/logo.png" width="80" height="80"/><br>
+        <sub><b>Filip Rachůnek</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+O material publicado por estes foi, e continua sendo, de grande ajuda para o aprendizado da engine.
 
 ## Documentação do Projeto (GDD)
 
