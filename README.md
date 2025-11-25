@@ -16,10 +16,7 @@ Os menus do jogo são controlados majoritáriamente pelo Mouse, a única exceç�
 
 ### Personagens
 
-Os controles em si podem ser conferidos no menu de Opções e podem também ser alterados, mas as funções que cada personagem é capaz de realizar são:
-Andar (esquerda e direita), Pegar (ou jogar, se já estiver carregando um objeto)
-
-Como citado, as ações podem ser customizadas e o jogo reconhece ambos teclado e gamepad. As ações padrões são as seguintes:
+O jogo conta com 2 jogadores que podem ser controlados através do mesmo dispositivo, e os controles são simples, contando apenas com movimentação e um botão de ação. Segue abaixo os controles padrões do jogo, que podem ser também conferidos e alterados no menu "Opções":
 
 | Command | Player 1 | Player 2 |
 | ------------- | ------------- | ------------- |
