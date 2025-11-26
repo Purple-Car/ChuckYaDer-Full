@@ -22,7 +22,9 @@ func displaySetkey() -> void:
 func remapKey(event: InputEvent) -> void:
 	var proper_action: String = "p%s_%s" % [player, action]
 	InputMap.action_erase_events(proper_action)
-	if event.keycode != KEY_ESCAPE:
+	if event is InputEventKey and event.keycode != KEY_ESCAPE:
+		InputMap.action_add_event(proper_action, event)
+	else:
 		InputMap.action_add_event(proper_action, event)
 	MasterTracker.saveKeyMap()
 	displaySetkey()

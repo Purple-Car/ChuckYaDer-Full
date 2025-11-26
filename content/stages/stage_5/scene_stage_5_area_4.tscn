@@ -70,7 +70,7 @@ strength = 132
 
 [node name="node_spring_root4" parent="node_statics" instance=ExtResource("9_lovpg")]
 position = Vector2(40, 120)
-strength = 132
+strength = 164
 
 [node name="node_grabbables" type="Node" parent="."]
 
