@@ -36,7 +36,7 @@ O conteúdo presente em uma cópia são o executável e um arquivo .pck (padrão
 
 [Baixar Versão mais Recente](https://github.com/Purple-Car/ChuckYaDer-Full/releases/latest)
 
-## Autoria
+## Autoria e Agradecimentos
 
 ### Desenvolvedor/Artista/Animador/Game Designer:
 
@@ -45,8 +45,44 @@ O conteúdo presente em uma cópia são o executável e um arquivo .pck (padrão
   <br>
   <sub><b>Eduardo H</b><sub>
 </a>
+<br><br>
+    
+Sou eu, olá!
 
-### Agradecimentos / Referências
+### Playtesters
+
+<table>
+  <tr>
+    <td align="center">
+      <a href=https://github.com/GolfinhoVoador/>
+        <img src="https://github.com/GolfinhoVoador.png" width="80"/><br>
+        <sub><b>Marcos A.</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href=https://github.com/vladilima>
+        <img src="https://github.com/vladilima.png" width="80"/><br>
+        <sub><b>Vlad</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href=https://x.com/MrCacetada>
+        <img src="https://pbs.twimg.com/profile_images/1880886960195063808/xuPasvZR_400x400.jpg" width="80" height="80"/><br>
+        <sub><b>Fungas</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href=https://steamcommunity.com/profiles/76561199564752705/>
+        <img src="https://avatars.akamai.steamstatic.com/5d7a1159d8f919fc5bbe3d6320add1e642dc01ea_full.jpg" width="80" height="80"/><br>
+        <sub><b>Fumas</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+Esses corajosos jogadores aceitaram o desafio de testar o jogo e encontrar falhas.
+
+### Referências
 
 <table>
   <tr>
