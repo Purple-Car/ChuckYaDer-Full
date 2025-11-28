@@ -36,6 +36,8 @@ O conteúdo presente em uma cópia são o executável e um arquivo .pck (padrão
 
 [Baixar Versão mais Recente](https://github.com/Purple-Car/ChuckYaDer-Full/releases/latest)
 
+[Ver página na Itch.io](https://eduardohatchet.itch.io/chuckyader-v2)
+
 ## Autoria e Agradecimentos
 
 ### Desenvolvedor/Artista/Animador/Game Designer:
