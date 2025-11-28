@@ -42,8 +42,8 @@ O conteúdo presente em uma cópia são o executável e um arquivo .pck (padrão
 
 ### Desenvolvedor/Artista/Animador/Game Designer:
 
-<a href="https://github.com/Purple-Car">
-  <img src="https://github.com/Purple-Car.png" width="80" height="80" style="border-radius: 50%">
+<a href="https://eduardohatchet.itch.io/">
+  <img src="https://img.itch.zone/aW1nLzE4NjAxNTgxLnBuZw==/100x100%23/0rffaM.png" width="80" height="80" style="border-radius: 50%">
   <br>
   <sub><b>Eduardo H</b><sub>
 </a>
