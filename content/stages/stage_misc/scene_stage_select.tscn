@@ -209,7 +209,6 @@ to_scene = ExtResource("9_6c4bd")
 [node name="node_door_stage_3" parent="node_statics/node_world_1" instance=ExtResource("7_6nu2u")]
 position = Vector2(160, 144)
 to_scene = ExtResource("10_msjeu")
-end_door = true
 
 [node name="node_world_2" type="Node2D" parent="node_statics"]
 
@@ -224,7 +223,6 @@ to_scene = ExtResource("12_elupv")
 [node name="node_door_stage_3" parent="node_statics/node_world_2" instance=ExtResource("7_6nu2u")]
 position = Vector2(272, 144)
 to_scene = ExtResource("13_k6on1")
-end_door = true
 
 [node name="node_world_3" type="Node2D" parent="node_statics"]
 
@@ -239,7 +237,6 @@ to_scene = ExtResource("15_ju6rj")
 [node name="node_door_stage_3" parent="node_statics/node_world_3" instance=ExtResource("7_6nu2u")]
 position = Vector2(384, 144)
 to_scene = ExtResource("16_kqrnq")
-end_door = true
 
 [node name="AnimatableBody2D3" parent="node_statics" node_paths=PackedStringArray("collision") instance=ExtResource("21_4666a")]
 position = Vector2(104, 232)

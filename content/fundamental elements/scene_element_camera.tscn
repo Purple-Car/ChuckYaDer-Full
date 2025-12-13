@@ -106,8 +106,6 @@ centered = false
 
 [node name="canlay_nozoom" type="CanvasLayer" parent="."]
 layer = 4
-scale = Vector2(6, 6)
-transform = Transform2D(6, 0, 0, 6, 0, 0)
 
 [node name="anisprite_cursor" type="AnimatedSprite2D" parent="canlay_nozoom"]
 visible = false

@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_cursor.show()
-		mouse_cursor.global_position = event.global_position / 6
+		mouse_cursor.global_position = event.global_position
 	elif event is InputEventMouseButton:
 		mouse_cursor.show()
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -50,6 +50,9 @@ func _input(event: InputEvent) -> void:
 				mouse_cursor.play("normal")
 	elif event is InputEventKey and event.pressed and not event.echo:
 		mouse_cursor.hide()
+	
+	if event.is_action_pressed("fullscreen"):
+		Utils.toggleFullscreen()
 
 func _onAnimationFinished(anim_name: StringName) -> void:
 	Gamestate.fadeFinished(anim_name)
@@ -58,5 +61,5 @@ func doFade(fade: String) -> void:
 	fade_player.play(fade)
 
 func rescaleCamera() -> void:
-	var zoom_amount: float = 6 - scale_multiplier
+	var zoom_amount: float = ( 6 - scale_multiplier ) / 6
 	zoom = Vector2( zoom_amount, zoom_amount )

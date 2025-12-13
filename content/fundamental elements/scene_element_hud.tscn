@@ -400,8 +400,6 @@ grow_vertical = 2
 script = ExtResource("1_a6k8a")
 
 [node name="canlay_menu" type="CanvasLayer" parent="."]
-scale = Vector2(6, 6)
-transform = Transform2D(6, 0, 0, 6, 0, 0)
 
 [node name="ctrl_hud" type="Control" parent="canlay_menu"]
 layout_mode = 3

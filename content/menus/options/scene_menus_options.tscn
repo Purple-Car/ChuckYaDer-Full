@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjdyuwdby2r3f"]
+[gd_scene load_steps=21 format=3 uid="uid://cjdyuwdby2r3f"]
 
 [ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_0tngv"]
 [ext_resource type="Script" uid="uid://bc36vjjaay83x" path="res://menus/options/script_menus_options.gd" id="1_xqqpe"]
@@ -8,8 +8,14 @@
 [ext_resource type="StyleBox" uid="uid://nu3fa6rwdwsc" path="res://resources/button_select_box.tres" id="5_7cg84"]
 [ext_resource type="FontFile" uid="uid://ccbf3s442slah" path="res://resources/fonts/chuckcounter_font.png" id="5_s1l38"]
 [ext_resource type="Script" uid="uid://dd0iscnswxkup" path="res://menus/options/script_button_key.gd" id="6_tvtcu"]
+[ext_resource type="Texture2D" uid="uid://g77dykfkyvyb" path="res://resources/check_on.png" id="9_d3abs"]
+[ext_resource type="FontFile" uid="uid://3ypw5yfg3qya" path="res://resources/fonts/chuckmain_font.png" id="9_tu3nv"]
+[ext_resource type="Texture2D" uid="uid://dimc0mm7hmk6t" path="res://resources/check_off.png" id="10_l0upe"]
+[ext_resource type="Script" uid="uid://4rbijffula38" path="res://menus/options/script_button_fullscreen.gd" id="12_d3abs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tvtcu"]
+
+[sub_resource type="Theme" id="Theme_fv6uv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1l38"]
 
@@ -20,6 +26,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1er6u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fv6uv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d3abs"]
 
 [node name="node_menu_options" type="Node2D"]
 script = ExtResource("1_xqqpe")
@@ -62,9 +70,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -92.0
+offset_top = -96.0
 offset_right = 160.0
-offset_bottom = 92.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_saw2w")
@@ -98,13 +106,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -136.0
-offset_top = -60.0
+offset_top = -70.0
 offset_right = 136.0
-offset_bottom = 52.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 8
+theme_override_constants/v_separation = 0
 columns = 2
 
 [node name="label_controls_p1" type="Label" parent="node_control/9pr_menu/container_options"]
@@ -129,7 +137,6 @@ vertical_alignment = 2
 
 [node name="container_options_p1" type="GridContainer" parent="node_control/9pr_menu/container_options"]
 layout_mode = 2
-size_flags_horizontal = 4
 columns = 2
 
 [node name="label_key_grab" type="Label" parent="node_control/9pr_menu/container_options/container_options_p1"]
@@ -144,10 +151,13 @@ text = "Grab"
 [node name="button_key_grab" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
 custom_minimum_size = Vector2(96, 14)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -174,10 +184,13 @@ text = "Up"
 [node name="button_key_up" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
 custom_minimum_size = Vector2(96, 14)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -204,10 +217,13 @@ text = "Down"
 [node name="button_key_down" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
 custom_minimum_size = Vector2(96, 14)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -234,10 +250,13 @@ text = "Left"
 [node name="button_key_left" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
 custom_minimum_size = Vector2(96, 14)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -264,10 +283,13 @@ text = "Right"
 [node name="button_key_right" type="Button" parent="node_control/9pr_menu/container_options/container_options_p1"]
 custom_minimum_size = Vector2(96, 14)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -303,6 +325,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -333,6 +356,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -363,6 +387,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -393,6 +418,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -423,6 +449,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.3314198, 0.36739746, 0.4727745, 1)
 theme_override_colors/font_hover_color = Color(0.08822038, 0.10278911, 0.16889301, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("5_s1l38")
 theme_override_font_sizes/font_size = 8
@@ -437,28 +464,30 @@ script = ExtResource("6_tvtcu")
 action = "right"
 player = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="node_control/9pr_menu"]
+[node name="container_down" type="HBoxContainer" parent="node_control/9pr_menu"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -104.0
-offset_top = -32.0
-offset_right = 104.0
-grow_horizontal = 2
+offset_left = -168.0
+offset_top = -29.0
+offset_right = -8.0
+offset_bottom = -3.0
+grow_horizontal = 0
 grow_vertical = 0
 
-[node name="button_reset" type="Button" parent="node_control/9pr_menu/HBoxContainer"]
+[node name="button_reset" type="Button" parent="node_control/9pr_menu/container_down"]
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 2
+theme = SubResource("Theme_fv6uv")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.28627452, 0.3647059, 0.64705884, 1)
 theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
-theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
+theme_override_colors/font_hover_color = Color(0.7294118, 0.75686276, 0.87058824, 1)
 theme_override_colors/font_disabled_color = Color(0.64705884, 0.65882355, 0.72156864, 0.5019608)
-theme_override_fonts/font = ExtResource("2_7mvvl")
+theme_override_fonts/font = ExtResource("9_tu3nv")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s1l38")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_xqqpe")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tu3nv")
@@ -466,20 +495,41 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_1er6u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fv6uv")
 text = "Reset"
 
-[node name="button_back" type="Button" parent="node_control/9pr_menu/HBoxContainer"]
+[node name="button_back" type="Button" parent="node_control/9pr_menu/container_down"]
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 10
+theme = SubResource("Theme_fv6uv")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.28627452, 0.3647059, 0.64705884, 1)
 theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
-theme_override_colors/font_hover_color = Color(0.08627451, 0.101960786, 0.16862746, 1)
-theme_override_fonts/font = ExtResource("2_7mvvl")
+theme_override_colors/font_hover_color = Color(0.7294118, 0.75686276, 0.87058824, 1)
+theme_override_fonts/font = ExtResource("9_tu3nv")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s1l38")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_xqqpe")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tu3nv")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1er6u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fv6uv")
 text = "Back"
+
+[node name="chbox_fullscreen" type="CheckBox" parent="node_control/9pr_menu"]
+process_mode = 3
+layout_mode = 0
+offset_left = 8.0
+offset_top = 165.0
+offset_right = 112.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_colors/font_focus_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_colors/font_pressed_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_colors/font_hover_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.14117648, 0.14117648, 0.20784314, 1)
+theme_override_fonts/font = ExtResource("5_s1l38")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d3abs")
+theme_override_icons/checked = ExtResource("9_d3abs")
+theme_override_icons/unchecked = ExtResource("10_l0upe")
+text = "Fullscreen"
+script = ExtResource("12_d3abs")
 
 [connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_grab" to="node_control/9pr_menu/container_options/container_options_p1/button_key_grab" method="_onToggled"]
 [connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p1/button_key_up" to="node_control/9pr_menu/container_options/container_options_p1/button_key_up" method="_onToggled"]
@@ -491,5 +541,6 @@ text = "Back"
 [connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_down" to="node_control/9pr_menu/container_options/container_options_p2/button_key_down" method="_onToggled"]
 [connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_left" to="node_control/9pr_menu/container_options/container_options_p2/button_key_left" method="_onToggled"]
 [connection signal="toggled" from="node_control/9pr_menu/container_options/container_options_p2/button_key_right" to="node_control/9pr_menu/container_options/container_options_p2/button_key_right" method="_onToggled"]
-[connection signal="pressed" from="node_control/9pr_menu/HBoxContainer/button_reset" to="." method="_onButtonResetPressed"]
-[connection signal="pressed" from="node_control/9pr_menu/HBoxContainer/button_back" to="." method="_onButtonBackPressed"]
+[connection signal="pressed" from="node_control/9pr_menu/container_down/button_reset" to="." method="_onButtonResetPressed"]
+[connection signal="pressed" from="node_control/9pr_menu/container_down/button_back" to="." method="_onButtonBackPressed"]
+[connection signal="toggled" from="node_control/9pr_menu/chbox_fullscreen" to="node_control/9pr_menu/chbox_fullscreen" method="_onToggled"]

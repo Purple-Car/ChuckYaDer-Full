@@ -108,7 +108,23 @@ func saveKeyMap() -> void:
 		var keys: Array = []
 		for event in InputMap.action_get_events(action_name):
 			if event is InputEventKey:
-				keys.append(event.physical_keycode)
+				keys.append({
+					"type": "key",
+					"code": event.physical_keycode
+				})
+			elif event is InputEventJoypadButton:
+				keys.append({
+					"type": "joy_button",
+					"button": event.button_index,
+					"device": event.device
+				})
+			elif event is InputEventJoypadMotion:
+				keys.append({
+					"type": "joy_axis",
+					"axis": event.axis,
+					"axis_value": event.axis_value,
+					"device": event.device
+				})
 		if keys.size() > 0:
 			save_dict[action_name] = keys
 
@@ -138,10 +154,23 @@ func loadKeyMap() -> void:
 		else:
 			InputMap.action_erase_events(action_name)
 
-		for key_code in data[action_name]:
-			var event := InputEventKey.new()
-			event.physical_keycode = key_code
-			InputMap.action_add_event(action_name, event)
+		for key_data in data[action_name]:
+			var event: InputEvent
+			if key_data.get("type") == "key":
+				event = InputEventKey.new()
+				event.physical_keycode = key_data.get("code", 0)
+			elif key_data.get("type") == "joy_button":
+				event = InputEventJoypadButton.new()
+				event.button_index = key_data.get("button", 0)
+				event.device = key_data.get("device", 0)
+			elif key_data.get("type") == "joy_axis":
+				event = InputEventJoypadMotion.new()
+				event.axis = key_data.get("axis", 0)
+				event.axis_value = key_data.get("axis_value", 0.0)
+				event.device = key_data.get("device", 0)
+			
+			if event:
+				InputMap.action_add_event(action_name, event)
 #endregion
 
 #region saves

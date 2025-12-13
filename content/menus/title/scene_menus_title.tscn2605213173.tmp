@@ -1,0 +1,229 @@
+[gd_scene load_steps=31 format=3 uid="uid://dho5uboywkire"]
+
+[ext_resource type="PackedScene" uid="uid://dvufyrat5i2kt" path="res://fundamental elements/scene_element_camera.tscn" id="1_a28g2"]
+[ext_resource type="Script" uid="uid://bthfp0lfp0tg8" path="res://menus/title/script_menus_title.gd" id="1_enske"]
+[ext_resource type="Texture2D" uid="uid://i5c72au3ifgf" path="res://menus/title/sprites/Title.png" id="2_4w0t1"]
+[ext_resource type="PackedScene" uid="uid://dfgv3ed8ylkfg" path="res://resources/backgrounds/scene_background_clouds.tscn" id="3_2dmyk"]
+[ext_resource type="PackedScene" uid="uid://h804jvol5gvn" path="res://resources/backgrounds/scene_background_sundown.tscn" id="4_t8moa"]
+[ext_resource type="PackedScene" uid="uid://bpc64qtxoi6l1" path="res://resources/backgrounds/scene_background_stars.tscn" id="5_fq1rk"]
+[ext_resource type="Shader" uid="uid://c2shakd6amkwu" path="res://objects/player/shader_player_color.gdshader" id="8_3la18"]
+[ext_resource type="Texture2D" uid="uid://b6g23a710rcyn" path="res://menus/title/sprites/Title_Background.png" id="8_can72"]
+[ext_resource type="Texture2D" uid="uid://cbf6v3juuwnj" path="res://objects/player/sprites/player_title.png" id="8_checo"]
+[ext_resource type="FontFile" uid="uid://3ypw5yfg3qya" path="res://resources/fonts/chuckmain_font.png" id="8_fq1rk"]
+[ext_resource type="Script" uid="uid://ffk4wgo30fji" path="res://menus/title/script_title_player.gd" id="10_821ur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqmnd"]
+shader = ExtResource("8_3la18")
+shader_parameter/target_color = Color(1, 0, 0.8627451, 1)
+shader_parameter/new_color = Color(1, 0, 0.8627451, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3la18"]
+atlas = ExtResource("8_checo")
+region = Rect2(0, 0, 30, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_821ur"]
+atlas = ExtResource("8_checo")
+region = Rect2(30, 0, 30, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqmnd"]
+atlas = ExtResource("8_checo")
+region = Rect2(60, 0, 30, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8macm"]
+atlas = ExtResource("8_checo")
+region = Rect2(0, 24, 30, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50bp1"]
+atlas = ExtResource("8_checo")
+region = Rect2(30, 24, 30, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0els"]
+atlas = ExtResource("8_checo")
+region = Rect2(60, 24, 30, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_66lt6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3la18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_821ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqmnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8macm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50bp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0els")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fq1rk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enske"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dmyk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8moa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_he05j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_can72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_checo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3la18"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_821ur"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqmnd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ewiw"]
+
+[node name="node_menu_title" type="Node2D" node_paths=PackedStringArray("backgrounds")]
+script = ExtResource("1_enske")
+backgrounds = [NodePath("node_camera/node_background_clouds"), NodePath("node_camera/canlay_bg2/node_background_sundown"), NodePath("node_camera/canlay_bg2/node_background_stars")]
+
+[node name="node_camera" parent="." node_paths=PackedStringArray("background_element") instance=ExtResource("1_a28g2")]
+background_element = NodePath("node_background_clouds")
+
+[node name="node_background_clouds" parent="node_camera" instance=ExtResource("3_2dmyk")]
+visible = false
+position = Vector2(0, -151)
+
+[node name="canlay_bg2" type="CanvasLayer" parent="node_camera"]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="node_background_sundown" parent="node_camera/canlay_bg2" instance=ExtResource("4_t8moa")]
+visible = false
+position = Vector2(70, -151)
+
+[node name="node_background_stars" parent="node_camera/canlay_bg2" instance=ExtResource("5_fq1rk")]
+visible = false
+position = Vector2(86, -171)
+
+[node name="sprite_background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("8_can72")
+
+[node name="sprite_title" type="Sprite2D" parent="."]
+position = Vector2(114, 41)
+texture = ExtResource("2_4w0t1")
+
+[node name="anispr_player_1" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_uqmnd")
+position = Vector2(182, 111)
+sprite_frames = SubResource("SpriteFrames_66lt6")
+autoplay = "default"
+script = ExtResource("10_821ur")
+
+[node name="anispr_player_2" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_uqmnd")
+position = Vector2(205, 111)
+sprite_frames = SubResource("SpriteFrames_66lt6")
+autoplay = "default"
+frame_progress = 0.85652983
+script = ExtResource("10_821ur")
+player = 1
+
+[node name="node_control" type="Control" parent="."]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="container_menu" type="GridContainer" parent="node_control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -2.0
+offset_right = 129.0
+offset_bottom = 74.0
+grow_vertical = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+
+[node name="button_newgame" type="Button" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.28489757, 0.36378288, 0.6477012, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.72763795, 0.7585863, 0.8706793, 1)
+theme_override_fonts/font = ExtResource("8_fq1rk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fq1rk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dmyk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t8moa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_he05j")
+text = "NEW GAME"
+
+[node name="button_continue" type="Button" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.28489757, 0.36378288, 0.6477012, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.72763795, 0.7585863, 0.8706793, 1)
+theme_override_colors/font_disabled_color = Color(0.64725864, 0.6595394, 0.72018886, 0.5019608)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("8_fq1rk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_can72")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_checo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3la18")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_821ur")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uqmnd")
+disabled = true
+text = "CONTINUE"
+
+[node name="button_options" type="Button" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.28489757, 0.36378288, 0.6477012, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.72763795, 0.7585863, 0.8706793, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("8_fq1rk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fq1rk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dmyk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t8moa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_he05j")
+text = "CONTROLS"
+
+[node name="button_quit" type="Button" parent="node_control/container_menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.28489757, 0.36378288, 0.6477012, 1)
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.36862746, 0.4745098, 1)
+theme_override_colors/font_hover_color = Color(0.72763795, 0.7585863, 0.8706793, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("8_fq1rk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1ewiw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_enske")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2dmyk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t8moa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_he05j")
+text = "QUIT"
+alignment = 0
+
+[node name="canmod" type="CanvasModulate" parent="."]
+
+[connection signal="pressed" from="node_control/container_menu/button_newgame" to="." method="_onButtonNewgamePressed"]
+[connection signal="pressed" from="node_control/container_menu/button_continue" to="." method="_onButtonContinuePressed"]
+[connection signal="pressed" from="node_control/container_menu/button_options" to="." method="_onButtonOptionsPressed"]
+[connection signal="pressed" from="node_control/container_menu/button_quit" to="." method="_onButtonQuitPressed"]

@@ -73,3 +73,10 @@ func explode_texture(texture: Texture2D, position: Vector2, chunks: int = 2, spe
 			timer.autostart = true
 			timer.timeout.connect(body.queue_free)
 			body.add_child(timer)
+
+func toggleFullscreen():
+	var window = get_tree().root
+	if window.mode == Window.MODE_FULLSCREEN:
+		window.mode = Window.MODE_WINDOWED
+	else:
+		window.mode = Window.MODE_FULLSCREEN

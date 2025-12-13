@@ -46,9 +46,9 @@ func _ready() -> void:
 
 		if found_index != null:
 			grid_pos[player_number] = found_index
-		move_cursor_to_index(player_number)
+		moveCursorToIndex(player_number)
 
-func move_cursor_to_index(player: int) -> void:
+func moveCursorToIndex(player: int) -> void:
 	var index = grid_pos[player]
 	if not grid_buttons.has(index):
 		return
@@ -92,7 +92,7 @@ func _input(event: InputEvent) -> void:
 			
 			if grid_pos[1 - (player_number - 1 )] != Vector2(next_x, next_y):
 				grid_pos[player_number - 1] = Vector2(next_x, next_y)
-				move_cursor_to_index(player_number - 1)
+				moveCursorToIndex(player_number - 1)
 
 func toggleReady(player_num: int) -> void:
 	player_ready[player_num] = !player_ready[player_num]
