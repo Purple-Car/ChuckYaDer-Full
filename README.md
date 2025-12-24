@@ -79,6 +79,18 @@ Sou eu, olá!
         <sub><b>Fumas</b></sub>
       </a>
     </td>
+    <td align="center">
+      <a href=https://www.youtube.com/@EdudsPato>
+        <img src="https://yt3.googleusercontent.com/1kcomDHamlNxw0IUYxk0sDNI_Uyj_h5H8PcfHm-rXxEqP7EERvUUVyF1yDw7j8465VxlhG5F=s160-c-k-c0x00ffffff-no-rj" width="80" height="80"/><br>
+        <sub><b>Pato de Chapéu</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href=https://www.youtube.com/@Toatras>
+        <img src="https://yt3.googleusercontent.com/_Yk3YrAeGokSzFkY7foG6cTScwoP1EFWMRb_iqfYSWy4O8vZgz9SLzj9jAqUGt4sZM-F5JlBvw=s160-c-k-c0x00ffffff-no-rj" width="80" height="80"/><br>
+        <sub><b>Toalha</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
 
